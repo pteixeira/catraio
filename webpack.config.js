@@ -25,7 +25,12 @@ module.exports = {
       // { test: /\.js$/, exclude: /node_modules/, loader: "eslint" }
     ],
     loaders: [
-      { test: /\.js$/, exclude: /node_modules/, loader: "react-hot!babel" }
+      { test: /\.js$/, exclude: /node_modules/, loader: "react-hot!babel" },
+      { test: /\.css/, loader: "style!css!autoprefixer" },
+      { test: /\.styl$/, loader: "style!css!autoprefixer!stylus" },
+      { test: /\.(jpg|png)$/, loader: "url" },
+      { test: /\.json$/, loader: "json" },
+      { test: /\.(woff)$/, loader: "file" }
     ]
   }
 };

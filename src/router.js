@@ -12,8 +12,6 @@ const router = (
   <Router history={history}>
     <Route path="/" component={App}>
 
-      <IndexRoute component={Header} />
-
     </Route>
   </Router>
 );

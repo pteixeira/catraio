@@ -1,3 +1,6 @@
+import "../../assets/normalize.css";
+import "./app.styl";
+
 import React from "react";
 
 class App extends React.Component {
