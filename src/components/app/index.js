@@ -3,6 +3,8 @@ import "./app.styl";
 
 import React from "react";
 
+import Header from "./header";
+
 class App extends React.Component {
   static displayName = "App";
 
@@ -14,6 +16,7 @@ class App extends React.Component {
     console.log(this.props)
     return (
       <div className="App">
+        <Header />
         {this.props.children}
       </div>
     );
