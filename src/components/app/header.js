@@ -1,4 +1,7 @@
+import "./header.styl";
+
 import React from "react";
+import { Link } from "react-router";
 
 import links from "./header.json";
 
@@ -7,16 +10,23 @@ class Header extends React.Component {
 
   render() {
     return (
-      <header>
-        <h1 className="logo">Catraio</h1>
-        <h2>Adoramos cerveja</h2>
-        <ul className="">
-          {links.map(link => {
+      <header className="Header">
+
+        <Link to="/">
+          <h1 className="logo">Catraio</h1>
+          <h2>Adoramos cerveja</h2>
+        </Link>
+
+        <ul className="Header-menu">
+          {links.map(({ link, title }) => {
             return (
-              <li key={`header-link-${link.link}`}>{link.title}</li>
+              <li className="Header-menu-item" key={`header-link-${link}`}>
+                <Link to={link}>{title}</Link>
+              </li>
             );
           })}
         </ul>
+
       </header>
     );
   }
