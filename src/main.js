@@ -1,9 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { I18nextProvider } from "react-i18next/lib";
+import i18n from "./i18n";
 
-import router from "./router.js"
+import router from "./router";
 
 ReactDOM.render(
-  <div>{router}</div>,
+  <I18nextProvider i18n={i18n}>{router}</I18nextProvider>,
   document.getElementById("app")
 );

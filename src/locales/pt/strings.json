@@ -1,0 +1,12 @@
+{
+  "header": {
+    "tagline": "Adoramos cerveja"
+  },
+  "menu": {
+    "photos": "Fotos",
+    "events": "Eventos",
+    "about": "Acerca",
+    "contact": "Contacto",
+    "beers": "Cervejas"
+  }
+}
