@@ -1,7 +1,0 @@
-[
-  { "title": "Fotos"    , "link": "photos" }  , 
-  { "title": "Eventos"  , "link": "events" }  , 
-  { "title": "Acerca"   , "link": "about" }   , 
-  { "title": "Contacto" , "link": "contact" } , 
-  { "title": "Cervejas" , "link": "beers" }
-]

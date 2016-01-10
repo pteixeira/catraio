@@ -1,0 +1,12 @@
+{
+  "header": {
+    "tagline": "We love beer"
+  },
+  "menu": {
+    "photos": "Photos",
+    "events": "Events",
+    "about": "About",
+    "contact": "Contacts",
+    "beers": "Beers"
+  }
+}
