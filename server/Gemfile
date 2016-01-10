@@ -1,0 +1,13 @@
+source 'https://rubygems.org'
+
+
+gem 'rails', '4.2.5'
+gem 'rails-api'
+
+gem 'rabl'
+gem 'sqlite3'
+
+group :development do
+  gem 'annotate'
+  gem 'spring'
+end
