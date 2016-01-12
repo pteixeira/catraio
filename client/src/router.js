@@ -6,12 +6,12 @@ const history = createBrowserHistory();
 
 // Top-level components
 import App from "./components/app";
-import Header from "./components/header";
+import Home from "./components/home";
 
 const router = (
   <Router history={history}>
-    <Route path="/" component={App}>
-
+    <Route component={App}>
+      <Route path="/" component={Home} />
     </Route>
   </Router>
 );
