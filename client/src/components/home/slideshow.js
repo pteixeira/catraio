@@ -11,7 +11,7 @@ class Slideshow extends React.Component {
   };
 
   state = {
-    currentSlide: 0
+    currentSlide: this.props.initialSlide
   };
 
   prev() {
