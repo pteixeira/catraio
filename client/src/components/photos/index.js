@@ -49,7 +49,9 @@ class Photos extends React.Component {
         })}
         <Modal isOpen={this.state.isModalOpen}>
           <div className="Modal-close" onClick={this.closeModal.bind(this)}>X</div>
-          <img src={URLs[this.state.selected]} alt=""/>
+          <div className="Photos-slideshowcontainer">
+            <Slideshow sources={URLs} showIndicators={false} initialSlide={this.state.selected}/>
+          </div>
         </Modal>
       </div>
     );
