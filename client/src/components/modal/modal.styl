@@ -1,0 +1,34 @@
+.Modal
+  display: none;
+
+  &.Modal--visible
+    display: block;
+
+  .Modal-overlay
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(#000, 0.9);
+
+  .Modal-content
+    background: white;
+    margin: 0 auto;
+    position: relative;
+    max-height: 80vh;
+    max-width: 80vw;
+
+    .Modal-close
+      float: right;
+      position: absolute;
+      right: 0;
+      top: 0;
+
+    img
+      display: block;
+      max-height: 80vh;
+      max-width: 80vw;
