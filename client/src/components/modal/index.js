@@ -11,15 +11,31 @@ class Modal extends React.Component {
     children: React.PropTypes.node
   };
 
+  componentWillReceiveProps(newProps) {
+    this.setState({ isOpen: newProps.isOpen });
+  }
+
+  state = {
+    isOpen: this.props.isOpen
+  };
+
+  closeModal() {
+    this.setState({ isOpen: false });
+  }
+
+  preventClose(ev) {
+    ev.stopPropagation();
+  }
+
   render() {
     const cx = classnames("Modal", {
-      "Modal--visible": this.props.isOpen
+      "Modal--visible": this.state.isOpen
     });
 
     return (
       <div className={cx}>
-        <div className="Modal-overlay">
-          <div className="Modal-content">
+        <div className="Modal-overlay" onClick={this.closeModal.bind(this)}>
+          <div className="Modal-content" onClick={this.preventClose.bind(this)}>
             {this.props.children}
           </div>
         </div>

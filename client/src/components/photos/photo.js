@@ -1,6 +1,4 @@
 import React from "react";
-
-import { map } from "lodash";
 import classnames from "classnames";
 
 class Photo extends React.Component {
@@ -14,9 +12,12 @@ class Photo extends React.Component {
 
   render() {
     const ref = "Photo-" + this.props.imageNumber;
+    const photoImageCx = classnames("Photo-image", {
+      "Photo-image-selected": this.props.selected === this.props.imageNumber
+    })
     return (
       <div className="Photo" ref={ref} onClick={this.props.onClick}>
-        <img src={this.props.source} className="Photo-image" />
+        <img src={this.props.source} className={photoImageCx} />
       </div>
     );
   }

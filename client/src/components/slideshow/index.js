@@ -7,12 +7,24 @@ import classnames from "classnames";
 
 class Slideshow extends React.Component {
   static propTypes = {
-    sources: React.PropTypes.array.isRequired
+    sources: React.PropTypes.array.isRequired,
+    hideIndicators: React.PropTypes.bool,
+    initialSlide: React.PropTypes.number,
+    currentSlide: React.PropTypes.number
+  };
+
+  static defaultProps = {
+    hideIndicators: false,
+    initialSlide: 0
   };
 
   state = {
     currentSlide: this.props.initialSlide
   };
+
+  componentWillReceiveProps(newProps) {
+    this.setState({ currentSlide: newProps.currentSlide });
+  }
 
   prev() {
     if (this.state.currentSlide === 0) {
@@ -45,6 +57,10 @@ class Slideshow extends React.Component {
   }
 
   render() {
+    const slideshowIndicatorsCx = classnames("Slideshow-indicators", {
+      "Slideshow-indicators-notvisible": this.props.hideIndicators === true
+    });
+
     return (
       <div className="Slideshow">
         <div className="Slideshow-prev" onClick={this.prev.bind(this)}>
@@ -56,7 +72,7 @@ class Slideshow extends React.Component {
             const imageCx = classnames("Slideshow-image", {
               "active": this.state.currentSlide === i
             });
-            return( <img src={src} className={imageCx}/>)
+            return(<img src={src} className={imageCx} key={i} />)
           })}
         </div>
 
@@ -64,7 +80,7 @@ class Slideshow extends React.Component {
           <div className="arrow-next">Next</div>
         </div>
 
-        <div className="Slideshow-indicators">
+        <div className={slideshowIndicatorsCx}>
           {times(this.props.sources.length, i => {
             const indicatorCx = classnames("Slideshow-indicator",
               {"active": this.state.currentSlide === i}

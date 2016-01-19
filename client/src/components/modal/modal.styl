@@ -16,19 +16,17 @@
     background: rgba(#000, 0.9);
 
   .Modal-content
+    display: inline-block;
     background: white;
     margin: 0 auto;
     position: relative;
-    max-height: 80vh;
-    max-width: 80vw;
+    z-index: 2;
 
     .Modal-close
+      cursor: pointer;
       float: right;
+      padding: 5px;
       position: absolute;
       right: 0;
       top: 0;
-
-    img
-      display: block;
-      max-height: 80vh;
-      max-width: 80vw;
+      z-index: 10;

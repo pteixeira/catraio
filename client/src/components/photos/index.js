@@ -5,7 +5,7 @@ import { map } from "lodash";
 
 import Modal from "../modal";
 import Photo from "./photo";
-import Slideshow from "../home/slideshow"; // TODO: change slideshow to its own component
+import Slideshow from "../slideshow"; // TODO: change slideshow to its own component
 
 
 const URLs = [
@@ -50,7 +50,7 @@ class Photos extends React.Component {
         <Modal isOpen={this.state.isModalOpen}>
           <div className="Modal-close" onClick={this.closeModal.bind(this)}>X</div>
           <div className="Photos-slideshowcontainer">
-            <Slideshow sources={URLs} showIndicators={false} initialSlide={this.state.selected}/>
+            <Slideshow sources={URLs} hideIndicators={1} currentSlide={this.state.selected} />
           </div>
         </Modal>
       </div>
