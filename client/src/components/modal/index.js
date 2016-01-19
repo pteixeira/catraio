@@ -26,12 +26,11 @@ class Modal extends React.Component {
     this.setState({ isOpen: newProps.isOpen });
   }
 
-  closeModal() {
-    this.setState({ isOpen: false });
-  }
-
   preventClose(ev) {
-    ev.stopPropagation();
+    console.log(ev.target.className.match(/Modal-content/), ev.currentTarget.className.match(/Modal-content/));
+    if (ev.target.className.match(/Modal-content/) === null) {
+      ev.stopPropagation();
+    }
   }
 
   render() {
@@ -41,8 +40,8 @@ class Modal extends React.Component {
 
     return (
       <div className={cx}>
-        <div className="Modal-overlay" onClick={this.closeModal.bind(this)}>
-          <i className="Modal-close icon-cancel" />
+        <div className="Modal-overlay" onClick={this.props.onRequestClose}>
+          <i className="Modal-close icon-cancel" onClick={this.props.onRequestClose} />
           <div className="Modal-content" onClick={this.preventClose.bind(this)}>
             {this.props.children}
           </div>
