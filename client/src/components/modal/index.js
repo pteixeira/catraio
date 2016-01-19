@@ -8,16 +8,23 @@ class Modal extends React.Component {
   static displayName = "Modal";
 
   static propTypes = {
-    children: React.PropTypes.node
+    children: React.PropTypes.node,
+    isOpen: React.PropTypes.bool,
+    onRequestClose: React.PropTypes.func,
+  };
+
+  static defaultProps = {
+    isOpen: false,
+    onRequestClose: () => {}
+  };
+
+  state = {
+    isOpen: this.props.isOpen
   };
 
   componentWillReceiveProps(newProps) {
     this.setState({ isOpen: newProps.isOpen });
   }
-
-  state = {
-    isOpen: this.props.isOpen
-  };
 
   closeModal() {
     this.setState({ isOpen: false });
@@ -35,6 +42,7 @@ class Modal extends React.Component {
     return (
       <div className={cx}>
         <div className="Modal-overlay" onClick={this.closeModal.bind(this)}>
+          <i className="Modal-close icon-cancel" />
           <div className="Modal-content" onClick={this.preventClose.bind(this)}>
             {this.props.children}
           </div>

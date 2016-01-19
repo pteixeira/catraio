@@ -1,18 +1,19 @@
-lightgray = alpha(gray, 0.3);
-
 // Mixin for prev and next
 SlideshowDirection()
-  &:hover
-    background: alpha(lightgray, 0.5);
-
-  align-items: center;
-  background: lightgray;
-  cursor: pointer;
+  position: absolute;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px
   height: 100%;
   padding: 0 5px;
-  position: absolute;
+  cursor: pointer;
   z-index: 5;
+  color: white;
+  font-size: 50px
+
+  &:hover i
+    color: gray
 
 
 .Slideshow
@@ -29,8 +30,9 @@ SlideshowDirection()
     img
       opacity: 0;
       position: absolute;
-      top: 0;
-      left: 0;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       transition: opacity 0.3s linear;
 
       &.active

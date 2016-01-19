@@ -64,7 +64,7 @@ class Slideshow extends React.Component {
     return (
       <div className="Slideshow">
         <div className="Slideshow-prev" onClick={this.prev.bind(this)}>
-          <div className="arrow-prev">Prev</div>
+          <i className="icon-angle-left" />
         </div>
 
         <div className="Slideshow-images">
@@ -77,7 +77,7 @@ class Slideshow extends React.Component {
         </div>
 
         <div className="Slideshow-next" onClick={this.next.bind(this)}>
-          <div className="arrow-next">Next</div>
+          <i className="icon-angle-right" />
         </div>
 
         <div className={slideshowIndicatorsCx}>

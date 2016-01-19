@@ -1,4 +1,7 @@
 import "../../assets/normalize.css";
+import "../../assets/fontello.css";
+import "../../assets/fontello-codes.css";
+
 import "./app.styl";
 
 import React from "react";
