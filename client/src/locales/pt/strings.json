@@ -1,4 +1,13 @@
 {
+  "weekdays": {
+    "monday": "Segunda",
+    "tuesday": "Terça",
+    "wednesday": "Quarta",
+    "thursday": "Quinta",
+    "friday": "Sexta",
+    "saturday": "Sábado",
+    "sunday": "Domingo"
+  },
   "header": {
     "tagline": "Adoramos cerveja"
   },
@@ -8,5 +17,16 @@
     "about": "Acerca",
     "contact": "Contacto",
     "beers": "Cervejas"
+  },
+  "contact": {
+    "address": "Morada",
+    "contact": "Contacto",
+    "phone": "Telefone",
+    "schedule": "Horário",
+    "name": "Nome",
+    "subject": "Assunto",
+    "message": "Mensagem",
+    "closed": "Fechado",
+    "submit": "Submeter"
   }
 }
