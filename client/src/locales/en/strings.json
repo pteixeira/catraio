@@ -1,4 +1,13 @@
 {
+  "weekdays": {
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday",
+    "sunday": "Sunday"
+  },
   "header": {
     "tagline": "We love beer"
   },
@@ -8,5 +17,16 @@
     "about": "About",
     "contact": "Contacts",
     "beers": "Beers"
+  },
+  "contact": {
+    "address": "Address",
+    "contact": "Contact",
+    "phone": "Phone",
+    "schedule": "Schedule",
+    "name": "Name",
+    "subject": "Subject",
+    "message": "Message",
+    "closed": "Closed",
+    "submit": "Submit"
   }
 }
