@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { map, throttle } from "lodash";
 import classnames from "classnames";
 
-import{ setBeers } from "../../constants/ActionTypes";
+import{ setBeers } from "../../actions/beers";
 import "exports?self.fetch!whatwg-fetch";
 
 class BeerList extends React.Component {
@@ -114,10 +114,10 @@ class BeerList extends React.Component {
   }
 }
 
-function mapStateToProps(state){
+function select(state){
   return {
     beers: state.beers
   };
 }
 
-export default connect(mapStateToProps)(BeerList);
+export default connect(select)(BeerList);
