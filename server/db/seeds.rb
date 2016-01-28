@@ -93,7 +93,7 @@ Beer.create(brand: "Mean Sardine", name: "Tarrafa", style: "Weiss", abv: 4.5, co
 Beer.create(brand: "Mean Sardine", name: "Zagaia", style: "Belgian Dubbel", abv: 6, country: "Portugal", city: "Ericeira")
 Beer.create(brand: "Mean Sardine", name: "Amura", style: "American Pale Ale", abv: 6, country: "Portugal", city: "Ericeira")
 Beer.create(brand: "Mean Sardine", name: "Voragem", style: "Black IPA", abv: 7, country: "Portugal", city: "Ericeira")
-Beer.create(brand: "Mean Sardine & Amnésia", name: "Juniper Smokin'", style: "", abv: 4.5, country: "Portugal", city: "Ericeira")
+Beer.create(brand: "Mean Sardine & Amnésia", name: "Juniper Smokin'", style: "Smoked", abv: 4.5, country: "Portugal", city: "Ericeira")
 
 Beer.create(brand: "8ª Colina", name: "Urraca Vendaval", style: "IPA", abv: 6, country: "Portugal", city: "Lisboa")
 Beer.create(brand: "8ª Colina", name: "Florinda", style: "Lisbon Lager", abv: 5.2, country: "Portugal", city: "Lisboa")
