@@ -4,6 +4,7 @@ import "./app.styl";
 import React from "react";
 
 import Header from "./header";
+import Footer from "./footer";
 
 class App extends React.Component {
   static displayName = "App";
@@ -17,6 +18,7 @@ class App extends React.Component {
       <div className="App">
         <Header />
         {this.props.children}
+        <Footer />
       </div>
     );
   }
