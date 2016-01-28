@@ -1,14 +1,22 @@
 import "./beers.styl";
 
 import React from "react";
+import ReactDOM from "react-dom";
 import { createStore } from "redux";
 import { connect } from "react-redux";
-import { map } from "lodash";
+import { map, throttle } from "lodash";
+import classnames from "classnames";
 
 import{ setBeers } from "../../constants/ActionTypes";
 import "exports?self.fetch!whatwg-fetch";
 
 class BeerList extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.throttledBoundHandleScroll = throttle(this.handleScroll.bind(this), 200);
+  };
+
   static displayName = "BeerList";
 
   static propTypes = {
@@ -18,6 +26,12 @@ class BeerList extends React.Component {
   static defaultProps = {
     "beers": []
   };
+
+  state = {
+    isHeaderSticky: false
+  };
+
+  static initialHeaderPosition;
 
   componentWillMount() {
     console.log("before");
@@ -30,12 +44,50 @@ class BeerList extends React.Component {
     console.log("after");
   }
 
+  componentDidMount() {
+    this.initialHeaderPosition = ReactDOM.findDOMNode(this.refs.headers).getBoundingClientRect().top;
+    window.addEventListener("scroll", this.throttledBoundHandleScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.throttledBoundHandleScroll);
+  }
+
+  handleScroll(ev) {
+    // console.log();
+    const headersTop = ReactDOM.findDOMNode(this.refs.headers).getBoundingClientRect().top;
+    const headersHeight = ReactDOM.findDOMNode(this.refs.headers).offsetHeight;
+
+
+    // adicionar variavel com a posicao inicial do elemento de headers
+    console.log("initial header position:", this.initialHeaderPosition)
+    console.log("headersTop", headersTop)
+    console.log("window.scrollY", window.scrollY)
+    console.log("headersHeight", headersHeight)
+    console.log("---------------")
+
+    // If we passed the headers height, we only change if the header is not sticky.
+    // Same goes for when we scroll up, we only change if the header is sticky
+    if (window.scrollY < this.initialHeaderPosition) {
+      if (this.state.isHeaderSticky) {
+        this.setState({ isHeaderSticky: false });
+      }
+    } else {
+      if (!this.state.isHeaderSticky) {
+        this.setState({ isHeaderSticky: true });
+      }
+    }
+  }
+
   render() {
+    const headerCx = classnames("", {
+      "sticky": this.state.isHeaderSticky === true
+    });
     return (
       <div className="BeerList">
         <table>
           <tbody>
-            <tr>
+            <tr ref="headers" className={headerCx}>
               <th>Brand</th>
               <th>Name</th>
               <th>ABV</th>
