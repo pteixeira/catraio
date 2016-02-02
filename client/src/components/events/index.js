@@ -90,6 +90,11 @@ class Events extends React.Component {
             <div><strong>{t("events:when")}</strong>: {moment(event.start_time).format("dddd, MMMM Do YYYY, HH:mm")}</div>
             <div>{event.description}</div>
             <div><strong>Attending</strong>: {event.attending_count}</div>
+            <div>
+              <a href={`http://www.facebook.com/events/${event.id}`} target="null">
+                <strong>{t("events:viewInFacebook")}</strong>
+              </a>
+            </div>
           </div>
         )
       })}

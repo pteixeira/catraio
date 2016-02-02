@@ -49,6 +49,7 @@
   },
   "events": {
     "where": "Where",
-    "when": "When"
+    "when": "When",
+    "viewInFacebook": "View in Facebook"
   }
 }
