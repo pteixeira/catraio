@@ -34,14 +34,6 @@ class BeerList extends React.Component {
   static initialHeaderPosition;
 
   componentWillMount() {
-    console.log("before");
-    const { dispatch, beers } = this.props;
-    // the following fetches from the server
-    fetch("http://localhost:3000/beers")
-    .then(res => res.json())
-    .then(beers => dispatch(setBeers(beers)));
-    // dispatch(setBeers(this.props.beers));
-    console.log("after");
   }
 
   componentDidMount() {
@@ -54,18 +46,6 @@ class BeerList extends React.Component {
   }
 
   handleScroll(ev) {
-    // console.log();
-    const headersTop = ReactDOM.findDOMNode(this.refs.headers).getBoundingClientRect().top;
-    const headersHeight = ReactDOM.findDOMNode(this.refs.headers).offsetHeight;
-
-
-    // adicionar variavel com a posicao inicial do elemento de headers
-    console.log("initial header position:", this.initialHeaderPosition)
-    console.log("headersTop", headersTop)
-    console.log("window.scrollY", window.scrollY)
-    console.log("headersHeight", headersHeight)
-    console.log("---------------")
-
     // If we passed the headers height, we only change if the header is not sticky.
     // Same goes for when we scroll up, we only change if the header is sticky
     if (window.scrollY < this.initialHeaderPosition) {
