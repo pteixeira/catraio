@@ -1,5 +1,6 @@
 import React from "react";
 
+import Taps from "../taps";
 import Slideshow from "./slideshow";
 
 const URLS = [
@@ -18,6 +19,7 @@ class Home extends React.Component {
   render() {
     return (
       <div className="Home">
+        <Taps />
         <Slideshow sources={URLS} />
       </div>
     );
