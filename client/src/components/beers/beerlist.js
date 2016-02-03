@@ -10,13 +10,10 @@ import classnames from "classnames";
 import{ setBeers } from "../../actions/beers";
 import "exports?self.fetch!whatwg-fetch";
 
+import Taps from "../taps";
+import store from "../../store";
+
 class BeerList extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.throttledBoundHandleScroll = throttle(this.handleScroll.bind(this), 200);
-  };
-
   static displayName = "BeerList";
 
   static propTypes = {
@@ -27,15 +24,21 @@ class BeerList extends React.Component {
     "beers": []
   };
 
-  state = {
-    isHeaderSticky: false
+  constructor(props) {
+    super(props);
+
+    this.throttledBoundHandleScroll = throttle(this.handleScroll.bind(this), 200);
+
+    this.state = {
+      isHeaderSticky: false,
+      category: "brand",
+      order: "asc"
+    }
   };
 
-  static initialHeaderPosition;
-
-  componentWillMount() {
-  }
-
+  // Where the table header is, to calculate when we sticky it.
+  // Used in componentDidMount()
+  initialHeaderPosition = null;
   componentDidMount() {
     this.initialHeaderPosition = ReactDOM.findDOMNode(this.refs.headers).getBoundingClientRect().top;
     window.addEventListener("scroll", this.throttledBoundHandleScroll);
@@ -59,33 +62,93 @@ class BeerList extends React.Component {
     }
   }
 
+  // Filter handling
+  orderAsc(cat) {
+    if (cat === this.state.category && this.state.order === "asc") {
+      return;
+    }
+    this.setState({ category: cat, order: "asc" });
+  }
+
+  orderDesc(cat) {
+    if (cat === this.state.category && this.state.order === "desc") {
+      return;
+    }
+    this.setState({ category: cat, order: "desc" });
+  }
+
+  sortedBeers() {
+    return _.orderBy(this.props.beers, this.state.category, this.state.order);
+  }
+
   render() {
-    const headerCx = classnames("", {
+    const headerCx = classnames({
       "sticky": this.state.isHeaderSticky === true
     });
+
+    const smallFieldCx = classnames({
+      "BeerList-smallfield": !this.state.isHeaderSticky
+    })
+
     return (
       <div className="BeerList">
         <table>
           <tbody>
             <tr ref="headers" className={headerCx}>
-              <th>Brand</th>
-              <th>Name</th>
-              <th>ABV</th>
-              <th>Style</th>
-              <th>Country</th>
-              <th>City</th>
+              <th>
+                Brand
+                <div className="BeerList-filters">
+                  <span className="BeerList-orderAsc" onClick={this.orderAsc.bind(this, "brand")}>^</span>
+                  <span className="BeerList-orderDesc" onClick={this.orderDesc.bind(this, "brand")}>V</span>
+                </div>
+              </th>
+              <th>
+                Name
+                <div className="BeerList-filters">
+                  <span className="BeerList-orderAsc" onClick={this.orderAsc.bind(this, "name")}>^</span>
+                  <span className="BeerList-orderDesc" onClick={this.orderDesc.bind(this, "name")}>V</span>
+                </div>
+              </th>
+              <th className={smallFieldCx}>
+                ABV
+                <div className="BeerList-filters">
+                  <span className="BeerList-orderAsc" onClick={this.orderAsc.bind(this, "abv")}>^</span>
+                  <span className="BeerList-orderDesc" onClick={this.orderDesc.bind(this, "abv")}>V</span>
+                </div>
+              </th>
+              <th>
+                Style
+                <div className="BeerList-filters">
+                  <span className="BeerList-orderAsc" onClick={this.orderAsc.bind(this, "style")}>^</span>
+                  <span className="BeerList-orderDesc" onClick={this.orderDesc.bind(this, "style")}>V</span>
+                </div>
+              </th>
+              <th className={smallFieldCx}>
+                Country
+                <div className="BeerList-filters">
+                  <span className="BeerList-orderAsc" onClick={this.orderAsc.bind(this, "country")}>^</span>
+                  <span className="BeerList-orderDesc" onClick={this.orderDesc.bind(this, "country")}>V</span>
+                </div>
+              </th>
+              <th>
+                City
+                <div className="BeerList-filters">
+                  <span className="BeerList-orderAsc" onClick={this.orderAsc.bind(this, "city")}>^</span>
+                  <span className="BeerList-orderDesc" onClick={this.orderDesc.bind(this, "city")}>V</span>
+                </div>
+              </th>
             </tr>
-            {map(this.props.beers, (src, i) => {
-                return (
-                  <tr key={i}>
-                    <td>{src.brand}</td>
-                    <td>{src.name}</td>
-                    <td>{src.abv}%</td>
-                    <td>{src.style}</td>
-                    <td>{src.country}</td>
-                    <td>{src.city}</td>
-                  </tr>
-                );
+            {map(this.sortedBeers(), (src, i) => {
+              return (
+                <tr key={i}>
+                  <td>{src.brand}</td>
+                  <td>{src.name}</td>
+                  <td className={smallFieldCx}>{src.abv}%</td>
+                  <td>{src.style}</td>
+                  <td className={smallFieldCx}>{src.country}</td>
+                  <td>{src.city}</td>
+                </tr>
+              );
             })}
           </tbody>
         </table>
