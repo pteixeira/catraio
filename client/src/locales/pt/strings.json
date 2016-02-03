@@ -38,5 +38,13 @@
     "city": "Cidade",
     "half_price": "½ Pint",
     "full_price": "Pint"
+  },
+  "beers": {
+    "mainheader": "Cervejas Actualmente Disponíveis",
+    "name": "Nome",
+    "brand": "Marca",
+    "city": "Cidade",
+    "country": "País",
+    "style": "Estilo"
   }
 }

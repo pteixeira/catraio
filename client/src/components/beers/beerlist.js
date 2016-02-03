@@ -2,16 +2,11 @@ import "./beers.styl";
 
 import React from "react";
 import ReactDOM from "react-dom";
-import { createStore } from "redux";
 import { connect } from "react-redux";
-import { map, throttle } from "lodash";
+import { translate } from "react-i18next/lib";
+import { map, throttle, orderBy } from "lodash";
 import classnames from "classnames";
-
-import{ setBeers } from "../../actions/beers";
 import "exports?self.fetch!whatwg-fetch";
-
-import Taps from "../taps";
-import store from "../../store";
 
 class BeerList extends React.Component {
   static displayName = "BeerList";
@@ -48,17 +43,15 @@ class BeerList extends React.Component {
     window.removeEventListener("scroll", this.throttledBoundHandleScroll);
   }
 
-  handleScroll(ev) {
+  handleScroll() {
     // If we passed the headers height, we only change if the header is not sticky.
     // Same goes for when we scroll up, we only change if the header is sticky
     if (window.scrollY < this.initialHeaderPosition) {
       if (this.state.isHeaderSticky) {
         this.setState({ isHeaderSticky: false });
       }
-    } else {
-      if (!this.state.isHeaderSticky) {
-        this.setState({ isHeaderSticky: true });
-      }
+    } else if (!this.state.isHeaderSticky) {
+      this.setState({ isHeaderSticky: true });
     }
   }
 
@@ -78,7 +71,7 @@ class BeerList extends React.Component {
   }
 
   sortedBeers() {
-    return _.orderBy(this.props.beers, this.state.category, this.state.order);
+    return orderBy(this.props.beers, this.state.category, this.state.order);
   }
 
   render() {
@@ -90,20 +83,22 @@ class BeerList extends React.Component {
       "BeerList-smallfield": !this.state.isHeaderSticky
     })
 
+    const { t } = this.props;
+
     return (
       <div className="BeerList">
         <table>
           <tbody>
             <tr ref="headers" className={headerCx}>
               <th>
-                Brand
+                {t("beers:brand")}
                 <div className="BeerList-filters">
                   <span className="BeerList-orderAsc" onClick={this.orderAsc.bind(this, "brand")}>^</span>
                   <span className="BeerList-orderDesc" onClick={this.orderDesc.bind(this, "brand")}>V</span>
                 </div>
               </th>
               <th>
-                Name
+                {t("beers:name")}
                 <div className="BeerList-filters">
                   <span className="BeerList-orderAsc" onClick={this.orderAsc.bind(this, "name")}>^</span>
                   <span className="BeerList-orderDesc" onClick={this.orderDesc.bind(this, "name")}>V</span>
@@ -117,21 +112,21 @@ class BeerList extends React.Component {
                 </div>
               </th>
               <th>
-                Style
+                {t("beers:style")}
                 <div className="BeerList-filters">
                   <span className="BeerList-orderAsc" onClick={this.orderAsc.bind(this, "style")}>^</span>
                   <span className="BeerList-orderDesc" onClick={this.orderDesc.bind(this, "style")}>V</span>
                 </div>
               </th>
               <th className={smallFieldCx}>
-                Country
+                {t("beers:country")}
                 <div className="BeerList-filters">
                   <span className="BeerList-orderAsc" onClick={this.orderAsc.bind(this, "country")}>^</span>
                   <span className="BeerList-orderDesc" onClick={this.orderDesc.bind(this, "country")}>V</span>
                 </div>
               </th>
               <th>
-                City
+                {t("beers:city")}
                 <div className="BeerList-filters">
                   <span className="BeerList-orderAsc" onClick={this.orderAsc.bind(this, "city")}>^</span>
                   <span className="BeerList-orderDesc" onClick={this.orderDesc.bind(this, "city")}>V</span>
@@ -163,4 +158,4 @@ function select(state){
   };
 }
 
-export default connect(select)(BeerList);
+export default translate(["contact"])(connect(select)(BeerList));
