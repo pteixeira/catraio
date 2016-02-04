@@ -6,8 +6,7 @@ import moment from "moment";
 import { translate } from "react-i18next/lib";
 
 const testJson = {
-  "events": {
-    "data": [
+  "events": [
     {
       "attending_count": 114,
       "cover": {
@@ -34,30 +33,29 @@ const testJson = {
       "id": "238126796519417"
     },
     {
-        "attending_count": 18,
-        "cover": {
-          "offset_x": 50,
-          "offset_y": 0,
-          "source": "https://scontent.xx.fbcdn.net/hphotos-xaf1/t31.0-8/s720x720/12401737_1669360406682580_7549079689994256227_o.jpg",
-          "id": "1669360406682580"
+      "attending_count": 18,
+      "cover": {
+        "offset_x": 50,
+        "offset_y": 0,
+        "source": "https://scontent.xx.fbcdn.net/hphotos-xaf1/t31.0-8/s720x720/12401737_1669360406682580_7549079689994256227_o.jpg",
+        "id": "1669360406682580"
+      },
+      "description": "Este Sábado contiuamos com os festejos de Natal... Todas as cervejas da Post Scriptum Brewery, LDA à pressão e ainda mais algumas novidades by Pedro Sousa.",
+      "place": {
+        "name": "Catraio - Craft Beer Shop",
+        "location": {
+          "city": "Porto",
+          "country": "Portugal",
+          "latitude": 41.149960202094,
+          "longitude": -8.6167166072774,
+          "street": "Rua de Cedofeita 256",
+          "zip": "4050-174"
         },
-        "description": "Este Sábado contiuamos com os festejos de Natal... Todas as cervejas da Post Scriptum Brewery, LDA à pressão e ainda mais algumas novidades by Pedro Sousa.",
-        "place": {
-          "name": "Catraio - Craft Beer Shop",
-          "location": {
-            "city": "Porto",
-            "country": "Portugal",
-            "latitude": 41.149960202094,
-            "longitude": -8.6167166072774,
-            "street": "Rua de Cedofeita 256",
-            "zip": "4050-174"
-          },
-          "id": "1444265872525369"
-        },
-        "id": "1673278149582243"
-      }
-    ]
-  }
+        "id": "1444265872525369"
+      },
+      "id": "1673278149582243"
+    }
+  ]
 };
 
 class Events extends React.Component {
@@ -79,7 +77,7 @@ class Events extends React.Component {
     return (
       <div className="Events">
       <h2>{t("menu:events")}</h2>
-      {map(testJson.events.data, (event, i) => {
+      {map(testJson.events, (event, i) => {
         return(
           <div className="Events-event" key={i}>
             <div className="Events-eventimage">
