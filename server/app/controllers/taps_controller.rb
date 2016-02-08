@@ -1,6 +1,8 @@
 class TapsController < ApplicationController
+  #before_action :authenticate, except: %w(index)
+
   def index
-    taps = Tap.rank(:position).all
+    taps = Tap.order(position: "asc").all
 
     render json: taps
   end
@@ -15,13 +17,22 @@ class TapsController < ApplicationController
     tap = Tap.find(params[:id])
     tap.update!(tap_params)
 
+    if (params[:action])
+      case params[:action]
+      when "move_up"
+        tap.move_higher
+      when "move_down"
+        tap.move_lower
+      end
+    end
+
     render json: tap
   end
 
   def destroy
     Tap.destroy(params[:id])
 
-    render head: :ok
+    render json: {}
   end
 
   private
@@ -35,8 +46,7 @@ class TapsController < ApplicationController
       :country,
       :city,
       :half_price,
-      :full_price,
-      :position
+      :full_price
     )
   end
 end

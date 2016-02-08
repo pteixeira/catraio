@@ -28,5 +28,15 @@
     "message": "Message",
     "closed": "Closed",
     "submit": "Submit"
+  },
+  "taps": {
+    "brand": "Brand",
+    "name": "Name",
+    "style": "Style",
+    "abv": "ABV",
+    "country": "Country",
+    "city": "City",
+    "half_price": "½ Pint",
+    "full_price": "Pint"
   }
 }

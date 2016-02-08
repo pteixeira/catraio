@@ -1,4 +1,5 @@
-import { createStore } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
+import thunkMiddleware from 'redux-thunk';
 
 import appReducer from "./reducers/app";
 
@@ -7,6 +8,10 @@ const initialState = {
   taps: [],
 };
 
-const store = createStore(appReducer, initialState);
+//const store = createStore(appReducer, initialState, applyMiddleware(
+const store = createStore(appReducer, initialState, compose(
+  applyMiddleware(thunkMiddleware),
+  window.devToolsExtension ? window.devToolsExtension() : f => f
+));
 
 export default store;
