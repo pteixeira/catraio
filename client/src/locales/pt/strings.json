@@ -28,5 +28,15 @@
     "message": "Mensagem",
     "closed": "Fechado",
     "submit": "Submeter"
+  },
+  "taps": {
+    "brand": "Cervejeira",
+    "name": "Nome",
+    "style": "Estilo",
+    "abv": "ABV",
+    "country": "País",
+    "city": "Cidade",
+    "half_price": "½ Pint",
+    "full_price": "Pint"
   }
 }

@@ -1,10 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import { map } from "lodash";
+import { translate } from "react-i18next/lib";
 
 import "exports?self.fetch!whatwg-fetch";
 
-import { addTap } from "../../actions/taps";
+import { addTap, deleteTap } from "../../actions/taps";
 
 class Taps extends React.Component {
   static propTypes = {
@@ -32,50 +33,79 @@ class Taps extends React.Component {
 
     const { brand, name, style, abv, country, city, half_price, full_price } = this.refs;
     const params = {
-      tap: {
-        brand: brand.value,
-        name: name.value,
-        style: style.value,
-        abv: abv.value,
-        country: country.value,
-        city: city.value,
-        half_price: half_price.value,
-        full_price: full_price.value,
-        position: "last"
-      }
+      brand: brand.value,
+      name: name.value,
+      style: style.value,
+      abv: abv.value,
+      country: country.value,
+      city: city.value,
+      half_price: half_price.value,
+      full_price: full_price.value,
     }
 
     this.props.dispatch(addTap(params));
+  }
 
-    // fetch("http://localhost:3000/taps", {
-    //   method: "post",
-    //   headers: {
-    //     "Accept": "application/json",
-    //     "Content-Type": "application/json"
-    //   },
-    //   body: JSON.stringify(params)
-    // })
-    // .then(res => {
-    //   if (res.ok)
-    //     return res.json();
+  removeTap(tap, ev) {
+    ev.preventDefault();
 
-    //   throw new Error(res.status);
-    // })
-    // .then(tap => this.setState({ taps: this.state.taps.concat([tap]) }))
-    // .catch(() => alert("FUDEU"));
+    this.props.dispatch(deleteTap(tap));
+  }
+
+  moveTapUp(tap, ev) {
+    ev.preventDefault();
+
+    // this.props.dispatch(moveTapUp(tap));
+  }
+
+  moveTapDown(id, ev) {
+    ev.preventDefault();
+
+    // this.props.dispatch(moveTapDown(tap));
   }
 
   render() {
-    
-    const { taps } = this.props;
+    const { taps, t } = this.props;
 
     return (
       <div className="Taps">
-        {map(taps, tap => {
-          return (
-            <p>{JSON.stringify(tap)}</p>
-          )
-        })}
+        <table>
+          <thead>
+            <tr>
+              <th>{t("taps:brand")}</th>
+              <th>{t("taps:name")}</th>
+              <th>{t("taps:style")}</th>
+              <th>{t("taps:abv")}</th>
+              <th>{t("taps:country")}</th>
+              <th>{t("taps:city")}</th>
+              <th>{t("taps:half_price")}</th>
+              <th>{t("taps:full_price")}</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {map(taps, tap => {
+              return (
+                <tr key={tap.id}>
+                  <td>{tap.brand}</td>
+                  <td>{tap.name}</td>
+                  <td>{tap.style}</td>
+                  <td>{tap.abv}%</td>
+                  <td>{tap.country}</td>
+                  <td>{tap.city}</td>
+                  <td>{tap.half_price}€</td>
+                  <td>{tap.full_price}€</td>
+                  <td>
+                    <button onClick={this.removeTap.bind(this, tap)}>X</button>
+                    <button onClick={this.moveTapUp.bind(this, tap)}>^</button>
+                    <button onClick={this.moveTapDown.bind(this, tap)}>v</button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
 
         <form>
           <input type="text" placeholder="Brand" ref="brand" />
@@ -100,4 +130,5 @@ function select(state) {
   };
 }
 
-export default connect(select)(Taps);
+const reduxComponent = connect(select)(Taps);
+export default translate(["contact"])(reduxComponent);
