@@ -8,6 +8,7 @@ const initialState = {
   taps: [],
   events: [],
   pastevents: []
+  user: ''
 };
 
 //const store = createStore(appReducer, initialState, applyMiddleware(

@@ -53,5 +53,8 @@
     "viewInFacebook": "Ver no Facebook",
     "showpast": "Mostrar eventos anteriores",
     "hidepast": "Esconder eventos anteriores"
+  },
+  "login": {
+    "error": "Email ou password incorrecto"
   }
 }

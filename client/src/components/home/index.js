@@ -4,6 +4,7 @@ import React from "react";
 
 import Taps from "../taps";
 import Slideshow from "../slideshow";
+import LoginForm from "../login";
 
 const URLS = [
   "http://placingbad.com/800/200",
@@ -21,6 +22,7 @@ class Home extends React.Component {
   render() {
     return (
       <div className="Home">
+        <LoginForm />
         <Taps />
         <div className="Home-slideshowcontainer">
           <Slideshow sources={URLS} hideIndicators={0} hideSlidingImages={1} initialSlide={0} />

@@ -1,5 +1,5 @@
 class TapsController < ApplicationController
-  #before_action :authenticate, except: %w(index)
+  before_action :authenticate, except: %w(index)
 
   def index
     taps = Tap.order(position: "asc").all

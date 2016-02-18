@@ -38,7 +38,7 @@
     "city": "City",
     "half_price": "½ Pint",
     "full_price": "Pint"
-    },
+  },
   "beers": {
     "mainheader": "Currently Available Beers",
     "name": "Name",
@@ -53,5 +53,8 @@
     "viewInFacebook": "View in Facebook",
     "showpast": "Show past events",
     "hidepast": "Hide past events"
+  },
+  "login": {
+    "error": "Invalid email or password"
   }
 }

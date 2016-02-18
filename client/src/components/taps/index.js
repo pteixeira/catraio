@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { map } from "lodash";
 import { translate } from "react-i18next/lib";
+import classnames from "classnames";
 
 import "exports?self.fetch!whatwg-fetch";
 
@@ -57,7 +58,8 @@ class Taps extends React.Component {
   }
 
   render() {
-    const { taps, t } = this.props;
+    const { taps, user, t } = this.props;
+    const tapActionsCx = classnames({ "hide": user.length === 0 })
 
     return (
       <div className="Taps">
@@ -88,7 +90,7 @@ class Taps extends React.Component {
                   <td>{tap.city}</td>
                   <td>{tap.half_price}€</td>
                   <td>{tap.full_price}€</td>
-                  <td>
+                  <td className={tapActionsCx}>
                     <button onClick={this.removeTap.bind(this, tap)}>X</button>
                     <button onClick={this.moveTapUp.bind(this, tap)}>^</button>
                     <button onClick={this.moveTapDown.bind(this, tap)}>v</button>
@@ -99,7 +101,7 @@ class Taps extends React.Component {
           </tbody>
         </table>
 
-        <form>
+        <form className={tapActionsCx}>
           <input type="text" placeholder="Brand" ref="brand" />
           <input type="text" placeholder="Name" ref="name" />
           <input type="text" placeholder="Style" ref="style" />
@@ -109,7 +111,7 @@ class Taps extends React.Component {
           <input type="text" placeholder="Half pint price" ref="half_price" />
           <input type="text" placeholder="Full pint price" ref="full_price" />
 
-          <input type="submit" value="Add tap" onClick={this.createTap.bind(this)}/>
+          <input type="submit" value="Add tap" onClick={this.createTap.bind(this)} />
         </form>
       </div>
     );
@@ -119,6 +121,7 @@ class Taps extends React.Component {
 function select(state) {
   return {
     taps: state.taps,
+    user: state.user
   };
 }
 
