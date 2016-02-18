@@ -13,7 +13,6 @@ class Header extends React.Component {
 
   render() {
     const { t } = this.props;
-
     return (
       <header className="Header">
 
@@ -26,7 +25,7 @@ class Header extends React.Component {
           {MENU_ITEMS.map((item) => {
             return (
               <li className="Header-menu-item" key={`header-link-${item}`}>
-                <Link to={item}>{t(`menu:${item}`)}</Link>
+                <Link to={item} activeClassName="active">{t(`menu:${item}`)}</Link>
               </li>
             );
           })}
