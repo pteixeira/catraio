@@ -41,6 +41,11 @@ const addTapFailure = createAction(TAPS_ADD_FAILURE);
 export function addTap(params) {
   return function(dispatch) {
     dispatch(addTapRequest(params));
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      headers.Authorization = `Bearer ${token}`;
+    }
 
     return fetch(`${API_HOST}/taps`, {
       method: "post",
@@ -67,6 +72,11 @@ const moveTapUpFailure = createAction(TAPS_MOVE_UP_FAILURE);
 export function moveTapUp(id) {
   return function(dispatch) {
     dispatch(moveTapUpRequest(id));
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      headers.Authorization = `Bearer ${token}`;
+    }
 
     return fetch(`${API_HOST}/taps/${id}`, {
       method: "put",
@@ -93,6 +103,11 @@ const deleteTapFailure = createAction(TAPS_DELETE_FAILURE);
 export function deleteTap(tap) {
   return function (dispatch) {
     dispatch(deleteTapRequest(tap));
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      headers.Authorization = `Bearer ${token}`;
+    }
 
     return fetch(`${API_HOST}/taps/${tap.id}`, {
       method: "delete",
