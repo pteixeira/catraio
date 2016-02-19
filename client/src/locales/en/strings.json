@@ -38,5 +38,13 @@
     "city": "City",
     "half_price": "½ Pint",
     "full_price": "Pint"
+    },
+  "beers": {
+    "mainheader": "Currently Available Beers",
+    "name": "Name",
+    "brand": "Brand",
+    "city": "City",
+    "country": "Country",
+    "style": "Style"
   }
 }

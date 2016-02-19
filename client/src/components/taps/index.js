@@ -16,14 +16,6 @@ class Taps extends React.Component {
     taps: []
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      taps: props.taps
-    };
-  }
-
   //---------------------------------------------------------------------------
   // Event handlers
   //---------------------------------------------------------------------------
