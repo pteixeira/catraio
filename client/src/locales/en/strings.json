@@ -46,5 +46,12 @@
     "city": "City",
     "country": "Country",
     "style": "Style"
+  },
+  "events": {
+    "where": "Where",
+    "when": "When",
+    "viewInFacebook": "View in Facebook",
+    "showpast": "Show past events",
+    "hidepast": "Hide past events"
   }
 }

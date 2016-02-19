@@ -2,10 +2,14 @@ import { combineReducers } from "redux";
 
 import beers from "./beers";
 import taps from "./taps";
+import events from "./events";
+import pastevents from "./pastevents";
 
 export default combineReducers({
   beers,
-  taps
+  taps,
+  events,
+  pastevents
 });
 
 // above call for combineReducers is equivalent to the function below
@@ -14,5 +18,7 @@ export default combineReducers({
 //   return {
 //     beers: beers(state.beers, action),
 //     taps: taps(state.taps),
+//     events: events(state.events),
+//     pastevents: pastevents(state.pastevents)
 //   };
 // }

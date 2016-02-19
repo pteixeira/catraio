@@ -6,6 +6,8 @@ import appReducer from "./reducers/app";
 const initialState = {
   beers: [],
   taps: [],
+  events: [],
+  pastevents: []
 };
 
 //const store = createStore(appReducer, initialState, applyMiddleware(

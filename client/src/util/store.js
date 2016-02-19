@@ -1,5 +1,6 @@
 import { setTaps } from "../actions/taps";
 import { setBeers } from "../actions/beers";
+import { setEvents } from "../actions/events";
 
 const API_HOST = "http://localhost:3000";
 
@@ -14,5 +15,9 @@ export function initStoreFromServer(store) {
   fetch(`${API_HOST}/beers`)
   .then(res => res.json())
   .then(beers => store.dispatch(setBeers(beers)))
+
+  fetch(`${API_HOST}/events`)
+  .then(res => res.json())
+  .then(events => store.dispatch(setEvents(events)))
   .catch(err => console.log(err));
 }
