@@ -50,6 +50,8 @@
   "events": {
     "where": "Where",
     "when": "When",
-    "viewInFacebook": "View in Facebook"
+    "viewInFacebook": "View in Facebook",
+    "showpast": "Show past events",
+    "hidepast": "Hide past events"
   }
 }
