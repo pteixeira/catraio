@@ -6,11 +6,15 @@ class SendmailController < ApplicationController
     mg_client = Mailgun::Client.new ENV["MAILGUN_API_TOKEN"]
 
     # Define your message parameters
-    message = "Name: " + params[:content][:name] + "<br />" + "Phone: " + params[:content][:phone] + "<br />" + "Message: <br />" + params[:content][:message]
+    message = <<-MSG
+      Name: #{params[:content][:name]}<br />
+      Phone: #{params[:content][:phone]}<br />
+      Message:<br /> #{params[:content][:message]}
+    MSG
 
     message_params = {
       :from    => params[:content][:email],
-      :to      => 'pedro.ap.teixeira@gmail.com',
+      :to      => ENV["EMAIL_RECIPIENT"],
       :subject => params[:content][:subject],
       :html    => message
     }

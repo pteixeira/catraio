@@ -10,7 +10,7 @@ export default combineReducers({
   beers,
   taps,
   events,
-  pastevents
+  pastevents,
   user
 });
 

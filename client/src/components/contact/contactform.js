@@ -6,6 +6,12 @@ import classnames from "classnames";
 import { API_HOST } from "../../config/env";
 import { headers } from "../../util/request";
 
+const EMAIL_STATES = {
+  NONE: 0,
+  SENT: 1,
+  ERROR: 2
+};
+
 class ContactForm extends React.Component {
   static displayName = "ContactForm";
 
@@ -14,7 +20,7 @@ class ContactForm extends React.Component {
   };
 
   state = {
-    sentEmailStatus: "none"
+    sentEmailStatus: EMAIL_STATES.NONE
   };
 
   sendmail(ev) {
@@ -39,27 +45,29 @@ class ContactForm extends React.Component {
     })
     .then(res => {
       if (res.ok) {
-        this.setState({ sentEmailStatus: "sent" });
+        this.setState({ sentEmailStatus: EMAIL_STATES.SENT });
         return res.json()
-      };
+      }
+
+      throw new Error(res.status);
     })
     .catch(() => {
-      this.setState({ sentEmailStatus: "not_sent" })
+      this.setState({ sentEmailStatus: EMAIL_STATES.ERROR })
     })
   }
 
   render() {
     const { t } = this.props;
     const sentEmailCx = classnames("ContactForm-sentMessage", {
-      "success": this.state.sentEmailStatus === "sent",
-      "fail": this.state.sentEmailStatus === "not_sent",
-      "hide": this.state.sentEmailStatus === "none"
+      "success": this.state.sentEmailStatus === EMAIL_STATES.SENT,
+      "fail": this.state.sentEmailStatus === EMAIL_STATES.ERROR,
+      "hide": this.state.sentEmailStatus === EMAIL_STATES.NONE
     });
 
-    let message = '';
-    if (this.state.sentEmailStatus === "sent") {
+    let message = "";
+    if (this.state.sentEmailStatus === EMAIL_STATES.SENT) {
       message = t("contact:message_success");
-    } else if (this.state.sentEmailStatus === "not_sent") {
+    } else if (this.state.sentEmailStatus === EMAIL_STATES.ERROR) {
       message = t("contact:message_fail");
     }
 
