@@ -7,7 +7,7 @@ const initialState = {
   beers: [],
   taps: [],
   events: [],
-  pastevents: []
+  pastevents: [],
   user: ''
 };
 
