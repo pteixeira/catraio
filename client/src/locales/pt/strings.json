@@ -27,7 +27,9 @@
     "subject": "Assunto",
     "message": "Mensagem",
     "closed": "Fechado",
-    "submit": "Submeter"
+    "submit": "Submeter",
+    "message_success": "Mensagem enviada",
+    "message_fail": "Mensagem não enviada"
   },
   "taps": {
     "brand": "Cervejeira",

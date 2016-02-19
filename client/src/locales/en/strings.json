@@ -27,7 +27,9 @@
     "subject": "Subject",
     "message": "Message",
     "closed": "Closed",
-    "submit": "Submit"
+    "submit": "Submit",
+    "message_success": "Message sent",
+    "message_fail": "Message was not sent"
   },
   "taps": {
     "brand": "Brand",
