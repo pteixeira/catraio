@@ -1,0 +1,34 @@
+.Photos
+  text-align: center;
+
+  .Photo
+    display: inline-block;
+    margin: 0 5px;
+
+    img
+      height: 100px;
+      width:100px;
+
+      &:hover
+        border: 1px solid green;
+
+    .Photo-image-selected
+      border: 1px solid green;
+
+  .Modal-content
+    height: 90vh;
+    width: 85vw;
+
+  .Photos-slideshowcontainer
+    width: 100%;
+    height: 100%;
+
+    img
+      max-height: 100%;
+      max-width: 100%;
+
+    .Slideshow-prev
+      left: -60px
+
+    .Slideshow-next
+      right: -60px

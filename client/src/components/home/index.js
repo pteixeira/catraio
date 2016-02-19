@@ -1,7 +1,9 @@
+import "./home.styl";
+
 import React from "react";
 
 import Taps from "../taps";
-import Slideshow from "./slideshow";
+import Slideshow from "../slideshow";
 
 const URLS = [
   "http://placingbad.com/800/200",
@@ -20,7 +22,9 @@ class Home extends React.Component {
     return (
       <div className="Home">
         <Taps />
-        <Slideshow sources={URLS} />
+        <div className="Home-slideshowcontainer">
+          <Slideshow sources={URLS} hideIndicators={0} hideSlidingImages={1} initialSlide={0} />
+        </div>
       </div>
     );
   }

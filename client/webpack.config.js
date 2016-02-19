@@ -30,7 +30,7 @@ module.exports = {
       { test: /\.styl$/, loader: "style!css!autoprefixer!stylus" },
       { test: /\.(jpg|png)$/, loader: "url" },
       { test: /\.json$/, loader: "json" },
-      { test: /\.(woff)$/, loader: "file" }
+      { test: /\.(woff|eot|ttf|svg)$/, loader: "file" }
     ]
   }
 };
