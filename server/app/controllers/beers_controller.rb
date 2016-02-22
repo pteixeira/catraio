@@ -28,4 +28,28 @@ class BeersController < ApplicationController
     render json: @beer
   end
 
+  def create
+    beer = Beer.create(beer_params)
+
+    render json: beer
+  end
+
+  def destroy
+    Beer.destroy(params[:id])
+
+    render json: {}
+  end
+
+  private
+
+  def beer_params
+    params.require(:beer).permit(
+      :brand,
+      :name,
+      :style,
+      :abv,
+      :country,
+      :city
+    )
+  end
 end

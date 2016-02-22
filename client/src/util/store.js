@@ -31,7 +31,11 @@ export function initStoreFromServer(store) {
       method: "get",
       headers
     })
-    .then(res => res.json())
+    .then(res => {
+      if (res.ok) return res.json();
+
+      throw new Error(res.status);
+    })
     .then(user => store.dispatch(setCurrentUser(user.email)))
     .catch(err => {
       localStorage.removeItem("token"); // move to action?

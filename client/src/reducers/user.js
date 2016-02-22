@@ -1,4 +1,3 @@
-import { clone, remove } from "lodash";
 import { USER_SET_CURRENT_USER, USER_REMOVE_CURRENT_USER } from "../action_types";
 
 export default function user(state = "", action) {

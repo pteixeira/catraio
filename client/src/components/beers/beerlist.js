@@ -8,6 +8,8 @@ import { map, throttle, orderBy } from "lodash";
 import classnames from "classnames";
 import "exports?self.fetch!whatwg-fetch";
 
+import { addBeer, deleteBeer } from "../../actions/beers";
+
 class BeerList extends React.Component {
   static displayName = "BeerList";
 
@@ -74,7 +76,32 @@ class BeerList extends React.Component {
     return orderBy(this.props.beers, this.state.category, this.state.order);
   }
 
+  // Event Handlers
+  createBeer(ev) {
+    ev.preventDefault();
+
+    const { brand, name, style, abv, country, city } = this.refs;
+    const params = {
+      brand: brand.value,
+      name: name.value,
+      style: style.value,
+      abv: abv.value,
+      country: country.value,
+      city: city.value
+    }
+
+    this.props.dispatch(addBeer(params));
+  }
+
+  removeBeer(beer, ev) {
+    ev.preventDefault();
+
+    this.props.dispatch(deleteBeer(beer));
+  }
+
   render() {
+    const { t, user } = this.props;
+
     const headerCx = classnames({
       "sticky": this.state.isHeaderSticky === true
     });
@@ -83,10 +110,20 @@ class BeerList extends React.Component {
       "BeerList-smallfield": !this.state.isHeaderSticky
     })
 
-    const { t } = this.props;
+    const beerActionsCx = classnames({ "hide": user.length === 0 });
 
     return (
       <div className="BeerList">
+        <form className={beerActionsCx}>
+          <input type="text" placeholder="Brand" ref="brand" />
+          <input type="text" placeholder="Name" ref="name" />
+          <input type="text" placeholder="Style" ref="style" />
+          <input type="text" placeholder="ABV" ref="abv" />
+          <input type="text" placeholder="Country" ref="country" />
+          <input type="text" placeholder="City" ref="city" />
+
+          <input type="submit" value="Add beer" onClick={this.createBeer.bind(this)} />
+        </form>
         <table>
           <tbody>
             <tr ref="headers" className={headerCx}>
@@ -133,17 +170,20 @@ class BeerList extends React.Component {
                 </div>
               </th>
             </tr>
-            {map(this.sortedBeers(), (src, i) => {
-              return (
-                <tr key={i}>
-                  <td>{src.brand}</td>
-                  <td>{src.name}</td>
-                  <td className={smallFieldCx}>{src.abv}%</td>
-                  <td>{src.style}</td>
-                  <td className={smallFieldCx}>{src.country}</td>
-                  <td>{src.city}</td>
+            {map(this.sortedBeers(), beer => {
+              return(
+                <tr>
+                  <td>{beer.brand}</td>
+                  <td>{beer.name}</td>
+                  <td className={smallFieldCx}>{beer.abv}%</td>
+                  <td>{beer.style}</td>
+                  <td className={smallFieldCx}>{beer.country}</td>
+                  <td>{beer.city}</td>
+                  <td>
+                    <button onClick={this.removeBeer.bind(this, beer)}>X</button>
+                  </td>
                 </tr>
-              );
+              )
             })}
           </tbody>
         </table>
@@ -154,8 +194,10 @@ class BeerList extends React.Component {
 
 function select(state){
   return {
-    beers: state.beers
+    beers: state.beers,
+    user: state.user
   };
 }
 
-export default translate(["contact"])(connect(select)(BeerList));
+const reduxComponent = connect(select)(BeerList);
+export default translate(["contact"])(reduxComponent);
