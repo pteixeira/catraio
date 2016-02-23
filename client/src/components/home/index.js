@@ -25,7 +25,7 @@ class Home extends React.Component {
         <LoginForm />
         <Taps />
         <div className="Home-slideshowcontainer">
-          <Slideshow sources={URLS} hideIndicators={0} hideSlidingImages={1} initialSlide={0} />
+          <Slideshow sources={URLS} hideIndicators={false} hideSlidingImages={1} initialSlide={0} />
         </div>
       </div>
     );
