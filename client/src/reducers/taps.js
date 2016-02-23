@@ -31,7 +31,7 @@ export default function taps(state = [], action) {
     return payload;
 
   //------------------------------------------------------- App Tap
-  case TAPS_ADD_REQUEST:
+  case TAPS_ADD_SUCCESS:
     return concat([], state, payload);
 
   case TAPS_ADD_FAILURE:
