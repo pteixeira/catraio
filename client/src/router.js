@@ -11,9 +11,11 @@ import Contact from "./components/contact";
 import Photos from "./components/photos";
 import Beers from "./components/beers";
 import Events from "./components/events";
+import Disclaimer from "./components/disclaimer";
 
 const router = (
   <Router history={history}>
+    <Route path="/disclaimer" component={Disclaimer} />
     <Route component={App}>
       <Route path="/" component={Home} />
       <Route path="/contact" component={Contact} />

@@ -16,6 +16,13 @@ class App extends React.Component {
     children: React.PropTypes.node
   };
 
+  // Lifecycle methods
+  componentWillMount() {
+    if (sessionStorage.getItem("over18") !== "1") {
+      this.props.history.pushState(null, "/disclaimer");
+    }
+  }
+
   render() {
     return (
       <div className="App">

@@ -58,5 +58,10 @@
   },
   "login": {
     "error": "Invalid email or password"
+  },
+  "disclaimer": {
+    "question": "Are you over 18 years old?",
+    "yes": "Yes",
+    "no": "No"
   }
 }
