@@ -4,9 +4,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { connect } from "react-redux";
 import { translate } from "react-i18next/lib";
-import { map, throttle, orderBy } from "lodash";
+import { map, throttle, orderBy, isEmpty, isString } from "lodash";
 import classnames from "classnames";
 import "exports?self.fetch!whatwg-fetch";
+
+import { addBeer, updateBeer, deleteBeer } from "../../actions/beers";
 
 class BeerList extends React.Component {
   static displayName = "BeerList";
@@ -22,6 +24,7 @@ class BeerList extends React.Component {
   constructor(props) {
     super(props);
 
+    this.initialHeaderPosition = null;
     this.throttledBoundHandleScroll = throttle(this.handleScroll.bind(this), 200);
 
     this.state = {
@@ -31,16 +34,58 @@ class BeerList extends React.Component {
     }
   };
 
-  // Where the table header is, to calculate when we sticky it.
-  // Used in componentDidMount()
-  initialHeaderPosition = null;
+  //------------------------------------------------------------------------------
+  // Lifecycle methods
+  //------------------------------------------------------------------------------
   componentDidMount() {
+    // Where the table header is, to calculate when we sticky it.
     this.initialHeaderPosition = ReactDOM.findDOMNode(this.refs.headers).getBoundingClientRect().top;
     window.addEventListener("scroll", this.throttledBoundHandleScroll);
   }
 
   componentWillUnmount() {
     window.removeEventListener("scroll", this.throttledBoundHandleScroll);
+  }
+
+  //------------------------------------------------------------------------------
+  // Event Handlers
+  //------------------------------------------------------------------------------
+  createBeer(ev) {
+    ev.preventDefault();
+
+    const { brand, name, style, abv, country, city } = this.refs;
+    const params = {
+      brand: brand.value,
+      name: name.value,
+      style: style.value,
+      abv: abv.value,
+      country: country.value,
+      city: city.value
+    }
+
+    this.props.dispatch(addBeer(params));
+  }
+
+  removeBeer(beer, ev) {
+    ev.preventDefault();
+
+    this.props.dispatch(deleteBeer(beer));
+  }
+
+  updateBeer(beer, field, ev) {
+    const params = {
+      id: beer.id,
+      [field]: ev.target.value,
+    };
+
+    this.props.dispatch(updateBeer(params));
+  }
+
+  handleKeyUp(beer, field, ev) {
+    if (ev.key === "Enter") {
+      ev.preventDefault();
+      this.updateBeer(beer, field, ev);
+    }
   }
 
   handleScroll() {
@@ -55,7 +100,9 @@ class BeerList extends React.Component {
     }
   }
 
+  //------------------------------------------------------------------------------
   // Filter handling
+  //------------------------------------------------------------------------------
   orderAsc(cat) {
     if (cat === this.state.category && this.state.order === "asc") {
       return;
@@ -71,10 +118,36 @@ class BeerList extends React.Component {
   }
 
   sortedBeers() {
-    return orderBy(this.props.beers, this.state.category, this.state.order);
+    return orderBy(this.props.beers, (beer) => {
+      // case-insensitive sorting for string values
+      const val = beer[this.state.category];
+      return isString(val) ? val.toLowerCase() : val;
+    }, this.state.order);
+  }
+
+  //------------------------------------------------------------------------------
+  // Render
+  //------------------------------------------------------------------------------
+
+  beerField(beer, field) {
+    if (isEmpty(this.props.user)) return beer[field];
+
+    const type = field === "abv" ? "number" : "text";
+    const val = beer[field];
+
+    return (
+      <input
+        type={type}
+        defaultValue={val}
+        onBlur={this.updateBeer.bind(this, beer, field)}
+        onKeyUp={this.handleKeyUp.bind(this, beer, field)}
+      />
+    )
   }
 
   render() {
+    const { t, user } = this.props;
+
     const headerCx = classnames({
       "sticky": this.state.isHeaderSticky === true
     });
@@ -83,10 +156,20 @@ class BeerList extends React.Component {
       "BeerList-smallfield": !this.state.isHeaderSticky
     })
 
-    const { t } = this.props;
+    const beerActionsCx = classnames({ "hide": user.length === 0 });
 
     return (
       <div className="BeerList">
+        <form className={beerActionsCx}>
+          <input type="text" placeholder="Brand" ref="brand" />
+          <input type="text" placeholder="Name" ref="name" />
+          <input type="text" placeholder="Style" ref="style" />
+          <input type="text" placeholder="ABV" ref="abv" />
+          <input type="text" placeholder="Country" ref="country" />
+          <input type="text" placeholder="City" ref="city" />
+
+          <input type="submit" value="Add beer" onClick={this.createBeer.bind(this)} />
+        </form>
         <table>
           <tbody>
             <tr ref="headers" className={headerCx}>
@@ -133,17 +216,20 @@ class BeerList extends React.Component {
                 </div>
               </th>
             </tr>
-            {map(this.sortedBeers(), (src, i) => {
-              return (
-                <tr key={i}>
-                  <td>{src.brand}</td>
-                  <td>{src.name}</td>
-                  <td className={smallFieldCx}>{src.abv}%</td>
-                  <td>{src.style}</td>
-                  <td className={smallFieldCx}>{src.country}</td>
-                  <td>{src.city}</td>
+            {map(this.sortedBeers(), beer => {
+              return(
+                <tr key={`beer-${beer.id}`}>
+                  <td>{this.beerField(beer, "brand")}</td>
+                  <td>{this.beerField(beer, "name")}</td>
+                  <td className={smallFieldCx}>{this.beerField(beer, "abv")}%</td>
+                  <td>{this.beerField(beer, "style")}</td>
+                  <td className={smallFieldCx}>{this.beerField(beer, "country")}</td>
+                  <td>{this.beerField(beer, "city")}</td>
+                  <td>
+                    <button onClick={this.removeBeer.bind(this, beer)}>X</button>
+                  </td>
                 </tr>
-              );
+              )
             })}
           </tbody>
         </table>
@@ -154,8 +240,10 @@ class BeerList extends React.Component {
 
 function select(state){
   return {
-    beers: state.beers
+    beers: state.beers,
+    user: state.user
   };
 }
 
-export default translate(["contact"])(connect(select)(BeerList));
+const reduxComponent = connect(select)(BeerList);
+export default translate(["contact"])(reduxComponent);

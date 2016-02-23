@@ -1,4 +1,3 @@
-import { map } from "lodash";
 import React from "react";
 import { translate } from "react-i18next/lib";
 import moment from "moment";
