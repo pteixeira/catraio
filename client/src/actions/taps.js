@@ -59,7 +59,7 @@ export function addTap(params) {
 
       throw new Error(res.status);
     })
-    .then(json => dispatch(addTapSuccess(json.tap)))
+    .then(json => dispatch(addTapSuccess(json)))
     .catch(err => dispatch(addTapFailure(params)))
   }
 }
