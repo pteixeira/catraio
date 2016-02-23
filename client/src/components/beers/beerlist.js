@@ -4,11 +4,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { connect } from "react-redux";
 import { translate } from "react-i18next/lib";
-import { map, throttle, orderBy } from "lodash";
+import { map, throttle, orderBy, isEmpty, isString } from "lodash";
 import classnames from "classnames";
 import "exports?self.fetch!whatwg-fetch";
 
-import { addBeer, deleteBeer } from "../../actions/beers";
+import { addBeer, updateBeer, deleteBeer } from "../../actions/beers";
 
 class BeerList extends React.Component {
   static displayName = "BeerList";
@@ -24,6 +24,7 @@ class BeerList extends React.Component {
   constructor(props) {
     super(props);
 
+    this.initialHeaderPosition = null;
     this.throttledBoundHandleScroll = throttle(this.handleScroll.bind(this), 200);
 
     this.state = {
@@ -33,10 +34,11 @@ class BeerList extends React.Component {
     }
   };
 
-  // Where the table header is, to calculate when we sticky it.
-  // Used in componentDidMount()
-  initialHeaderPosition = null;
+  //------------------------------------------------------------------------------
+  // Lifecycle methods
+  //------------------------------------------------------------------------------
   componentDidMount() {
+    // Where the table header is, to calculate when we sticky it.
     this.initialHeaderPosition = ReactDOM.findDOMNode(this.refs.headers).getBoundingClientRect().top;
     window.addEventListener("scroll", this.throttledBoundHandleScroll);
   }
@@ -45,38 +47,9 @@ class BeerList extends React.Component {
     window.removeEventListener("scroll", this.throttledBoundHandleScroll);
   }
 
-  handleScroll() {
-    // If we passed the headers height, we only change if the header is not sticky.
-    // Same goes for when we scroll up, we only change if the header is sticky
-    if (window.scrollY < this.initialHeaderPosition) {
-      if (this.state.isHeaderSticky) {
-        this.setState({ isHeaderSticky: false });
-      }
-    } else if (!this.state.isHeaderSticky) {
-      this.setState({ isHeaderSticky: true });
-    }
-  }
-
-  // Filter handling
-  orderAsc(cat) {
-    if (cat === this.state.category && this.state.order === "asc") {
-      return;
-    }
-    this.setState({ category: cat, order: "asc" });
-  }
-
-  orderDesc(cat) {
-    if (cat === this.state.category && this.state.order === "desc") {
-      return;
-    }
-    this.setState({ category: cat, order: "desc" });
-  }
-
-  sortedBeers() {
-    return orderBy(this.props.beers, this.state.category, this.state.order);
-  }
-
+  //------------------------------------------------------------------------------
   // Event Handlers
+  //------------------------------------------------------------------------------
   createBeer(ev) {
     ev.preventDefault();
 
@@ -97,6 +70,79 @@ class BeerList extends React.Component {
     ev.preventDefault();
 
     this.props.dispatch(deleteBeer(beer));
+  }
+
+  updateBeer(beer, field, ev) {
+    const params = {
+      id: beer.id,
+      [field]: ev.target.value,
+    };
+
+    this.props.dispatch(updateBeer(params));
+  }
+
+  handleKeyUp(beer, field, ev) {
+    if (ev.key === "Enter") {
+      ev.preventDefault();
+      this.updateBeer(beer, field, ev);
+    }
+  }
+
+  handleScroll() {
+    // If we passed the headers height, we only change if the header is not sticky.
+    // Same goes for when we scroll up, we only change if the header is sticky
+    if (window.scrollY < this.initialHeaderPosition) {
+      if (this.state.isHeaderSticky) {
+        this.setState({ isHeaderSticky: false });
+      }
+    } else if (!this.state.isHeaderSticky) {
+      this.setState({ isHeaderSticky: true });
+    }
+  }
+
+  //------------------------------------------------------------------------------
+  // Filter handling
+  //------------------------------------------------------------------------------
+  orderAsc(cat) {
+    if (cat === this.state.category && this.state.order === "asc") {
+      return;
+    }
+    this.setState({ category: cat, order: "asc" });
+  }
+
+  orderDesc(cat) {
+    if (cat === this.state.category && this.state.order === "desc") {
+      return;
+    }
+    this.setState({ category: cat, order: "desc" });
+  }
+
+  sortedBeers() {
+    return orderBy(this.props.beers, (beer) => {
+      // case-insensitive sorting for string values
+      const val = beer[this.state.category];
+      return isString(val) ? val.toLowerCase() : val;
+    }, this.state.order);
+  }
+
+  //------------------------------------------------------------------------------
+  // Render
+  //------------------------------------------------------------------------------
+
+  beerField(beer, field) {
+    if (isEmpty(this.props.user)) return beer[field];
+
+    const type = field === "abv" ? "number" : "text";
+    const val = beer[field];
+
+    return (
+      <input
+        type={type}
+        defaultValue={val}
+        onBlur={this.updateBeer.bind(this, beer, field)}
+        onKeyUp={this.handleKeyUp.bind(this, beer, field)}
+      />
+    )
   }
 
   render() {
@@ -172,13 +218,13 @@ class BeerList extends React.Component {
             </tr>
             {map(this.sortedBeers(), beer => {
               return(
-                <tr>
-                  <td>{beer.brand}</td>
-                  <td>{beer.name}</td>
-                  <td className={smallFieldCx}>{beer.abv}%</td>
-                  <td>{beer.style}</td>
-                  <td className={smallFieldCx}>{beer.country}</td>
-                  <td>{beer.city}</td>
+                <tr key={`beer-${beer.id}`}>
+                  <td>{this.beerField(beer, "brand")}</td>
+                  <td>{this.beerField(beer, "name")}</td>
+                  <td className={smallFieldCx}>{this.beerField(beer, "abv")}%</td>
+                  <td>{this.beerField(beer, "style")}</td>
+                  <td className={smallFieldCx}>{this.beerField(beer, "country")}</td>
+                  <td>{this.beerField(beer, "city")}</td>
                   <td>
                     <button onClick={this.removeBeer.bind(this, beer)}>X</button>
                   </td>

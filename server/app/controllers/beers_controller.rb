@@ -17,21 +17,22 @@
 class BeersController < ApplicationController
 
   def index
-    @beers = Beer.all
+    beers = Beer.all
 
-    render json: @beers
-  end
-
-  def show
-    @beer = Beer.find(params[:id])
-
-    render json: @beer
+    render json: beers
   end
 
   def create
     beer = Beer.create(beer_params)
 
     render json: beer
+  end
+
+  def update
+    beer = Beer.find(params[:id])
+    beer.update(beer_params)
+
+    render json: beer.reload
   end
 
   def destroy

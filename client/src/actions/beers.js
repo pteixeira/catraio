@@ -4,9 +4,15 @@ import "exports?self.fetch!whatwg-fetch";
 import { API_HOST } from "../config/env";
 import {
   BEERS_SET_COLLECTION,
+
   BEERS_ADD_REQUEST,
   BEERS_ADD_SUCCESS,
   BEERS_ADD_FAILURE,
+
+  BEERS_UPDATE_REQUEST,
+  BEERS_UPDATE_SUCCESS,
+  BEERS_UPDATE_FAILURE,
+
   BEERS_DELETE_REQUEST,
   BEERS_DELETE_SUCCESS,
   BEERS_DELETE_FAILURE
@@ -29,11 +35,6 @@ const addBeerFailure = createAction(BEERS_ADD_FAILURE);
 export function addBeer(params) {
   return function(dispatch) {
     dispatch(addBeerRequest(params));
-    const token = localStorage.getItem("token");
-
-    if (token) {
-      headers.Authorization = `Bearer ${token}`;
-    }
 
     return fetch(`${API_HOST}/beers`, {
       method: "post",
@@ -47,8 +48,37 @@ export function addBeer(params) {
 
       throw new Error(res.status);
     })
-    .then(json => dispatch(addBeerSuccess(json.beer)))
+    .then(json => dispatch(addBeerSuccess(json)))
     .catch(err => dispatch(addBeerFailure(params)))
+  }
+}
+
+// --------------------------------------------------------- Edit beer
+const updateBeerRequest = createAction(BEERS_UPDATE_REQUEST);
+const updateBeerSuccess = createAction(BEERS_UPDATE_SUCCESS);
+const updateBeerFailure = createAction(BEERS_UPDATE_FAILURE);
+
+export function updateBeer(params) {
+  return function (dispatch) {
+    dispatch(updateBeerRequest(params));
+
+    const id = params.id;
+    delete params.id;
+
+    return fetch(`${API_HOST}/beers/${id}`, {
+      method: "put",
+      headers,
+      body: JSON.stringify({
+        beer: params,
+      }),
+    })
+    .then((res) => {
+      if (res.ok) return res.json();
+
+      throw new Error(res.status);
+    })
+    .then(json => dispatch(updateBeerSuccess(json)))
+    .catch(err => dispatch(updateBeerFailure(err)));
   }
 }
 
@@ -60,11 +90,6 @@ const deleteBeerFailure = createAction(BEERS_DELETE_FAILURE);
 export function deleteBeer(beer) {
   return function (dispatch) {
     dispatch(deleteBeerRequest(beer));
-    const token = localStorage.getItem("token");
-
-    if (token) {
-      headers.Authorization = `Bearer ${token}`;
-    }
 
     return fetch(`${API_HOST}/beers/${beer.id}`, {
       method: "delete",
@@ -82,5 +107,3 @@ export function deleteBeer(beer) {
     .catch((err) => dispatch(deleteBeerFailure(beer)))
   }
 }
-
-// --------------------------------------------------------- Edit beer
