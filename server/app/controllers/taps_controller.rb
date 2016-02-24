@@ -2,9 +2,9 @@ class TapsController < ApplicationController
   before_action :authenticate, except: %w(index)
 
   def index
-    taps = Tap.order(position: "asc").all
+    taps = Tap.all
 
-    render json: taps
+    render json: Hash[taps.map(&:id).zip(taps)]
   end
 
   def create
@@ -15,10 +15,17 @@ class TapsController < ApplicationController
 
   def update
     tap = Tap.find(params[:id])
+
     tap.update!(tap_params)
 
-    if (params[:action])
-      case params[:action]
+    render json: tap
+  end
+
+  def move
+    tap = Tap.find(move_params[:id])
+
+    if order = move_params[:action]
+      case order
       when "move_up"
         tap.move_higher
       when "move_down"
@@ -26,7 +33,9 @@ class TapsController < ApplicationController
       end
     end
 
-    render json: tap
+    taps = Tap.all
+
+    render json: Hash[taps.map(&:id).zip(taps)]
   end
 
   def destroy
@@ -48,5 +57,9 @@ class TapsController < ApplicationController
       :half_price,
       :full_price
     )
+  end
+
+  def move_params
+    params.require(:tap).permit(:id, :action)
   end
 end

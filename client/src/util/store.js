@@ -2,7 +2,7 @@ import { setTaps } from "../actions/taps";
 import { setBeers } from "../actions/beers";
 import { setEvents } from "../actions/events";
 import { setCurrentUser, removeCurrentUser } from "../actions/user";
-import { headers } from "../util/request";
+import { defaultHeaders } from "../util/request";
 
 const API_HOST = "http://localhost:3000";
 
@@ -25,11 +25,10 @@ export function initStoreFromServer(store) {
 
   const token = localStorage.getItem("token");
   if (token) {
-    headers.Authorization = `Bearer ${token}`;
 
     fetch(`${API_HOST}/me`, {
       method: "get",
-      headers
+      headers: defaultHeaders()
     })
     .then(res => {
       if (res.ok) return res.json();
@@ -38,7 +37,7 @@ export function initStoreFromServer(store) {
     })
     .then(user => store.dispatch(setCurrentUser(user.email)))
     .catch(err => {
-      localStorage.removeItem("token"); // move to action?
+      localStorage.removeItem("token");
       store.dispatch(removeCurrentUser());
     })
   }

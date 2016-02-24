@@ -1,20 +1,21 @@
 import React from "react";
 import { connect } from "react-redux";
-import { map } from "lodash";
+import { isEmpty } from "lodash";
 import { translate } from "react-i18next/lib";
 import classnames from "classnames";
+import Immutable from "immutable";
 
 import "exports?self.fetch!whatwg-fetch";
 
-import { addTap, deleteTap } from "../../actions/taps";
+import { addTap, deleteTap, moveTap, updateTap } from "../../actions/taps";
 
 class Taps extends React.Component {
   static propTypes = {
-    taps: React.PropTypes.array
+    taps: React.PropTypes.instanceOf(Immutable.Map)
   };
 
   static defaultProps = {
-    taps: []
+    taps: Immutable.Map()
   };
 
   //---------------------------------------------------------------------------
@@ -45,21 +46,51 @@ class Taps extends React.Component {
     this.props.dispatch(deleteTap(tap));
   }
 
-  moveTapUp(tap, ev) {
+  moveTap(tap, action, ev) {
     ev.preventDefault();
-
-    // this.props.dispatch(moveTapUp(tap));
+    this.props.dispatch(moveTap(tap.get("id"), action));
   }
 
-  moveTapDown(id, ev) {
-    ev.preventDefault();
+  sortedTaps() {
+    const { taps } = this.props;
+    return taps.sortBy(tap => tap.get("position")).toList();
+  }
 
-    // this.props.dispatch(moveTapDown(tap));
+  updateTap(tap, field, ev) {
+    const params = {
+      id: tap.get("id"),
+      [field]: ev.target.value,
+    };
+
+    this.props.dispatch(updateTap(params));
+  }
+
+  handleKeyUp(tap, field, ev) {
+    if (ev.key === "Enter") {
+      ev.preventDefault();
+      this.updateTap(tap, field, ev);
+    }
+  }
+
+  tapField(tap, field) {
+    if (isEmpty(this.props.user)) return tap.get(field);
+
+    const type = (field === "abv" || field === "half_price" || field === "full_price") ? "number" : "text";
+    const val = tap.get(field);
+
+    return (
+      <input
+        type={type}
+        defaultValue={val}
+        onBlur={this.updateTap.bind(this, tap, field)}
+        onKeyUp={this.handleKeyUp.bind(this, tap, field)}
+      />
+    )
   }
 
   render() {
-    const { taps, user, t } = this.props;
-    const tapActionsCx = classnames({ "hide": user.length === 0 })
+    const { user, t } = this.props;
+    const tapActionsCx = classnames({ "hide": user.length === 0 });
 
     return (
       <div className="Taps">
@@ -79,21 +110,21 @@ class Taps extends React.Component {
           </thead>
 
           <tbody>
-            {map(taps, tap => {
+            {this.sortedTaps().map(tap => {
               return (
-                <tr key={tap.id}>
-                  <td>{tap.brand}</td>
-                  <td>{tap.name}</td>
-                  <td>{tap.style}</td>
-                  <td>{tap.abv}%</td>
-                  <td>{tap.country}</td>
-                  <td>{tap.city}</td>
-                  <td>{tap.half_price}€</td>
-                  <td>{tap.full_price}€</td>
+                <tr key={`tap-${tap.get("id")}`}>
+                  <td>{this.tapField(tap, "brand")}</td>
+                  <td>{this.tapField(tap, "name")}</td>
+                  <td>{this.tapField(tap, "abv")}%</td>
+                  <td>{this.tapField(tap, "style")}</td>
+                  <td>{this.tapField(tap, "country")}</td>
+                  <td>{this.tapField(tap, "city")}</td>
+                  <td>{this.tapField(tap, "half_price")}</td>
+                  <td>{this.tapField(tap, "full_price")}</td>
                   <td className={tapActionsCx}>
                     <button onClick={this.removeTap.bind(this, tap)}>X</button>
-                    <button onClick={this.moveTapUp.bind(this, tap)}>^</button>
-                    <button onClick={this.moveTapDown.bind(this, tap)}>v</button>
+                    <button onClick={this.moveTap.bind(this, tap, "move_up")}>^</button>
+                    <button onClick={this.moveTap.bind(this, tap, "move_down")}>v</button>
                   </td>
                 </tr>
               );

@@ -9,8 +9,6 @@ import { translate } from "react-i18next/lib";
 import Event from "./event";
 import { addPastEvents } from "../../actions/pastevents";
 
-const API_HOST = "http://localhost:3000"
-
 class Events extends React.Component {
   static displayName = "Events";
 
@@ -24,7 +22,7 @@ class Events extends React.Component {
 
   showPastEvents() {
     this.setState({ isShowingPastEvents: !this.state.isShowingPastEvents });
-    if (this.props.pastevents.length > 0) {
+    if (this.props.pastevents.size > 0) {
       return;
     }
 
@@ -33,8 +31,9 @@ class Events extends React.Component {
 
   render() {
     const { t, events, pastevents } = this.props;
-    const sortedEvents = orderBy(events, ["start_time"], "desc");
-    const sortedPastEvents = orderBy(pastevents, ["start_time"], "desc");
+    // const sortedEvents = orderBy(events, ["start_time"], "desc");
+    const sortedEvents = events.sortBy(ev => ev.start_time);
+    const sortedPastEvents = pastevents.sortBy(ev => ev.start_time);
     const pastEventsCx = classnames("Events-pastevents", {
       "hide": !this.state.isShowingPastEvents
     });
@@ -42,7 +41,7 @@ class Events extends React.Component {
     return (
       <div className="Events">
         <h2>{t("menu:events")}</h2>
-         {map(sortedEvents, (event, i) => {
+        {sortedEvents.map((event, i) => {
           return(
             <div className="Events-event" key={i}>
               <Event event={event} />
@@ -53,7 +52,7 @@ class Events extends React.Component {
           {this.state.isShowingPastEvents ? t("events:hidepast") : t("events:showpast")}
         </div>
         <div className={pastEventsCx}>
-          {map(sortedPastEvents, (event, i) => {
+          {sortedPastEvents.map((event, i) => {
             return(
               <div className="Events-event" key={i}>
                 <Event event={event} />

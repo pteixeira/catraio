@@ -24,7 +24,7 @@ import {
   TAPS_DELETE_FAILURE,
 } from "../action_types";
 
-import { headers } from "../util/request";
+import { defaultHeaders } from "../util/request";
 
 export function setTaps(payload) {
   return {
@@ -33,7 +33,7 @@ export function setTaps(payload) {
   };
 }
 
-//--------------------------------------------------------- Add new tap
+// --------------------------------------------------------- Add new tap
 const addTapRequest = createAction(TAPS_ADD_REQUEST);
 const addTapSuccess = createAction(TAPS_ADD_SUCCESS);
 const addTapFailure = createAction(TAPS_ADD_FAILURE);
@@ -41,15 +41,10 @@ const addTapFailure = createAction(TAPS_ADD_FAILURE);
 export function addTap(params) {
   return function(dispatch) {
     dispatch(addTapRequest(params));
-    const token = localStorage.getItem("token");
-
-    if (token) {
-      headers.Authorization = `Bearer ${token}`;
-    }
 
     return fetch(`${API_HOST}/taps`, {
       method: "post",
-      headers,
+      headers: defaultHeaders(),
       body: JSON.stringify({
         tap: params
       }),
@@ -64,25 +59,23 @@ export function addTap(params) {
   }
 }
 
-//--------------------------------------------------------- Move taps up / down
-const moveTapUpRequest = createAction(TAPS_MOVE_UP_REQUEST);
-const moveTapUpSuccess = createAction(TAPS_MOVE_UP_SUCCESS);
-const moveTapUpFailure = createAction(TAPS_MOVE_UP_FAILURE);
+// --------------------------------------------------------- Move taps up / down
+const updateTapRequest = createAction(TAPS_UPDATE_REQUEST);
+const updateTapSuccess = createAction(TAPS_UPDATE_SUCCESS);
+const updateTapFailure = createAction(TAPS_UPDATE_FAILURE);
 
-export function moveTapUp(id) {
+export function moveTap(id, action) {
   return function(dispatch) {
-    dispatch(moveTapUpRequest(id));
-    const token = localStorage.getItem("token");
+    dispatch(updateTapRequest(id));
 
-    if (token) {
-      headers.Authorization = `Bearer ${token}`;
-    }
-
-    return fetch(`${API_HOST}/taps/${id}`, {
+    return fetch(`${API_HOST}/taps/move`, {
       method: "put",
-      headers,
+      headers: defaultHeaders(),
       body: JSON.stringify({
-        action: "move_up",
+        tap: {
+          id,
+          action
+        }
       }),
     })
     .then(res => {
@@ -90,28 +83,48 @@ export function moveTapUp(id) {
 
       throw new Error(res.status);
     })
-    .then(json => dispatch(moveTapUpSuccess(json.tap)))
-    .catch(err => dispatch(moveTapUpFailure(err)));
+    .then(json => dispatch(setTaps(json)))
+    .catch(err => dispatch(updateTapFailure(err)));
   }
 }
 
-//--------------------------------------------------------- Remove taps
+// -- Update Tap
+export function updateTap(params) {
+  return function (dispatch) {
+    dispatch(updateTapRequest());
+
+    const id = params.id;
+    delete params.id;
+
+    return fetch(`${API_HOST}/taps/${id}`, {
+      method: "put",
+      headers: defaultHeaders(),
+      body: JSON.stringify({
+        tap: params,
+      }),
+    })
+    .then((res) => {
+      if (res.ok) return res.json();
+
+      throw new Error(res.status);
+    })
+    .then(json => dispatch(updateTapSuccess(json)))
+    .catch(err => dispatch(updateTapFailure(err)));
+  }
+}
+
+// --------------------------------------------------------- Remove taps
 const deleteTapRequest = createAction(TAPS_DELETE_REQUEST);
 const deleteTapSuccess = createAction(TAPS_DELETE_SUCCESS);
 const deleteTapFailure = createAction(TAPS_DELETE_FAILURE);
 
 export function deleteTap(tap) {
   return function (dispatch) {
-    dispatch(deleteTapRequest(tap));
-    const token = localStorage.getItem("token");
+    dispatch(deleteTapRequest());
 
-    if (token) {
-      headers.Authorization = `Bearer ${token}`;
-    }
-
-    return fetch(`${API_HOST}/taps/${tap.id}`, {
+    return fetch(`${API_HOST}/taps/${tap.get("id")}`, {
       method: "delete",
-      headers,
+      headers: defaultHeaders(),
       body: JSON.stringify({
         tap
       })
@@ -121,7 +134,7 @@ export function deleteTap(tap) {
 
       throw new Error(res.status);
     })
-    .then(() => dispatch(deleteTapSuccess()))
-    .catch((err) => { console.log(err); dispatch(deleteTapFailure(tap)) })
+    .then(() => dispatch(deleteTapSuccess(tap)))
+    .catch((err) => dispatch(deleteTapFailure(tap)) )
   }
 }

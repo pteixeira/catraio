@@ -4,8 +4,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { connect } from "react-redux";
 import { translate } from "react-i18next/lib";
-import { map, throttle, orderBy, isEmpty, isString } from "lodash";
+import { throttle, isEmpty, isString } from "lodash";
 import classnames from "classnames";
+import Immutable from "immutable";
 import "exports?self.fetch!whatwg-fetch";
 
 import { addBeer, updateBeer, deleteBeer } from "../../actions/beers";
@@ -14,11 +15,11 @@ class BeerList extends React.Component {
   static displayName = "BeerList";
 
   static propTypes = {
-    beers: React.PropTypes.array.isRequired
+    beers: React.PropTypes.instanceOf(Immutable.Map).isRequired
   };
 
   static defaultProps = {
-    "beers": []
+    "beers": Immutable.Map()
   };
 
   constructor(props) {
@@ -74,7 +75,7 @@ class BeerList extends React.Component {
 
   updateBeer(beer, field, ev) {
     const params = {
-      id: beer.id,
+      id: beer.get("id"),
       [field]: ev.target.value,
     };
 
@@ -118,11 +119,21 @@ class BeerList extends React.Component {
   }
 
   sortedBeers() {
-    return orderBy(this.props.beers, (beer) => {
-      // case-insensitive sorting for string values
-      const val = beer[this.state.category];
-      return isString(val) ? val.toLowerCase() : val;
-    }, this.state.order);
+    const { category, order } = this.state;
+
+    return this.props.beers.toList().sort((a, b) => {
+      let aVal = a.get(category);
+      let bVal = b.get(category);
+
+      if (isString(aVal)) {
+        aVal = aVal.toLowerCase();
+        bVal = bVal.toLowerCase();
+        const comparisonVal = aVal.localeCompare(bVal);
+        return order === "desc" ? comparisonVal*(-1) : comparisonVal;
+      } else {
+        return order === "desc" ? bVal - aVal : aVal - bVal;
+      }
+    });
   }
 
   //------------------------------------------------------------------------------
@@ -130,10 +141,10 @@ class BeerList extends React.Component {
   //------------------------------------------------------------------------------
 
   beerField(beer, field) {
-    if (isEmpty(this.props.user)) return beer[field];
+    if (isEmpty(this.props.user)) return beer.get(field);
 
     const type = field === "abv" ? "number" : "text";
-    const val = beer[field];
+    const val = beer.get(field);
 
     return (
       <input
@@ -216,9 +227,9 @@ class BeerList extends React.Component {
                 </div>
               </th>
             </tr>
-            {map(this.sortedBeers(), beer => {
+            {this.sortedBeers().map((beer) => {
               return(
-                <tr key={`beer-${beer.id}`}>
+                <tr key={`beer-${beer.get("id")}`}>
                   <td>{this.beerField(beer, "brand")}</td>
                   <td>{this.beerField(beer, "name")}</td>
                   <td className={smallFieldCx}>{this.beerField(beer, "abv")}%</td>

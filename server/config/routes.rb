@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   mount Knock::Engine => "/auth"
 
   resources :beers , only: %i(index create update destroy)
+  put "taps/move", to: "taps#move"
   resources :taps  , only: %i(index create update destroy)
   resources :events, only: %i(index)
 

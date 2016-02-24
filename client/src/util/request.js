@@ -1,7 +1,9 @@
-const token = localStorage.getItem("token") || "";
+export function defaultHeaders() {
+  const token = localStorage.getItem("token") || "";
 
-export const headers = {
-  "Accept": "application/json",
-  "Content-Type": "application/json",
-  "Authorization": `Bearer ${token}`,
+  return {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${token}`
+  }
 };
