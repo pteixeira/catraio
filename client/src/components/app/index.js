@@ -8,6 +8,7 @@ import React from "react";
 
 import Header from "./header";
 import Footer from "./footer";
+import LanguageSelector from "../language_selector";
 
 class App extends React.Component {
   static displayName = "App";
@@ -26,6 +27,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+        <LanguageSelector />
         <Header />
         {this.props.children}
         <Footer />
