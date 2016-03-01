@@ -9,7 +9,8 @@ const initialState = {
   taps: Immutable.Map(),
   events: Immutable.List.of(),
   pastevents: Immutable.List.of(),
-  user: ""
+  user: "",
+  authenticated: false
 };
 
 const store = createStore(appReducer, initialState, compose(

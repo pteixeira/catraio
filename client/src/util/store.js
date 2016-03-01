@@ -36,9 +36,6 @@ export function initStoreFromServer(store) {
       throw new Error(res.status);
     })
     .then(user => store.dispatch(setCurrentUser(user.email)))
-    .catch(err => {
-      localStorage.removeItem("token");
-      store.dispatch(removeCurrentUser());
-    })
+    .catch(err => store.dispatch(removeCurrentUser()))
   }
 }

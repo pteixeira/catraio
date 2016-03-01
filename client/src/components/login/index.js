@@ -5,17 +5,11 @@ import { connect } from "react-redux";
 import "exports?self.fetch!whatwg-fetch";
 
 import { setCurrentUser, removeCurrentUser, userLogin } from "../../actions/user";
-// import { API_HOST } from "../../config/env";
-// import { defaultHeaders } from "../../util/request";
 
 import "./login.styl";
 
 class LoginForm extends React.Component {
   static displayName = "LoginForm";
-
-  state = {
-    showError: false
-  };
 
   handleSubmit(ev) {
     ev.preventDefault();
@@ -25,50 +19,19 @@ class LoginForm extends React.Component {
       "password": this.refs.password.value
     }
 
-    this.props.dispatch(userLogin(params))
-    .then(res => {
-      localStorage.setItem("token", res.jwt);
-      this.props.dispatch(setCurrentUser(params.email))
-      this.setState({ showError: false });
-    })
-    .catch(err => {
-      console.log(err);
-      this.setState({ showError: true });
-    });
-    // fetch(`${API_HOST}/auth/auth_token`, {
-    //   method: "post",
-    //   headers: defaultHeaders(),
-    //   body: JSON.stringify({
-    //     auth: params
-    //   }),
-    // })
-    // .then(res => {
-    //   if (res.ok) return res.json();
-
-    //   throw new Error(res.status);
-    // })
-    // .then(res => {
-    //   localStorage.setItem("token", res.jwt);
-    //   this.props.dispatch(setCurrentUser(params.email))
-    //   this.setState({ showError: false });
-    // })
-    // .catch(err => {
-    //   console.log(err);
-    //   this.setState({ showError: true });
-    // })
+    this.props.dispatch(userLogin(params));
   }
 
   handleLogout(ev) {
     const { user } = this.props;
     ev.preventDefault();
-    localStorage.removeItem("token");
     this.props.dispatch(removeCurrentUser(user));
   }
 
   render() {
-    const { t, user } = this.props;
+    const { t, user, authenticated } = this.props;
     const showErrorCx = classnames("Login-error", {
-      "hide": !this.state.showError
+      "hide": authenticated
     });
     const loginFormCx = classnames("Login-form", {
       "hide": user.length > 0
@@ -104,6 +67,7 @@ class LoginForm extends React.Component {
 function select(state) {
   return {
     user: state.user,
+    loginError: state.loginError
   };
 }
 
