@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "webpack": "./node_modules/.bin/webpack-dev-server --devtool eval --progress --colors --content-base build --host 0.0.0.0 --history-api-fallback --hot",
+    "lint": "./node_modules/.bin/eslint src/**/*.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -28,6 +29,7 @@
     "i18next": "^2.0.19",
     "i18next-browser-languagedetector": "0.0.12",
     "i18next-xhr-backend": "^0.2.0",
+    "immutable": "^3.7.6",
     "lodash": "^4.2.0",
     "moment": "^2.10.6",
     "react": "^0.14.3",

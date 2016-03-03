@@ -5,13 +5,15 @@ import taps from "./taps";
 import events from "./events";
 import pastevents from "./pastevents";
 import user from "./user";
+import authenticated from "./authenticated";
 
 export default combineReducers({
   beers,
   taps,
   events,
   pastevents,
-  user
+  user,
+  authenticated,
 });
 
 // above call for combineReducers is equivalent to the function below
@@ -21,7 +23,8 @@ export default combineReducers({
 //     beers: beers(state.beers, action),
 //     taps: taps(state.taps),
 //     events: events(state.events),
-//     pastevents: pastevents(state.pastevents)
-//     user: user(state.user)
+//     pastevents: pastevents(state.pastevents),
+//     user: user(state.user),
+//     authenticated: authenticated(state.authenticated),
 //   };
 // }

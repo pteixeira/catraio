@@ -18,7 +18,7 @@ import {
   BEERS_DELETE_FAILURE
 } from "../action_types";
 
-import { headers } from "../util/request";
+import { defaultHeaders } from "../util/request";
 
 export function setBeers(collection) {
   return {
@@ -38,7 +38,7 @@ export function addBeer(params) {
 
     return fetch(`${API_HOST}/beers`, {
       method: "post",
-      headers,
+      headers: defaultHeaders(),
       body: JSON.stringify({
         beer: params
       }),
@@ -49,7 +49,7 @@ export function addBeer(params) {
       throw new Error(res.status);
     })
     .then(json => dispatch(addBeerSuccess(json)))
-    .catch(err => dispatch(addBeerFailure(params)))
+    .catch(err => dispatch(addBeerFailure(err)));
   }
 }
 
@@ -60,14 +60,14 @@ const updateBeerFailure = createAction(BEERS_UPDATE_FAILURE);
 
 export function updateBeer(params) {
   return function (dispatch) {
-    dispatch(updateBeerRequest(params));
+    dispatch(updateBeerRequest());
 
     const id = params.id;
     delete params.id;
 
     return fetch(`${API_HOST}/beers/${id}`, {
       method: "put",
-      headers,
+      headers: defaultHeaders(),
       body: JSON.stringify({
         beer: params,
       }),
@@ -89,11 +89,11 @@ const deleteBeerFailure = createAction(BEERS_DELETE_FAILURE);
 
 export function deleteBeer(beer) {
   return function (dispatch) {
-    dispatch(deleteBeerRequest(beer));
+    dispatch(deleteBeerRequest());
 
-    return fetch(`${API_HOST}/beers/${beer.id}`, {
+    return fetch(`${API_HOST}/beers/${beer.get("id")}`, {
       method: "delete",
-      headers,
+      headers: defaultHeaders(),
       body: JSON.stringify({
         beer
       })
@@ -103,7 +103,7 @@ export function deleteBeer(beer) {
 
       throw new Error(res.status);
     })
-    .then(() => dispatch(deleteBeerSuccess()))
-    .catch((err) => dispatch(deleteBeerFailure(beer)))
+    .then(() => dispatch(deleteBeerSuccess(beer)))
+    .catch((err) => dispatch(deleteBeerFailure(err)))
   }
 }

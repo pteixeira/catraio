@@ -19,7 +19,7 @@ class BeersController < ApplicationController
   def index
     beers = Beer.all
 
-    render json: beers
+    render json: Hash[beers.map(&:id).zip(beers)]
   end
 
   def create

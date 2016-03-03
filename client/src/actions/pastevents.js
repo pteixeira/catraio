@@ -20,6 +20,6 @@ export function addPastEvents() {
       throw new Error(res.status);
     })
     .then(events => dispatch(addPastEventsSuccess(events)))
-    .catch(err => dispatch(addPastEventsFailure()));
+    .catch(err => dispatch(addPastEventsFailure(err)));
   }
 }

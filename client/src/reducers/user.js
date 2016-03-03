@@ -1,15 +1,18 @@
-import { USER_SET_CURRENT_USER, USER_REMOVE_CURRENT_USER } from "../action_types";
+import {
+  USER_SET_CURRENT_USER,
+  USER_REMOVE_CURRENT_USER,
+} from "../action_types";
 
 export default function user(state = "", action) {
   const { payload, type } = action;
 
   switch (type) {
 
-  //------------------------------------------------------- Set Current User
+  // ------------------------------------------------------- Set Current User
   case USER_SET_CURRENT_USER:
     return payload;
 
-  //------------------------------------------------------- Remove Current User
+  // ------------------------------------------------------- Remove Current User
   case USER_REMOVE_CURRENT_USER:
     return "";
 

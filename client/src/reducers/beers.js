@@ -1,58 +1,37 @@
-import {
-  clone,
-  concat,
-  initial,
-  remove,
-  partition,
-  map,
-} from "lodash";
+import Immutable from "immutable";
 
 import {
   BEERS_SET_COLLECTION,
 
-  BEERS_ADD_REQUEST,
   BEERS_ADD_SUCCESS,
-  BEERS_ADD_FAILURE,
 
-  BEERS_UPDATE_REQUEST,
   BEERS_UPDATE_SUCCESS,
-  BEERS_UPDATE_FAILURE,
 
-  BEERS_DELETE_REQUEST,
-  BEERS_DELETE_FAILURE
+  BEERS_DELETE_SUCCESS
 } from "../action_types";
 
-export default function beers(state = [], action) {
+export default function beers(state = Immutable.Map(), action) { // eslint-disable-line new-cap
   const { payload, type } = action;
 
   switch (type) {
   case BEERS_SET_COLLECTION:
-    return payload;
+    return Immutable.fromJS(payload);
 
-  //------------------------------------------------------- Add Beer
+  // ------------------------------------------------------- Add Beer
+  // ------------------------------------------------------- Update Beer
   case BEERS_ADD_SUCCESS:
-    return concat([], state, payload);
-
-  case BEERS_ADD_FAILURE:
-    return concat([], initial(state));
-
-  //------------------------------------------------------- Update Beer
   case BEERS_UPDATE_SUCCESS:
-    const beers = clone(state);
-    return map(beers, (beer) => {
-      return beer.id === payload.id ? payload : beer;
-    });
+    return state.set(payload.id.toString(), Immutable.fromJS(payload));
 
-
-  //------------------------------------------------------- Delete Beer
-  case BEERS_DELETE_REQUEST:
-    let newBeers = clone(state);
-    remove(newBeers, (b) => b.id === payload.id);
-    return newBeers;
-
-  case BEERS_DELETE_FAILURE:
-    const [ before, after ] = partition(state, beer => beer.position < payload.position );
-    return concat(before, payload, after);
+  // ------------------------------------------------------- Delete Beer
+  case BEERS_DELETE_SUCCESS:
+    // because all object keys in JS are strings, even numeric ones,
+    // and because we set the initial collection from a hash with numeric
+    // ids, we need to convert id to a string, otherwise Immutable.Map
+    // returns an undefined object
+    //
+    // https://facebook.github.io/immutable-js/docs/#/Map/Map
+    return state.delete(payload.get("id").toString());
 
   default:
     return state;

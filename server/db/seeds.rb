@@ -68,7 +68,7 @@ Beer.create(brand: "Maldita", name: "", style: "American Amber Ale", abv: 6, cou
 
 Beer.create(brand: "Deusa", name: "Celta", style: "Belgian Ale", abv: 8.5, country: "Portugal", city: "Oliveira de Azeméis")
 Beer.create(brand: "Deusa", name: "Isis", style: "Especial Mel/Honey", abv: 8.5, country: "Portugal", city: "Oliveira de Azeméis")
-Beer.create(brand: "Deusa", name: "Diana", style: " Strong Ale", abv: 9.5, country: "Portugal", city: "Oliveira de Azeméis")
+Beer.create(brand: "Deusa", name: "Diana", style: "Strong Ale", abv: 9.5, country: "Portugal", city: "Oliveira de Azeméis")
 
 Beer.create(brand: "Vadia", name: "Trigo", style: "Wheat Beer", abv: 5.1, country: "Portugal", city: "Oliveira de Azeméis")
 Beer.create(brand: "Vadia", name: "Preta", style: "Dark Lager", abv: 5.1, country: "Portugal", city: "Oliveira de Azeméis")
@@ -165,7 +165,7 @@ Beer.create(brand: "Emelisse", name: "Black IPA", style: "Black IPA", abv: 8, co
 Beer.create(brand: "Mikkeller", name: "Ahr Hvad", style: "Belgian Ale", abv: 6.8, country: "DNK", city: "")
 Beer.create(brand: "Mikkeller", name: "Vesterbro Wit", style: "Witbier", abv: 4.5, country: "DNK", city: "")
 Beer.create(brand: "Mikkeller", name: "American Dream", style: "Premium Lager (Gluten Free)", abv: 4.6, country: "DNK", city: "")
-Beer.create(brand: "Mikkeller", name: " Yellow Gold", style: "American Pale Ale", abv: 5.5, country: "DNK", city: "")
+Beer.create(brand: "Mikkeller", name: "Yellow Gold", style: "American Pale Ale", abv: 5.5, country: "DNK", city: "")
 
 Beer.create(brand: "TO Øl", name: "Hundelufter Bajer", style: "Session IPA", abv: 5, country: "DNK", city: "")
 Beer.create(brand: "TO Øl", name: "Stalins Organ", style: "California Common", abv: 6, country: "DNK", city: "")
