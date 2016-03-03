@@ -49,7 +49,7 @@ export function addBeer(params) {
       throw new Error(res.status);
     })
     .then(json => dispatch(addBeerSuccess(json)))
-    .catch(err => dispatch(addBeerFailure(params)));
+    .catch(err => dispatch(addBeerFailure(err)));
   }
 }
 
@@ -104,6 +104,6 @@ export function deleteBeer(beer) {
       throw new Error(res.status);
     })
     .then(() => dispatch(deleteBeerSuccess(beer)))
-    .catch((err) => dispatch(deleteBeerFailure()))
+    .catch((err) => dispatch(deleteBeerFailure(err)))
   }
 }

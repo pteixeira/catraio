@@ -15,10 +15,6 @@ import {
   TAPS_UPDATE_SUCCESS,
   TAPS_UPDATE_FAILURE,
 
-  TAPS_MOVE_UP_REQUEST,
-  TAPS_MOVE_UP_SUCCESS,
-  TAPS_MOVE_UP_FAILURE,
-
   TAPS_DELETE_REQUEST,
   TAPS_DELETE_SUCCESS,
   TAPS_DELETE_FAILURE,
@@ -55,7 +51,7 @@ export function addTap(params) {
       throw new Error(res.status);
     })
     .then(json => dispatch(addTapSuccess(json)))
-    .catch(err => dispatch(addTapFailure(params)))
+    .catch(err => dispatch(addTapFailure(err)))
   }
 }
 
@@ -135,6 +131,6 @@ export function deleteTap(tap) {
       throw new Error(res.status);
     })
     .then(() => dispatch(deleteTapSuccess(tap)))
-    .catch((err) => dispatch(deleteTapFailure(tap)) )
+    .catch((err) => dispatch(deleteTapFailure(err)) )
   }
 }

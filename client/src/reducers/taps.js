@@ -3,21 +3,16 @@ import Immutable from "immutable";
 import {
   TAPS_SET_COLLECTION,
 
-  TAPS_ADD_REQUEST,
   TAPS_ADD_SUCCESS,
-  TAPS_ADD_FAILURE,
 
   TAPS_UPDATE_SUCCESS,
 
-  TAPS_DELETE_REQUEST,
   TAPS_DELETE_SUCCESS,
-  TAPS_DELETE_FAILURE,
 
-  TAPS_UPDATE,
-  TAPS_DELETE,
 } from "../action_types";
 
-export default function taps(state = Immutable.Map(), action) {
+export default function taps(state = Immutable.Map(), action) { // eslint-disable-line new-cap
+
   const { payload, type } = action;
 
   switch (type) {

@@ -24,6 +24,8 @@ const userLoginFailure = createAction(USER_LOGIN_FAILURE);
 
 export function userLogin(params) {
   return function(dispatch) {
+    dispatch(userLoginRequest(params));
+
     return fetch(`${API_HOST}/auth/auth_token`, {
       method: "post",
       headers: defaultHeaders(),
@@ -40,7 +42,7 @@ export function userLogin(params) {
       dispatch(userLoginSuccess(res.jwt))
       dispatch(setCurrentUser(params.email))
     })
-    .catch(err => dispatch(userLoginFailure()));
+    .catch(err => dispatch(userLoginFailure(err)));
   }
 }
 

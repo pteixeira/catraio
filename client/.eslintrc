@@ -22,7 +22,7 @@
     //-------------------------------------------------------------------------
 
     // Prevent abbreviated blocks for clarity
-    "curly": 2,
+    "curly": [2, "multi-line"],
 
     // Enforce a reasonable cap on functions spiralling out of control
     // with many branches.

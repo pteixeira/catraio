@@ -1,9 +1,6 @@
 import {
   USER_SET_CURRENT_USER,
   USER_REMOVE_CURRENT_USER,
-  USER_LOGIN_REQUEST,
-  USER_LOGIN_SUCCESS,
-  USER_LOGIN_FAILURE
 } from "../action_types";
 
 export default function user(state = "", action) {
