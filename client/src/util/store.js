@@ -5,8 +5,6 @@ import { setEvents } from "../actions/events";
 import { setCurrentUser, removeCurrentUser } from "../actions/user";
 import { defaultHeaders } from "../util/request";
 
-const API_HOST = "http://localhost:3000";
-
 export function initStoreFromServer(store) {
   // Populate taps
   fetch(`${API_HOST}/taps`)

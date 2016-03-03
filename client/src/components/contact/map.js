@@ -29,7 +29,7 @@ class Map extends React.Component {
     }
 
     this.map = new google.maps.Map(this.refs.map, mapOptions);
-    const marker = new google.maps.Marker({
+    new google.maps.Marker({
       position: position,
       map: this.map,
       title: "Catraio - Craft Beer Shop"

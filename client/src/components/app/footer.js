@@ -4,10 +4,6 @@ import React from "react";
 import { Link } from "react-router";
 import { translate } from "react-i18next/lib";
 
-const MENU_ITEMS = [
-  "photos", "events", "about", "contact", "beers"
-];
-
 class Footer extends React.Component {
   static displayName = "Footer";
 
@@ -24,4 +20,4 @@ class Footer extends React.Component {
   }
 }
 
-export default translate(["header", "menu"])(Footer);
+export default translate(["menu"])(Footer);

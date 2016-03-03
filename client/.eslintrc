@@ -14,6 +14,10 @@
     "jsx": true
   },
 
+  "globals": {
+    "google": false
+  },
+
   "rules": {
     // For a complete reference, check out http://eslint.org/docs/rules/
 
@@ -108,7 +112,7 @@
 
     "key-spacing": [2, { "beforeColon": false, "afterColon": true }],
 
-    "new-cap": 2,
+    "new-cap": [2, { "capIsNewExceptions": ["Immutable.Map"] }],
 
     "no-lonely-if": 2,
 

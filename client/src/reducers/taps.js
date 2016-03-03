@@ -11,7 +11,7 @@ import {
 
 } from "../action_types";
 
-export default function taps(state = Immutable.Map(), action) { // eslint-disable-line new-cap
+export default function taps(state = Immutable.Map(), action) {
 
   const { payload, type } = action;
 

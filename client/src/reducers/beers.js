@@ -10,7 +10,7 @@ import {
   BEERS_DELETE_SUCCESS
 } from "../action_types";
 
-export default function beers(state = Immutable.Map(), action) { // eslint-disable-line new-cap
+export default function beers(state = Immutable.Map(), action) {
   const { payload, type } = action;
 
   switch (type) {

@@ -2,7 +2,6 @@ import "./events.styl";
 
 import React from "react";
 import { connect } from "react-redux";
-import { map, orderBy } from "lodash";
 import classnames from "classnames";
 import { translate } from "react-i18next/lib";
 
@@ -31,7 +30,7 @@ class Events extends React.Component {
 
   render() {
     const { t, events, pastevents } = this.props;
-    // const sortedEvents = orderBy(events, ["start_time"], "desc");
+
     const sortedEvents = events.sortBy(ev => ev.start_time);
     const sortedPastEvents = pastevents.sortBy(ev => ev.start_time);
     const pastEventsCx = classnames("Events-pastevents", {

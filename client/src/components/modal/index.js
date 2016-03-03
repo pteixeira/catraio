@@ -27,7 +27,6 @@ class Modal extends React.Component {
   }
 
   preventClose(ev) {
-    console.log(ev.target.className.match(/Modal-content/), ev.currentTarget.className.match(/Modal-content/));
     if (ev.target.className.match(/Modal-content/) === null) {
       ev.stopPropagation();
     }

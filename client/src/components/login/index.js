@@ -4,7 +4,7 @@ import { translate } from "react-i18next/lib";
 import { connect } from "react-redux";
 import "exports?self.fetch!whatwg-fetch";
 
-import { setCurrentUser, removeCurrentUser, userLogin } from "../../actions/user";
+import { removeCurrentUser, userLogin } from "../../actions/user";
 
 import "./login.styl";
 
