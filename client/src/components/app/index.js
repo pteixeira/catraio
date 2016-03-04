@@ -1,6 +1,7 @@
 import "../../assets/normalize.css";
 import "../../assets/fontello.css";
 import "../../assets/fontello-codes.css";
+import "../../assets/hagin.css";
 
 import "./app.styl";
 

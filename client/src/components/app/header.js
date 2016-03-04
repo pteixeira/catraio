@@ -3,6 +3,7 @@ import "./header.styl";
 import React from "react";
 import { Link } from "react-router";
 import { translate } from "react-i18next/lib";
+import { map } from "lodash";
 
 const MENU_ITEMS = [
   "photos", "events", "about", "contact", "beers"
@@ -18,11 +19,10 @@ class Header extends React.Component {
 
         <Link to="/">
           <h1 className="logo">Catraio</h1>
-          <h2>{t("header:tagline")}</h2>
         </Link>
 
         <ul className="Header-menu">
-          {MENU_ITEMS.map((item) => {
+          {map(MENU_ITEMS, (item) => {
             return (
               <li className="Header-menu-item" key={`header-link-${item}`}>
                 <Link to={item} activeClassName="active">{t(`menu:${item}`)}</Link>
@@ -36,4 +36,4 @@ class Header extends React.Component {
   }
 }
 
-export default translate(["header", "menu"])(Header);
+export default translate(["menu"])(Header);
