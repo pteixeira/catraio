@@ -1,3 +1,5 @@
+import "./disclaimer.styl";
+
 import React from "react";
 import { Link } from "react-router";
 
@@ -16,10 +18,13 @@ class Disclaimer extends React.Component {
     return(
       <div className="Disclaimer">
         <h1 className="logo">Catraio</h1>
-        <h2>{t("header:tagline")}</h2>
-        <div>{t("disclaimer:question")}</div>
-        <Link to="/" onClick={this.setAdult.bind(this)}>{t("disclaimer:yes")}</Link>
-        <a href="http://www.disney.com">{t("disclaimer:no")}</a>
+        <div className="Disclaimer-question">
+          <div>{t("disclaimer:question")}</div>
+          <div className="Disclaimer-options">
+            <Link to="/" onClick={this.setAdult.bind(this)}>{t("disclaimer:yes")}</Link>
+            <a href="http://www.disney.com">{t("disclaimer:no")}</a>
+          </div>
+        </div>
       </div>
     );
   }

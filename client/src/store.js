@@ -10,7 +10,7 @@ const initialState = {
   events: Immutable.List.of(),
   pastevents: Immutable.List.of(),
   user: "",
-  authenticated: false
+  authenticated: null
 };
 
 const store = createStore(appReducer, initialState, compose(

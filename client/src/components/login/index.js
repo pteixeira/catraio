@@ -30,8 +30,9 @@ class LoginForm extends React.Component {
 
   render() {
     const { t, user, authenticated } = this.props;
+    console.log(authenticated)
     const showErrorCx = classnames("Login-error", {
-      "hide": authenticated
+      "hide": (authenticated === null || authenticated)
     });
     const loginFormCx = classnames("Login-form", {
       "hide": user.length > 0
@@ -67,7 +68,7 @@ class LoginForm extends React.Component {
 function select(state) {
   return {
     user: state.user,
-    loginError: state.loginError
+    authenticated: state.authenticated
   };
 }
 
