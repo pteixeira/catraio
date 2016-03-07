@@ -6,7 +6,7 @@ import { translate } from "react-i18next/lib";
 import { map } from "lodash";
 
 const MENU_ITEMS = [
-  "photos", "events", "about", "contact", "beers"
+  "photos", "events", "about", "beers"
 ];
 
 class Header extends React.Component {

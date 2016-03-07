@@ -26,16 +26,15 @@ class ContactForm extends React.Component {
   sendmail(ev) {
     ev.preventDefault();
 
-    const { name, email, phone, subject, message } = this.refs;
+    const { name, email, phone, message } = this.refs;
 
     const params = {
       name: name.value,
       email: email.value,
       phone: phone.value,
-      subject: subject.value,
       message: message.value.replace(/\n/g, "<br />")
     }
-
+    console.log(params)
     fetch(`${API_HOST}/sendmail`, {
       method: "post",
       headers,
@@ -74,30 +73,13 @@ class ContactForm extends React.Component {
     return (
       <div className="ContactForm">
         <form className="ContactForm-form" action="/" onSubmit={this.sendmail.bind(this)} ref="ContactForm">
-          <label htmlFor="ContactForm-name">
-            <strong>{t("contact:name")} *</strong>
-          </label>
-          <input type="text" ref="name" id="ContactForm-name" required />
+          <input type="text" ref="name" id="ContactForm-name" placeholder={t("contact:name")} required />
 
-          <label htmlFor="ContactForm-email">
-            <strong>Email (must be a valid email) *</strong>
-          </label>
-          <input type="email" ref="email"id="ContactForm-email" required />
+          <input type="email" ref="email"id="ContactForm-email" placeholder="Email" required />
 
-          <label htmlFor="ContactForm-phone">
-            <strong>{t("contact:phone")} *</strong>
-          </label>
-          <input type="tel" ref="phone"  id="ContactForm-phone" required/>
+          <input type="tel" ref="phone"  id="ContactForm-phone" placeholder={t("contact:phone")} required/>
 
-          <label htmlFor="ContactForm-subject">
-            <strong>{t("contact:subject")} *</strong>
-          </label>
-          <input type="text" ref="subject" id="ContactForm-subject" required />
-
-          <label htmlFor="ContactForm-message">
-            <strong>{t("contact:message")} *</strong>
-          </label>
-          <textarea ref="message" id="ContactForm-message" required />
+          <textarea ref="message" id="ContactForm-message" placeholder={t("contact:message")} required />
 
           <button type="submit">{t("contact:submit")}</button>
         </form>

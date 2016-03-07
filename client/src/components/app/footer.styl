@@ -1,11 +1,74 @@
+@import "../variables.styl"
+
 .Footer
-  align-items: center;
   background: gray;
   border-top: 1px solid black;
   display: flex;
-  height: 50px;
+  height: $footer-height;
   justify-content: center;
   width: 100%;
   position: absolute;
   bottom: 0;
   left: 0;
+
+  .Footer-location, .Footer-contactinfo
+    align-self: center;
+
+  &>div
+    margin: 0 25px;
+
+  .Footer-schedule
+    padding-top: 15px;
+
+    table
+      margin: 0 auto;
+      width: 100%;
+
+      td
+        padding: 15px 5px;
+
+      .Schedule-weekday
+        padding-left: 0;
+
+  .Location-address
+    margin-bottom: 15px;
+
+  .Map
+    height: 200px;
+    width: 400px;
+    margin: 0 auto;
+
+  .Footer-contactinfo
+    .icon-phone
+      margin-right: 5px;
+      padding-right: 5px;
+      border-right: 1px solid $white;
+
+    .ContactInfo-phone
+      margin: 15px 0;
+
+  .ContactForm
+    button
+      display: block;
+      margin-top: 10px;
+      color: $black;
+      padding: 5px;
+
+    input, textarea
+      display: block;
+      padding: 5px;
+      width: 300px;
+      font-size: 14px;
+      color: $black;
+
+    input
+      margin-bottom: 15px;
+
+    textarea
+      height: 75px;
+
+    button
+      float: right;
+
+    .hide
+      display: none;

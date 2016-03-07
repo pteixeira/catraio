@@ -5,17 +5,23 @@ class SendmailController < ApplicationController
 
     mg_client = Mailgun::Client.new ENV["MAILGUN_API_TOKEN"]
 
+
+    puts malho
+
+    sender = params[:content][:name]
+
     # Define your message parameters
     message = <<-MSG
-      Name: #{params[:content][:name]}<br />
+      Name: #{sender}<br />
       Phone: #{params[:content][:phone]}<br />
       Message:<br /> #{params[:content][:message]}
     MSG
 
+
     message_params = {
       :from    => params[:content][:email],
       :to      => ENV["EMAIL_RECIPIENT"],
-      :subject => params[:content][:subject],
+      :subject => "[catraio.pt] Mensagem de $#{sender}",
       :html    => message
     }
 
@@ -30,12 +36,11 @@ class SendmailController < ApplicationController
   end
 
   private
-  def content
+  def malho
     params.require(:content).permit(
       :name,
       :email,
       :phone,
-      :subject,
       :message
     )
   end
