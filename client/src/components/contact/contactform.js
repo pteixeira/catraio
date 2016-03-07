@@ -4,7 +4,7 @@ import "exports?self.fetch!whatwg-fetch";
 import classnames from "classnames";
 
 import { API_HOST } from "../../config/env";
-import { headers } from "../../util/request";
+import { defaultHeaders } from "../../util/request";
 
 const EMAIL_STATES = {
   NONE: 0,
@@ -34,10 +34,10 @@ class ContactForm extends React.Component {
       phone: phone.value,
       message: message.value.replace(/\n/g, "<br />")
     }
-    console.log(params)
+
     fetch(`${API_HOST}/sendmail`, {
       method: "post",
-      headers,
+      headers: defaultHeaders(),
       body: JSON.stringify({
         content: params
       }),
