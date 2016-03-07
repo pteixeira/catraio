@@ -8,7 +8,7 @@ import "./app.styl";
 import React from "react";
 
 import Header from "./header";
-import Footer from "./footer";
+import Footer from "../footer";
 import LanguageSelector from "../language_selector";
 
 class App extends React.Component {

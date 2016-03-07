@@ -65,23 +65,23 @@ class ContactForm extends React.Component {
 
     let message = "";
     if (this.state.sentEmailStatus === EMAIL_STATES.SENT) {
-      message = t("contact:message_success");
+      message = t("footer:message_success");
     } else if (this.state.sentEmailStatus === EMAIL_STATES.ERROR) {
-      message = t("contact:message_fail");
+      message = t("footer:message_fail");
     }
 
     return (
       <div className="ContactForm">
         <form className="ContactForm-form" action="/" onSubmit={this.sendmail.bind(this)} ref="ContactForm">
-          <input type="text" ref="name" id="ContactForm-name" placeholder={t("contact:name")} required />
+          <input type="text" ref="name" id="ContactForm-name" placeholder={t("footer:name")} required />
 
           <input type="email" ref="email"id="ContactForm-email" placeholder="Email" required />
 
-          <input type="tel" ref="phone"  id="ContactForm-phone" placeholder={t("contact:phone")} required/>
+          <input type="tel" ref="phone"  id="ContactForm-phone" placeholder={t("footer:phone")} required/>
 
-          <textarea ref="message" id="ContactForm-message" placeholder={t("contact:message")} required />
+          <textarea ref="message" id="ContactForm-message" placeholder={t("footer:message")} required />
 
-          <button type="submit">{t("contact:submit")}</button>
+          <button type="submit">{t("footer:submit")}</button>
         </form>
         <div className={sentEmailCx}>
           {message}
@@ -91,4 +91,4 @@ class ContactForm extends React.Component {
   }
 }
 
-export default translate(["contact"])(ContactForm);
+export default translate(["footer"])(ContactForm);

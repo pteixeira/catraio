@@ -3,8 +3,8 @@ import "./footer.styl";
 import React from "react";
 import { translate } from "react-i18next/lib";
 
-import ContactForm from "../contact/contactform";
-import Map from "../contact/map";
+import ContactForm from "./contactform";
+import Map from "./map";
 
 class Footer extends React.Component {
   static displayName = "Footer";
@@ -16,17 +16,17 @@ class Footer extends React.Component {
       <footer className="Footer">
         <div className="Footer-schedule">
           <h2 className="Schedule-title">
-            {t("contact:schedule")}
+            {t("footer:schedule")}
           </h2>
           <table>
             <tbody>
               <tr>
                 <td className="Schedule-weekday">{t("weekdays:sunday")}</td>
-                <td>{t("contact:closed")}</td>
+                <td>{t("footer:closed")}</td>
               </tr>
               <tr>
                 <td className="Schedule-weekday">{t("weekdays:monday")}</td>
-                <td>{t("contact:closed")}</td>
+                <td>{t("footer:closed")}</td>
               </tr>
               <tr>
                 <td className="Schedule-weekday">{t("weekdays:tuesday")} - {t("weekdays:thursday")}</td>
@@ -56,4 +56,4 @@ class Footer extends React.Component {
   }
 }
 
-export default translate(["menu"])(Footer);
+export default translate(["footer"])(Footer);

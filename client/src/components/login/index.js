@@ -30,7 +30,6 @@ class LoginForm extends React.Component {
 
   render() {
     const { t, user, authenticated } = this.props;
-    console.log(authenticated)
     const showErrorCx = classnames("Login-error", {
       "hide": (authenticated === null || authenticated)
     });
