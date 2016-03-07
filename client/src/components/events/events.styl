@@ -1,14 +1,36 @@
+@import "../variables.styl"
+
 .Events
-  .hide
-    display: none;
+  background: #e8e8e8
+  color: $black
 
   h2
+    font-family: hagin;
     text-align: center;
 
+  .Events-noevents
+    text-align: center;
+
+  .Events-showpast
+    text-align: center;
+    margin: 30px 0;
+
+  .Showpast-toggle
+    border: 1px solid $white;
+    padding: 10px;
+    cursor: pointer;
+
+    span
+      padding-left: 6px;
+
+    i
+      border-right: 1px solid $white;
+      padding-right: 5px;
+
   .Events-event
-    width: 90%;
+    width: 720px;
     margin: 0 auto;
-    padding: 15px 0;
+    background: rgba(255,255,255,0.25);
 
     &:first-of-type
       padding-top: 0;
@@ -17,12 +39,30 @@
       padding-bottom: 0;
 
     &:not(:first-of-type)
-      border-top: 1px solid black;
+      margin-top: 15px;
 
-    h3
-      margin-top: 0;
-      text-align: center;
+    .Event-eventheader
+      position: relative;
+      min-height: 250px;
+      width: 720px;
 
-    .Events-eventimage
-      text-align: center;
-      max-width: 100%;
+      .Eventheader-text
+        margin: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.65);
+        height: 65px;
+        display: flex;
+        align-items: center;
+        position: absolute;
+        width: 100%;
+
+        .Eventheader-info
+          border: 2px solid $white;
+          border-radius: 5px;
+          margin: 0 10px;
+          padding: 5px 10px;
+          width: 90px;
+          text-align: center;
+
+    .Event-info
+      padding: 10px;

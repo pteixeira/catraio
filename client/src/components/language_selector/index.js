@@ -13,7 +13,7 @@ class LanguageSelector extends React.Component {
   render() {
     const defaultValue = localStorage.getItem(I18N_LANGUAGE) || "pt";
     return (
-      <select onChange={this.changeLang.bind(this)} defaultValue={defaultValue}>
+      <select onChange={this.changeLang.bind(this)} defaultValue={defaultValue} className="LanguageSelector">
         <option value="en">English</option>
         <option value="pt">Português</option>
       </select>

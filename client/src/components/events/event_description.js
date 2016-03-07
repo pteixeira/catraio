@@ -10,7 +10,7 @@ class EventDescription extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="Event-description">
         {map(this.props.description.split("\n \n"), (par, i) => {
           return (
             <p key={i}>

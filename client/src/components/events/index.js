@@ -36,10 +36,16 @@ class Events extends React.Component {
     const pastEventsCx = classnames("Events-pastevents", {
       "hide": !this.state.isShowingPastEvents
     });
+    const noEventsCx = classnames("Events-noevents", {
+      "hide": sortedEvents.size > 0
+    });
 
     return (
       <div className="Events">
         <h2>{t("menu:events")}</h2>
+        <div className={noEventsCx}>
+          {t("events:noevents")}
+        </div>
         {sortedEvents.map((event, i) => {
           return(
             <div className="Events-event" key={i}>
@@ -47,10 +53,14 @@ class Events extends React.Component {
             </div>
           )
         })}
-        <div className="Events-showpast" onClick={this.showPastEvents.bind(this)}>
-          {this.state.isShowingPastEvents ? t("events:hidepast") : t("events:showpast")}
+        <div className="Events-showpast">
+          <span className="Showpast-toggle" onClick={this.showPastEvents.bind(this)}>
+            <i className="icon-calendar"/>
+            {this.state.isShowingPastEvents ? t("events:hidepast") : t("events:showpast")}
+          </span>
         </div>
         <div className={pastEventsCx}>
+          <h2>{t("events:pastevents")}</h2>
           {sortedPastEvents.map((event, i) => {
             return(
               <div className="Events-event" key={i}>

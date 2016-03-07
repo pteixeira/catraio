@@ -12,25 +12,35 @@ class Event extends React.Component {
     event: React.PropTypes.instanceOf(Immutable.Map).isRequired
   };
 
+
   render() {
     const { t, event } = this.props;
+    const backgroundStyle = {
+      background: `url(${event.get("cover").get("source")}) no-repeat center center`
+    };
+
+    const eventLink = `http://www.facebook.com/events/${event.get("id")}`;
 
     return (
       <div className="Event">
-        <div className="Event-eventimage">
-          <img src={event.get("cover").get("source")} />
-        </div>
-        <h3>{event.get("name")}</h3>
-        <div><strong>{t("events:where")}</strong>: {event.get("place").get("name")}</div>
-        <div>
-          <strong>{t("events:when")}</strong>:
-          {moment(event.get("start_time")).format("dddd, MMMM Do YYYY, HH:mm")}
-        </div>
-        <EventDescription description={event.get("description")} />
-        <div><strong>Attending</strong>: {event.get("attending_count")}</div>
-        <a href={`http://www.facebook.com/events/${event.get("id")}`} target="_blank">
-          <strong>{t("events:viewInFacebook")}</strong>
+        <a href={eventLink} target="_blank" className="no-hover">
+          <div className="Event-eventheader" style={backgroundStyle}>
+            <div className="Eventheader-text">
+              <div className="Eventheader-info">
+                <div className="Eventheader-date">{moment(event.get("start_time")).format("D MMM")}</div>
+                <div className="Eventheader-hour">{moment(event.get("start_time")).format("HH:mm")}</div>
+              </div>
+              <div className="Eventtext-name">{event.get("name")}</div>
+            </div>
+          </div>
         </a>
+        <div className="Event-info">
+          <div><strong>{t("events:where")}</strong>: {event.get("place").get("name")}</div>
+          <EventDescription description={event.get("description")} />
+          <a href={eventLink} target="_blank">
+            <strong>{t("events:viewInFacebook")}</strong>
+          </a>
+        </div>
       </div>
     );
   }

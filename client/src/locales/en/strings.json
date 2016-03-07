@@ -53,7 +53,9 @@
     "when": "When",
     "viewInFacebook": "View in Facebook",
     "showpast": "Show past events",
-    "hidepast": "Hide past events"
+    "hidepast": "Hide past events",
+    "noevents": "There are no upcoming events. Deal with it!",
+    "pastevents": "Past events"
   },
   "login": {
     "error": "Invalid email or password"
