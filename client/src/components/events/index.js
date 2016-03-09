@@ -42,17 +42,19 @@ class Events extends React.Component {
 
     return (
       <div className="Events">
-        <h2>{t("menu:events")}</h2>
-        <div className={noEventsCx}>
-          {t("events:noevents")}
+        <div className="Events-nextevents">
+          <h2>{t("menu:events")}</h2>
+          <div className={noEventsCx}>
+            {t("events:noevents")}
+          </div>
+          {sortedEvents.map((event, i) => {
+            return(
+              <div className="Events-event" key={i}>
+                <Event event={event} />
+              </div>
+            )
+          })}
         </div>
-        {sortedEvents.map((event, i) => {
-          return(
-            <div className="Events-event" key={i}>
-              <Event event={event} />
-            </div>
-          )
-        })}
         <div className="Events-showpast">
           <span className="Showpast-toggle" onClick={this.showPastEvents.bind(this)}>
             <i className="icon-calendar"/>
@@ -63,9 +65,7 @@ class Events extends React.Component {
           <h2>{t("events:pastevents")}</h2>
           {sortedPastEvents.map((event, i) => {
             return(
-              <div className="Events-event" key={i}>
-                <Event event={event} />
-              </div>
+              <Event event={event} key={i} />
             )
           })}
         </div>

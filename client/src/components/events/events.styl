@@ -1,22 +1,30 @@
 @import "../variables.styl"
 
 .Events
-  background: #e8e8e8
   color: $black
 
   h2
+    margin: 0
+    padding: 30px 0
     font-family: hagin;
     text-align: center;
 
   .Events-noevents
     text-align: center;
 
+  .Events-pastevents
+    .Event:not(:last-of-type)
+      margin-bottom: 75px;
+
+    .Event:last-of-type
+      margin-bottom: 0;
+
   .Events-showpast
     text-align: center;
-    margin: 30px 0;
+    padding: 30px 0;
 
   .Showpast-toggle
-    border: 1px solid $white;
+    border: 1px solid $black;
     padding: 10px;
     cursor: pointer;
 
@@ -24,22 +32,13 @@
       padding-left: 6px;
 
     i
-      border-right: 1px solid $white;
+      border-right: 1px solid $black;
       padding-right: 5px;
 
-  .Events-event
+  .Event
     width: 720px;
     margin: 0 auto;
     background: rgba(255,255,255,0.25);
-
-    &:first-of-type
-      padding-top: 0;
-
-    &:last-of-type
-      padding-bottom: 0;
-
-    &:not(:first-of-type)
-      margin-top: 15px;
 
     .Event-eventheader
       position: relative;
@@ -66,3 +65,6 @@
 
     .Event-info
       padding: 10px;
+
+      a
+        color: $black;
