@@ -4,7 +4,7 @@
 
   .About-content
     margin: 0 auto;
-    height: 450px;
+    height: 500px;
     max-width: 950px;
     min-width: 650px;
     background: url("../../assets/images/catraio-fachada.jpg") no-repeat center left;
@@ -19,11 +19,17 @@
       flex-direction: column;
       justify-content: space-between;
       width: 40%;
-      height: 450px;
-      padding: 25px 15px;
+      height: 500px;
+      padding: 15px;
       background: rgba(0,0,0,0.5);
-      color: white
+      color: white;
+
+      p:not(:first-of-type)
+        margin: 10px 0 0;
+        padding: 0;
+
+      p:not(:last-of-type)
+        margin: 0 0 10px;
 
       p
-        margin: 0;
         padding: 0;
