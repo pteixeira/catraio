@@ -25,9 +25,10 @@ class About extends React.Component {
               estrangeiras e servimos de montra aos empreendedores e profissionais do sector,
               apoiando também a sua projecção através de eventos de contacto, formação e divulgação.
             </p>
-
-            <p>Acima de tudo, adoramos cerveja.</p>
           </div>
+        </div>
+        <div className="About-quote">
+          - Acima de tudo, adoramos cerveja.
         </div>
       </div>
     );
