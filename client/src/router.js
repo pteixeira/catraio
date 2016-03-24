@@ -11,6 +11,7 @@ import Photos from "./components/photos";
 import Beers from "./components/beers";
 import Events from "./components/events";
 import Disclaimer from "./components/disclaimer";
+import About from "./components/about";
 
 const router = (
   <Router history={history}>
@@ -20,6 +21,7 @@ const router = (
       <Route path="/photos" component={Photos} />
       <Route path="/beers" component={Beers} />
       <Route path="/events" component={Events} />
+      <Route path="/about" component={About} />
     </Route>
   </Router>
 );
