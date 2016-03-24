@@ -18,13 +18,12 @@
     "contact": "Contacto",
     "beers": "Cervejas"
   },
-  "contact": {
+  "footer": {
     "address": "Morada",
     "contact": "Contacto",
     "phone": "Telefone",
     "schedule": "Horário",
     "name": "Nome",
-    "subject": "Assunto",
     "message": "Mensagem",
     "closed": "Fechado",
     "submit": "Submeter",

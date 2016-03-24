@@ -18,13 +18,12 @@
     "contact": "Contacts",
     "beers": "Beers"
   },
-  "contact": {
+  "footer": {
     "address": "Address",
     "contact": "Contact",
     "phone": "Phone",
     "schedule": "Schedule",
     "name": "Name",
-    "subject": "Subject",
     "message": "Message",
     "closed": "Closed",
     "submit": "Submit",

@@ -4,7 +4,7 @@ import "exports?self.fetch!whatwg-fetch";
 import classnames from "classnames";
 
 import { API_HOST } from "../../config/env";
-import { headers } from "../../util/request";
+import { defaultHeaders } from "../../util/request";
 
 const EMAIL_STATES = {
   NONE: 0,
@@ -26,19 +26,18 @@ class ContactForm extends React.Component {
   sendmail(ev) {
     ev.preventDefault();
 
-    const { name, email, phone, subject, message } = this.refs;
+    const { name, email, phone, message } = this.refs;
 
     const params = {
       name: name.value,
       email: email.value,
       phone: phone.value,
-      subject: subject.value,
       message: message.value.replace(/\n/g, "<br />")
     }
 
     fetch(`${API_HOST}/sendmail`, {
       method: "post",
-      headers,
+      headers: defaultHeaders(),
       body: JSON.stringify({
         content: params
       }),
@@ -66,40 +65,23 @@ class ContactForm extends React.Component {
 
     let message = "";
     if (this.state.sentEmailStatus === EMAIL_STATES.SENT) {
-      message = t("contact:message_success");
+      message = t("footer:message_success");
     } else if (this.state.sentEmailStatus === EMAIL_STATES.ERROR) {
-      message = t("contact:message_fail");
+      message = t("footer:message_fail");
     }
 
     return (
       <div className="ContactForm">
         <form className="ContactForm-form" action="/" onSubmit={this.sendmail.bind(this)} ref="ContactForm">
-          <label htmlFor="ContactForm-name">
-            <strong>{t("contact:name")} *</strong>
-          </label>
-          <input type="text" ref="name" id="ContactForm-name" required />
+          <input type="text" ref="name" id="ContactForm-name" placeholder={t("footer:name")} required />
 
-          <label htmlFor="ContactForm-email">
-            <strong>Email (must be a valid email) *</strong>
-          </label>
-          <input type="email" ref="email"id="ContactForm-email" required />
+          <input type="email" ref="email"id="ContactForm-email" placeholder="Email" required />
 
-          <label htmlFor="ContactForm-phone">
-            <strong>{t("contact:phone")} *</strong>
-          </label>
-          <input type="tel" ref="phone"  id="ContactForm-phone" required/>
+          <input type="tel" ref="phone"  id="ContactForm-phone" placeholder={t("footer:phone")} required/>
 
-          <label htmlFor="ContactForm-subject">
-            <strong>{t("contact:subject")} *</strong>
-          </label>
-          <input type="text" ref="subject" id="ContactForm-subject" required />
+          <textarea ref="message" id="ContactForm-message" placeholder={t("footer:message")} required />
 
-          <label htmlFor="ContactForm-message">
-            <strong>{t("contact:message")} *</strong>
-          </label>
-          <textarea ref="message" id="ContactForm-message" required />
-
-          <button type="submit">{t("contact:submit")}</button>
+          <button type="submit">{t("footer:submit")}</button>
         </form>
         <div className={sentEmailCx}>
           {message}
@@ -109,4 +91,4 @@ class ContactForm extends React.Component {
   }
 }
 
-export default translate(["contact"])(ContactForm);
+export default translate(["footer"])(ContactForm);
