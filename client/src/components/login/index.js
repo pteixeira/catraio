@@ -11,6 +11,10 @@ import "./login.styl";
 class LoginForm extends React.Component {
   static displayName = "LoginForm";
 
+  state = {
+    isLoginFormVisible: false
+  };
+
   handleSubmit(ev) {
     ev.preventDefault();
 
@@ -28,20 +32,31 @@ class LoginForm extends React.Component {
     this.props.dispatch(removeCurrentUser(user));
   }
 
+  showLoginForm(ev) {
+    ev.preventDefault();
+    this.setState({ isLoginFormVisible: !this.state.isLoginFormVisible });
+  }
+
   render() {
     const { t, user, authenticated } = this.props;
     const showErrorCx = classnames("Login-error", {
       "hide": (authenticated === null || authenticated)
     });
     const loginFormCx = classnames("Login-form", {
-      "hide": user.length > 0
+      "hide": !this.state.isLoginFormVisible || authenticated
     });
     const logoutButtonCx = classnames("Login-logout", {
       "hide": user.length === 0
     })
+    const showLoginButtonCx = classnames("LoginForm-showbutton", {
+      "hide": user.length > 0
+    });
 
     return (
       <div className="Login">
+        <button type="button" className={showLoginButtonCx} onClick={this.showLoginForm.bind(this)}>
+          Login
+        </button>
         <div className={loginFormCx}>
           <form onSubmit={this.handleSubmit.bind(this)}>
             <label htmlFor="LoginForm-email">
