@@ -17,19 +17,21 @@ class Header extends React.Component {
     return (
       <header className="Header">
 
-        <Link to="/">
-          <h1 className="logo">Catraio</h1>
-        </Link>
+        <div className="Header-content">
+          <Link to="/">
+            <h1 className="logo">Catraio</h1>
+          </Link>
 
-        <ul className="Header-menu">
-          {map(MENU_ITEMS, (item) => {
-            return (
-              <li className="Header-menu-item" key={`header-link-${item}`}>
-                <Link to={item} activeClassName="active">{t(`menu:${item}`)}</Link>
-              </li>
-            );
-          })}
-        </ul>
+          <ul className="Header-menu">
+            {map(MENU_ITEMS, (item) => {
+              return (
+                <li className="Header-menu-item" key={`header-link-${item}`}>
+                  <Link to={item} activeClassName="active">{t(`menu:${item}`)}</Link>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
 
       </header>
     );

@@ -1,28 +1,73 @@
+@import "../variables.styl"
+
 .Events
-  .hide
-    display: none;
+  color: $black
+  font-family: 'Lato';
+
 
   h2
+    margin: 0
+    padding: 30px 0
+    font-family: hagin;
     text-align: center;
 
-  .Events-event
-    width: 90%;
+  .Events-noevents
+    text-align: center;
+
+  .Events-pastevents
+    .Event:not(:last-of-type)
+      margin-bottom: 50px;
+
+    .Event:last-of-type
+      margin-bottom: 0;
+
+  .Events-showpast
+    text-align: center;
+    padding: 30px 0;
+
+  .Showpast-toggle
+    border: 1px solid $black;
+    padding: 10px;
+    cursor: pointer;
+
+    span
+      padding-left: 6px;
+
+    i
+      border-right: 1px solid $black;
+      padding-right: 5px;
+
+  .Event
+    width: 720px;
     margin: 0 auto;
-    padding: 15px 0;
+    background: rgba(255,255,255,0.25);
 
-    &:first-of-type
-      padding-top: 0;
+    .Event-eventheader
+      position: relative;
+      min-height: 250px;
+      width: 720px;
 
-    &:last-of-type
-      padding-bottom: 0;
+      .Eventheader-text
+        margin: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.65);
+        height: 65px;
+        display: flex;
+        align-items: center;
+        position: absolute;
+        width: 100%;
 
-    &:not(:first-of-type)
-      border-top: 1px solid black;
+        .Eventheader-info
+          border: 2px solid $white;
+          border-radius: 5px;
+          margin: 0 10px;
+          padding: 5px 10px;
+          width: 90px;
+          text-align: center;
 
-    h3
-      margin-top: 0;
-      text-align: center;
+    .Event-info
+      padding: 10px;
+      line-height: 1.5;
 
-    .Events-eventimage
-      text-align: center;
-      max-width: 100%;
+      a
+        color: $black;

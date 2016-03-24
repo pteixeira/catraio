@@ -14,6 +14,7 @@ export default function user(state = "", action) {
 
   // ------------------------------------------------------- Remove Current User
   case USER_REMOVE_CURRENT_USER:
+    localStorage.setItem("token", null);
     return "";
 
   default:

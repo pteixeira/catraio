@@ -2,12 +2,23 @@
 
 .Header
   width: 100%
-  margin: 40px auto 30px
+  margin: 0 auto
+  padding: 40px 0 10px
   font-family: hagin
   background: $black;
 
+  .Header-content
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+
+  a
+    width: 25%;
+
   h1
-    height: 100px
+    height: 75px
+    width: 100%;
     margin-top: 0;
     background: url("../../assets/images/logo-big.png") no-repeat center center
     background-size: contain
@@ -15,8 +26,10 @@
     text-align: center
 
   .Header-menu
+    width: 75%;
     text-align: center
     list-style: none
+    padding-left: 0;
 
   .Header-menu-item
     display: inline-block

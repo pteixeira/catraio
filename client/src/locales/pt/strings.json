@@ -53,7 +53,9 @@
     "when": "Quando",
     "viewInFacebook": "Ver no Facebook",
     "showpast": "Mostrar eventos anteriores",
-    "hidepast": "Esconder eventos anteriores"
+    "hidepast": "Esconder eventos anteriores",
+    "noevents": "Não há eventos nos próximos tempos, deal with it.",
+    "pastevents": "Eventos anteriores"
   },
   "login": {
     "error": "Email ou password incorrecto"
