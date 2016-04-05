@@ -32,5 +32,12 @@ module.exports = {
       { test: /\.json$/, loader: "json" },
       { test: /\.(woff2?|eot|ttf|svg)$/, loader: "file" }
     ]
+  },
+  resolve: {
+    alias: {
+      "app-root": path.join(__dirname, "src"),
+      "app-assets": path.join(__dirname, "src", "assets"),
+      "app-components": path.join(__dirname, "src", "components"),
+    }
   }
 };

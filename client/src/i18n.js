@@ -1,9 +1,9 @@
 import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 
-import stringsEn from "./locales/en/strings.json";
-import stringsPt from "./locales/pt/strings.json";
-import { I18N_LANGUAGE } from "./constants/globals";
+import stringsEn from "app-root/locales/en/strings.json";
+import stringsPt from "app-root/locales/pt/strings.json";
+import { I18N_LANGUAGE } from "app-root/constants/globals";
 
 i18n
   .use(LanguageDetector)

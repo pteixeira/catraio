@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 import thunkMiddleware from "redux-thunk";
 import Immutable from "immutable";
 
-import appReducer from "./reducers/app";
+import appReducer from "app-root/reducers/app";
 
 const initialState = {
   beers: Immutable.Map(),

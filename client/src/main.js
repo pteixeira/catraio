@@ -4,9 +4,9 @@ import { Provider } from "react-redux";
 import { I18nextProvider } from "react-i18next/lib";
 import i18n from "./i18n";
 
-import router from "./router";
-import store from "./store";
-import { initStoreFromServer } from "./util/store";
+import router from "app-root/router";
+import store from "app-root/store";
+import { initStoreFromServer } from "app-root/util/store";
 
 initStoreFromServer(store);
 
