@@ -18,10 +18,6 @@ const router = (
     <Route path="/disclaimer" component={Disclaimer} />
     <Route component={App}>
       <Route path="/" component={Home} />
-      <Route path="/photos" component={Photos} />
-      <Route path="/beers" component={Beers} />
-      <Route path="/events" component={Events} />
-      <Route path="/about" component={About} />
     </Route>
   </Router>
 );
