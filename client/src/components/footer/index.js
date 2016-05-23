@@ -4,7 +4,16 @@ import React from "react";
 import { translate } from "react-i18next/lib";
 
 import ContactForm from "./contactform";
-import Map from "./map";
+
+const icons = [
+  "facebook-1",
+  "gplus-1",
+  "pinterest-1",
+  "instagram",
+  "tripadvisor",
+  "untappd",
+  "zomato",
+];
 
 class Footer extends React.Component {
   static displayName = "Footer";
@@ -14,43 +23,30 @@ class Footer extends React.Component {
 
     return (
       <footer className="Footer">
-        <div className="Footer-schedule">
-          <h2 className="Schedule-title">
-            {t("footer:schedule")}
-          </h2>
-          <table>
-            <tbody>
-              <tr>
-                <td className="Schedule-weekday">{t("weekdays:sunday")}</td>
-                <td>{t("footer:closed")}</td>
-              </tr>
-              <tr>
-                <td className="Schedule-weekday">{t("weekdays:monday")}</td>
-                <td>{t("footer:closed")}</td>
-              </tr>
-              <tr>
-                <td className="Schedule-weekday">{t("weekdays:tuesday")} - {t("weekdays:thursday")}</td>
-                <td>4:00 PM – 12:00 AM</td>
-              </tr>
-              <tr>
-                <td className="Schedule-weekday">{t("weekdays:friday")} - {t("weekdays:saturday")}</td>
-                <td>4:00 PM – 2:00 AM</td>
-              </tr>
-            </tbody>
-          </table>
+
+        <div className="Footer-section Footer-schedule">
+          <div>{t("footer:schedule-line1")}</div>
+          <div>{t("footer:schedule-line2")}</div>
         </div>
-        <div className="Footer-location">
+
+        <div className="Footer-section Footer-location">
           <div className="Location-address">
-            Rua de Cedofeita 256, 4050-174 Porto
+            Rua de Cedofeita 256<br />
+            4050-174 Porto
           </div>
-          <Map />
         </div>
-        <div className="Footer-contactinfo">
-          <div className="ContactInfo-phone">
-            <i className="icon-phone" />+351 934 360 070
-          </div>
-          <ContactForm />
+
+        <div className="Footer-section Footer-contacts">
+          +351 934 360 070<br />
+          <a href="mailto:catraiobeershop@gmail.com">catraiobeershop@gmail.com</a>
         </div>
+
+        <div className="Footer-section Footer-social">
+          {icons.map(icon => {
+            return <i className={`icon icon-${icon}`} />;
+          })}
+        </div>
+
       </footer>
     );
   }

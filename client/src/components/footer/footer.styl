@@ -1,74 +1,39 @@
-@import "../variables.styl"
+@import "~app-components/variables.styl"
 
 .Footer
-  background: gray;
-  border-top: 1px solid black;
+  position: fixed;
   display: flex;
-  height: $footer-height;
   justify-content: center;
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  align-items: center
+  width: $page-width
+  height: $footer-height;
+  background: $white
+  border: 4px solid $yellow;
+  bottom: 10px;
 
-  .Footer-location, .Footer-contactinfo
-    align-self: center;
-
-  &>div
-    margin: 0 25px;
+  .Footer-section
+    position: relative
+    width: 25%
+    padding: 0 0 0 100px
+    background: transparent no-repeat 50px center
+    background-size: 35px 35px
 
   .Footer-schedule
-    padding-top: 15px;
+    background-image: url("~app-assets/images/schedule.svg")
 
-    table
-      margin: 0 auto;
-      width: 100%;
+  .Footer-location
+    background-image: url("~app-assets/images/location.svg")
 
-      td
-        padding: 15px 5px;
+  .Footer-contacts
+    background-image: url("~app-assets/images/contacts.svg")
 
-      .Schedule-weekday
-        padding-left: 0;
+  .Footer-social
+    padding-left: 0
 
-  .Location-address
-    margin-bottom: 15px;
+    .icon
+      font-size: 24px
+      margin-right: 10px
 
-  .Map
-    height: 200px;
-    width: 400px;
-    margin: 0 auto;
-
-  .Footer-contactinfo
-    .icon-phone
-      margin-right: 5px;
-      padding-right: 5px;
-      border-right: 1px solid $white;
-
-    .ContactInfo-phone
-      margin: 15px 0;
-
-  .ContactForm
-    button
-      display: block;
-      margin-top: 10px;
-      color: $black;
-      padding: 5px;
-
-    input, textarea
-      display: block;
-      padding: 5px;
-      width: 300px;
-      font-size: 14px;
-      color: $black;
-
-    input
-      margin-bottom: 15px;
-
-    textarea
-      height: 75px;
-
-    button
-      float: right;
-
-    .hide
-      display: none;
+    .icon-tripadvisor
+      margin-right: 22px
+      

@@ -23,6 +23,8 @@
     "contact": "Contact",
     "phone": "Phone",
     "schedule": "Schedule",
+    "schedule-line1": "TUE to THU > 4pm - 12am",
+    "schedule-line2": "FRI to SAT > 4pm - 2am",
     "name": "Name",
     "message": "Message",
     "closed": "Closed",
