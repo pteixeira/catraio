@@ -13,7 +13,7 @@ const URLS = [
 ]
 
 class Intro extends React.Component {
-	render() {
+  render() {
     return (
       <div className="Intro">
         <LoginForm />
