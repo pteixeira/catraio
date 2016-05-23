@@ -5,16 +5,11 @@
   margin: 0 auto
   padding: 40px 0 10px
   font-family: hagin
-  background: $black;
+  background: $white;
 
-  .Header-content
-    width: 80%;
-    display: flex;
-    justify-content: space-between;
-    margin: 0 auto;
-
-  a
-    width: 25%;
+  .logo
+    width: 600px
+    display: inline-block
 
   h1
     height: 75px
@@ -26,15 +21,22 @@
     text-align: center
 
   .Header-menu
-    width: 75%;
+    width: 100%;
     text-align: center
     list-style: none
     padding-left: 0;
+    color: $black
+    background: $yellow
 
   .Header-menu-item
     display: inline-block
-    margin: 10px
+    width: 25%
+    margin: 10px 0
     font-size: 32px
+    text-align: center
+
+    > a
+      width: 100%
 
     .active
       border-bottom: 2px solid $yellow
