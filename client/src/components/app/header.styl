@@ -1,43 +1,49 @@
 @import "../variables.styl"
 
+$header-height = 50px
+
 .Header
   width: 100%
   margin: 0 auto
-  padding: 40px 0 10px
-  font-family: hagin
-  background: $white;
+  font-family: Helvetica,Arial,sans-serif
+  background: $white
+  position: relative
 
-  .logo
-    width: 600px
-    display: inline-block
+  > a
+    outline: none
 
   h1
-    height: 75px
+    height: 180px
     width: 100%;
-    margin-top: 0;
-    background: url("../../assets/images/logo-big.png") no-repeat center center
-    background-size: contain
+    margin: 70px 0 50px
+    background: url("~app-assets/images/logo-black.png") no-repeat center center
     text-indent: -99999px
     text-align: center
 
   .Header-menu
-    width: 100%;
+    width: 100%
+    height: $header-height
+    line-height: $header-height
     text-align: center
     list-style: none
-    padding-left: 0;
+    padding-left: 0
     color: $black
     background: $yellow
 
   .Header-menu-item
     display: inline-block
     width: 25%
-    margin: 10px 0
-    font-size: 32px
+    font-size: 22px
     text-align: center
 
-    > a
+    a, a:link, a:active, a:visited
       width: 100%
+      color: $black
 
-    .active
-      border-bottom: 2px solid $yellow
+    a:hover, a.active
+      color: $white !important
 
+  .LanguageSelector
+    position: absolute
+    right: 0
+    bottom: ($header-height + 30px)

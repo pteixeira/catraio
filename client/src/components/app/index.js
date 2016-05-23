@@ -1,15 +1,14 @@
-import "../../assets/normalize.css";
-import "../../assets/fontello.css";
-import "../../assets/fontello-codes.css";
-import "../../assets/hagin.css";
+import "app-assets/normalize.css";
+import "app-assets/fontello.css";
+import "app-assets/fontello-codes.css";
+import "app-assets/hagin.css";
 
 import "./app.styl";
 
 import React from "react";
 
 import Header from "./header";
-import Footer from "../footer";
-import LanguageSelector from "../language_selector";
+import Footer from "app-components/footer";
 
 class App extends React.Component {
   static displayName = "App";
@@ -28,7 +27,6 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <LanguageSelector />
         <Header />
         {this.props.children}
         <Footer />

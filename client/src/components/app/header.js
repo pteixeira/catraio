@@ -5,6 +5,8 @@ import { Link } from "react-router";
 import { translate } from "react-i18next/lib";
 import { map } from "lodash";
 
+import LanguageSelector from "app-components/language_selector";
+
 const MENU_ITEMS = [
   "photos", "events", "about", "beers"
 ];
@@ -31,6 +33,8 @@ class Header extends React.Component {
             );
           })}
         </ul>
+
+        <LanguageSelector />
 
       </header>
     );
