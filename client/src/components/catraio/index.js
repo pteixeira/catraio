@@ -2,7 +2,7 @@ import React from "react";
 
 class Catraio extends React.Component {
 	render() {
-		return <div className="Catraio">Çup</div>
+    return <div className="Catraio">Çup</div>
 	}
 }
 

@@ -14,16 +14,16 @@ const URLS = [
 
 class Intro extends React.Component {
 	render() {
-		return (
-			<div className="Intro">
-				<LoginForm />
+    return (
+      <div className="Intro">
+        <LoginForm />
         <Taps />
         <div className="Intro-slideshowcontainer">
           <Slideshow sources={URLS} hideIndicators={false} hideSlidingImages={1} initialSlide={0} />
         </div>
-			</div>
-		)
-	}
+      </div>
+    )
+  }
 }
 
 export default Intro;
