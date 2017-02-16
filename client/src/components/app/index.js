@@ -2,6 +2,7 @@ import "app-assets/normalize.css";
 import "app-assets/fontello.css";
 import "app-assets/fontello-codes.css";
 import "app-assets/hagin.css";
+import "app-assets/raleway.css";
 
 import "./app.styl";
 
