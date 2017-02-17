@@ -1,5 +1,5 @@
-var path = require("path");
-var Webpack = require("webpack");
+const path = require("path");
+const Webpack = require("webpack");
 
 module.exports = {
   entry: {
@@ -13,24 +13,25 @@ module.exports = {
     ]
   },
   output: {
-    path: "./build",
+    path: "/build",
     filename: "bundle.js",
     publicPath: "/"
   },
   plugins: [
-    new Webpack.optimize.CommonsChunkPlugin("vendors", "vendors.js")
+    new Webpack.optimize.CommonsChunkPlugin({name: "vendors", filename: "vendors.js"}),
+    new Webpack.ProvidePlugin({"fetch": "imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch"})
   ],
   module: {
-    preLoaders: [
-      { test: /\.js$/, exclude: /node_modules/, loader: "eslint" }
-    ],
-    loaders: [
-      { test: /\.js$/, exclude: /node_modules/, loader: "react-hot!babel" },
-      { test: /\.css/, loader: "style!css!autoprefixer" },
-      { test: /\.styl$/, loader: "style!css!autoprefixer!stylus" },
-      { test: /\.(jpg|png)$/, loader: "url" },
-      { test: /\.json$/, loader: "json" },
-      { test: /\.(woff2?|eot|ttf|svg)$/, loader: "file" }
+    rules: [
+      { enforce: "pre", test: /\.js$/, exclude: /node_modules/, loader: "eslint-loader" },
+      { test: /\.js$/, exclude: /node_modules/,
+        loaders: ["react-hot-loader", "babel-loader"]
+      },
+      { test: /\.css/, loader: "style-loader!css-loader!autoprefixer-loader" },
+      { test: /\.styl$/, loader: "style-loader!css-loader!autoprefixer-loader!stylus-loader" },
+      { test: /\.(jpg|png)$/, loader: "url-loader" },
+      { test: /\.json$/, loader: "json-loader" },
+      { test: /\.(woff2?|eot|ttf|svg)$/, loader: "file-loader" }
     ]
   },
   resolve: {

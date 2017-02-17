@@ -72,7 +72,7 @@ class Slideshow extends React.Component {
             const imageCx = classnames("Slideshow-image", {
               "active": this.state.currentSlide === i
             });
-            return(<img src={src} className={imageCx} key={i} />)
+            return (<img src={src} className={imageCx} key={i} />)
           })}
         </div>
 

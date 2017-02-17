@@ -2,7 +2,7 @@ import "./header.styl";
 
 import React from "react";
 import { Link } from "react-router";
-import { translate } from "react-i18next/lib";
+import { translate } from "react-i18next";
 import { map } from "lodash";
 
 import LanguageSelector from "app-components/language_selector";

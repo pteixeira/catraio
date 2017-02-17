@@ -1,5 +1,5 @@
 import React from "react";
-import { translate } from "react-i18next/lib";
+import { translate } from "react-i18next";
 
 import BeerList from "./beerlist";
 import LoginForm from "../login";

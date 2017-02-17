@@ -3,7 +3,7 @@ import "./events.styl";
 import React from "react";
 import { connect } from "react-redux";
 import classnames from "classnames";
-import { translate } from "react-i18next/lib";
+import { translate } from "react-i18next";
 
 import Event from "./event";
 import { addPastEvents } from "../../actions/pastevents";
@@ -48,7 +48,7 @@ class Events extends React.Component {
             {t("events:noevents")}
           </div>
           {sortedEvents.map((event, i) => {
-            return(
+            return (
               <div className="Events-event" key={i}>
                 <Event event={event} />
               </div>
@@ -64,7 +64,7 @@ class Events extends React.Component {
         <div className={pastEventsCx}>
           <h2>{t("events:pastevents")}</h2>
           {sortedPastEvents.map((event, i) => {
-            return(
+            return (
               <Event event={event} key={i} />
             )
           })}

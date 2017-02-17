@@ -1,11 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { isEmpty } from "lodash";
-import { translate } from "react-i18next/lib";
+import { translate } from "react-i18next";
 import classnames from "classnames";
 import Immutable from "immutable";
-
-import "exports?self.fetch!whatwg-fetch";
 
 import { addTap, deleteTap, moveTap, updateTap } from "../../actions/taps";
 
@@ -105,7 +103,6 @@ class Taps extends React.Component {
               <th>{t("taps:city")}</th>
               <th>{t("taps:half_price")}</th>
               <th>{t("taps:full_price")}</th>
-              <th></th>
             </tr>
           </thead>
 

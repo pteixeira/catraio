@@ -7,11 +7,11 @@ const history = createBrowserHistory();
 // Top-level components
 import App from "app-components/app";
 import Home from "app-components/home";
-import Photos from "app-components/photos";
-import Beers from "app-components/beers";
-import Events from "app-components/events";
 import Disclaimer from "app-components/disclaimer";
-import About from "app-components/about";
+// import Photos from "app-components/photos";
+// import Beers from "app-components/beers";
+// import Events from "app-components/events";
+// import About from "app-components/about";
 
 const router = (
   <Router history={history}>

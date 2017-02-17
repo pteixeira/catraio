@@ -3,8 +3,6 @@ import { createAction } from "redux-actions";
 import { API_HOST } from "../config/env";
 import { PASTEVENTS_ADD_REQUEST, PASTEVENTS_ADD_SUCCESS, PASTEVENTS_ADD_FAILURE } from "../action_types";
 
-import "exports?self.fetch!whatwg-fetch";
-
 const addPastEventsRequest = createAction(PASTEVENTS_ADD_REQUEST);
 const addPastEventsSuccess = createAction(PASTEVENTS_ADD_SUCCESS);
 const addPastEventsFailure = createAction(PASTEVENTS_ADD_FAILURE);

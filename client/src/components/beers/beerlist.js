@@ -3,11 +3,10 @@ import "./beers.styl";
 import React from "react";
 import ReactDOM from "react-dom";
 import { connect } from "react-redux";
-import { translate } from "react-i18next/lib";
+import { translate } from "react-i18next";
 import { throttle, isEmpty, isString } from "lodash";
 import classnames from "classnames";
 import Immutable from "immutable";
-import "exports?self.fetch!whatwg-fetch";
 
 import { addBeer, updateBeer, deleteBeer } from "../../actions/beers";
 
@@ -228,7 +227,7 @@ class BeerList extends React.Component {
               </th>
             </tr>
             {this.sortedBeers().map((beer) => {
-              return(
+              return (
                 <tr key={`beer-${beer.get("id")}`}>
                   <td>{this.beerField(beer, "brand")}</td>
                   <td>{this.beerField(beer, "name")}</td>

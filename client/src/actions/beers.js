@@ -1,5 +1,4 @@
 import { createAction } from "redux-actions";
-import "exports?self.fetch!whatwg-fetch";
 
 import { API_HOST } from "../config/env";
 import {
