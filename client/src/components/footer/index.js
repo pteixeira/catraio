@@ -1,9 +1,7 @@
 import "./footer.styl";
 
 import React from "react";
-import { translate } from "react-i18next/lib";
-
-import ContactForm from "./contactform";
+import { translate } from "react-i18next";
 
 const icons = [
   "facebook-1",
@@ -42,9 +40,11 @@ class Footer extends React.Component {
         </div>
 
         <div className="Footer-section Footer-social">
-          {icons.map(icon => {
-            return <i className={`icon icon-${icon}`} />;
-          })}
+          {
+            icons.map((icon, i) => {
+              return <i className={`icon icon-${icon}`} key={`icon-${i}`} />;
+            })
+          }
         </div>
 
       </footer>

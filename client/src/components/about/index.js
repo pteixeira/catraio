@@ -5,7 +5,7 @@ class About extends React.Component {
   static displayName = "About";
 
   render() {
-    return(
+    return (
       <div className="About">
         <div className="About-content">
           <div className="About-text">

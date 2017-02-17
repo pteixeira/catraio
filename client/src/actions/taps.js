@@ -2,8 +2,6 @@ import { createAction } from "redux-actions";
 
 import { API_HOST } from "../config/env";
 
-import "exports?self.fetch!whatwg-fetch";
-
 import {
   TAPS_SET_COLLECTION,
 

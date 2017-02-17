@@ -1,8 +1,7 @@
 import React from "react";
 import classnames from "classnames";
-import { translate } from "react-i18next/lib";
+import { translate } from "react-i18next";
 import { connect } from "react-redux";
-import "exports?self.fetch!whatwg-fetch";
 
 import { removeCurrentUser, userLogin } from "../../actions/user";
 

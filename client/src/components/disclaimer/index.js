@@ -3,7 +3,7 @@ import "./disclaimer.styl";
 import React from "react";
 import { Link } from "react-router";
 
-import { translate } from "react-i18next/lib";
+import { translate } from "react-i18next";
 
 class Disclaimer extends React.Component {
   static displayName = "Disclaimer";
@@ -15,7 +15,7 @@ class Disclaimer extends React.Component {
   render() {
     const { t } = this.props;
 
-    return(
+    return (
       <div className="Disclaimer">
         <h1 className="logo">Catraio</h1>
         <div className="Disclaimer-question">

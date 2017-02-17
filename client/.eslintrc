@@ -71,7 +71,6 @@
     "no-func-assign": 2,
     "no-undef": 2,
     "no-unreachable": 2,
-    "no-unused-vars": 2,
     "block-scoped-var": 2,
     "no-console": 1, // Warn so we don't commit console.logs
     "no-debugger": 1,
@@ -137,7 +136,7 @@
     "quotes": [2, "double"],
 
     // Enforce whitespace for visual clarity.
-    "space-after-keywords": [2, "always"],
+    "keyword-spacing": 2,
     "spaced-comment": [2, "always", { "exceptions": ["-"] }],
 
     //-------------------------------------------------------------------------
@@ -171,10 +170,6 @@
     "react/react-in-jsx-scope": 0,
     "react/self-closing-comp": 2,
     "react/wrap-multilines": 2,
-
-    // Conflicts w/ Marty
-    "react/no-multi-comp": 0,
-    "react/display-name": 0,
 
     // Potential issue in React ESLint package- receiving 'Can't add property
     // react, object is not extensible' when used with eslint-loader.

@@ -18,10 +18,14 @@ class App extends React.Component {
     children: React.PropTypes.node
   };
 
+  static contextTypes = {
+    router: React.PropTypes.object.isRequired
+  }
+
   // Lifecycle methods
   componentWillMount() {
     if (sessionStorage.getItem("over18") !== "1") {
-      this.props.history.pushState(null, "/disclaimer");
+      this.context.router.push("disclaimer");
     }
   }
 

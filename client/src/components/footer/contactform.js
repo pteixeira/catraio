@@ -1,6 +1,5 @@
 import React from "react";
-import { translate } from "react-i18next/lib";
-import "exports?self.fetch!whatwg-fetch";
+import { translate } from "react-i18next";
 import classnames from "classnames";
 
 import { API_HOST } from "../../config/env";
