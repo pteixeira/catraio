@@ -8,7 +8,7 @@ import { map } from "lodash";
 import LanguageSelector from "app-components/language_selector";
 
 const MENU_ITEMS = [
-  "photos", "events", "about", "beers"
+  "catraio", "store", "events", "photos"
 ];
 
 class Header extends React.Component {

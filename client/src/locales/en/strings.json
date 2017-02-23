@@ -16,7 +16,9 @@
     "events": "Events",
     "about": "About",
     "contact": "Contacts",
-    "beers": "Beers"
+    "beers": "Beers",
+    "catraio": "Catraio",
+    "store": "Store and Bar"
   },
   "footer": {
     "address": "Address",

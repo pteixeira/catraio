@@ -24,9 +24,7 @@ module.exports = {
   module: {
     rules: [
       { enforce: "pre", test: /\.js$/, exclude: /node_modules/, loader: "eslint-loader" },
-      { test: /\.js$/, exclude: /node_modules/,
-        loaders: ["react-hot-loader", "babel-loader"]
-      },
+      { test: /\.js$/, exclude: /node_modules/, loaders: ["react-hot-loader", "babel-loader"] },
       { test: /\.css/, loader: "style-loader!css-loader!autoprefixer-loader" },
       { test: /\.styl$/, loader: "style-loader!css-loader!autoprefixer-loader!stylus-loader" },
       { test: /\.(jpg|png)$/, loader: "url-loader" },
