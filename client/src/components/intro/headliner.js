@@ -1,3 +1,5 @@
+import "./headliner.styl";
+
 import React, { Component } from "react";
 import { translate } from "react-i18next";
 
@@ -6,7 +8,7 @@ class Headliner extends Component {
     const { t } = this.props;
 
     return (
-      <div className="Intro-headliner">
+      <div className="Headliner">
         <div className="Headliner-section Headliner-tagline">
           {t("header:tagline")}
         </div>

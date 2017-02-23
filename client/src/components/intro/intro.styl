@@ -1,5 +1,3 @@
-@import "~app-components/variables.styl"
-
 .Intro-slideshowcontainer
   margin: 0 auto;
   height: 200px;
@@ -8,35 +6,3 @@
 .Intro-firstevent
   margin: 0 auto 20px;
   text-align: center;
-
-.Intro-headliner
-  display: flex;
-  justify-content: center;
-
-.Headliner-section
-  background: transparent no-repeat 5px;
-  margin: 0 5px;
-  font-size: 75%;
-
-  &.Headliner-tagline
-    display: flex;
-    align-items: center;
-    text-transform: uppercase;
-    font-size: 200%;
-    text-align: center;
-
-  &:not(.Headliner-tagline)
-    background-size: calc(35px * 0.75) calc(35px * 0.75);
-    background-position-y: 10px;
-    padding: 10px 10px 10px 45px;
-    border: 2px solid $yellow;
-
-.Headliner-schedule
-  background-image: url("~app-assets/images/schedule.svg");
-
-.Headliner-location
-  background-image: url("~app-assets/images/location.svg")
-
-.Headliner-contacts
-  background-image: url("~app-assets/images/contacts.svg")
-
