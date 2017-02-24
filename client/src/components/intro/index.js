@@ -4,7 +4,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { translate } from "react-i18next";
 
-import Taps from "../taps";
+import Photos from "../photos";
 import Slideshow from "../slideshow";
 import LoginForm from "../login";
 import Event from "../events/event";
@@ -26,8 +26,20 @@ class Intro extends React.Component {
           { firstEvent ? <Event event={firstEvent} /> : t("events:noevents") }
         </div>
         <Headliner />
+        <div className="Intro-highlights">
+          <img src="https://www.placecage.com/g/400/400" alt=""/>
+          <img src="https://www.stevensegallery.com/g/400/400" alt=""/>
+        </div>
+        <div className="Intro-photocatraios">
+          <img src="https://www.stevensegallery.com/800/600" alt=""/>
+        </div>
+        <div className="Intro-quote">
+          “It is sometimes an appropriate response to reality to go insane.” <br />
+          ― Philip K. Dick, VALIS
+        </div>
+        <Photos />
         <LoginForm />
-        <Taps />
+        {/* remove from here */}
         <div className="Intro-slideshowcontainer">
           <Slideshow sources={URLS} hideIndicators={false} hideSlidingImages={1} initialSlide={0} />
         </div>

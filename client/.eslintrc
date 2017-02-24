@@ -169,7 +169,7 @@
     "react/no-unknown-property": 2,
     "react/react-in-jsx-scope": 0,
     "react/self-closing-comp": 2,
-    "react/wrap-multilines": 2,
+    "react/jsx-wrap-multilines": 2,
 
     // Potential issue in React ESLint package- receiving 'Can't add property
     // react, object is not extensible' when used with eslint-loader.

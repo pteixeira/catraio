@@ -1,3 +1,9 @@
+@import "~app-components/variables.styl"
+
+.Intro
+  & > div
+    margin: 50px auto;
+
 .Intro-slideshowcontainer
   margin: 0 auto;
   height: 200px;
@@ -6,3 +12,22 @@
 .Intro-firstevent
   margin: 0 auto 20px;
   text-align: center;
+
+.Intro-highlights
+  display: flex;
+  height: 400px;
+  width: 10px;
+  margin: 20px auto;
+  justify-content: center;
+  background-color: $yellow;
+
+  &>img:first-child
+    margin-right: 5px;
+
+.Intro-photocatraios
+  width: 100%;
+  text-align: center;
+
+.Intro-quote
+  text-align: center;
+  font-style: italic;
