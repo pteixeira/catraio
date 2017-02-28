@@ -5,16 +5,16 @@ import { connect } from "react-redux";
 import { translate } from "react-i18next";
 
 import Photos from "../photos";
-import Slideshow from "../slideshow";
+// import Slideshow from "../slideshow";
 import LoginForm from "../login";
 import Event from "../events/event";
 import Headliner from "./headliner";
 
-const URLS = [
-  "http://placingbad.com/800/200",
-  "http://placingbad.com/800/200/marie",
-  "http://placingbad.com/800/200/hank"
-]
+// const URLS = [
+//   "http://placingbad.com/800/200",
+//   "http://placingbad.com/800/200/marie",
+//   "http://placingbad.com/800/200/hank"
+// ]
 
 class Intro extends React.Component {
   render() {
@@ -27,11 +27,11 @@ class Intro extends React.Component {
         </div>
         <Headliner />
         <div className="Intro-highlights">
-          <img src="https://www.placecage.com/g/400/400" alt=""/>
-          <img src="https://www.stevensegallery.com/g/400/400" alt=""/>
+          <img src="http://lorempicsum.com/futurama/800/800/1" alt=""/>
+          <img src="https://www.stevensegallery.com/g/800/800" alt=""/>
         </div>
         <div className="Intro-photocatraios">
-          <img src="https://www.stevensegallery.com/800/600" alt=""/>
+          <img src="https://www.stevensegallery.com/1500/800" alt=""/>
         </div>
         <div className="Intro-quote">
           “It is sometimes an appropriate response to reality to go insane.” <br />
@@ -39,10 +39,10 @@ class Intro extends React.Component {
         </div>
         <Photos />
         <LoginForm />
-        {/* remove from here */}
+        {/* remove from here
         <div className="Intro-slideshowcontainer">
           <Slideshow sources={URLS} hideIndicators={false} hideSlidingImages={1} initialSlide={0} />
-        </div>
+        </div>*/}
       </div>
     )
   }

@@ -1,33 +1,36 @@
 @import "~app-components/variables.styl"
 
 .Intro
+  max-width: 80%;
+  margin 0 auto;
+
   & > div
     margin: 50px auto;
 
-.Intro-slideshowcontainer
-  margin: 0 auto;
-  height: 200px;
-  width: 800px;
+  .Intro-slideshowcontainer
+    margin: 0 auto;
+    height: 200px;
+    width: 800px;
 
-.Intro-firstevent
-  margin: 0 auto 20px;
-  text-align: center;
+  .Intro-firstevent
+    text-align: center;
 
-.Intro-highlights
-  display: flex;
-  height: 400px;
-  width: 10px;
-  margin: 20px auto;
-  justify-content: center;
-  background-color: $yellow;
+  .Intro-highlights
+    background-color: $yellow;
 
-  &>img:first-child
-    margin-right: 5px;
+    &>img
+      height: auto;
+      vertical-align: top;
+      max-width: calc(50% - 5px);
 
-.Intro-photocatraios
-  width: 100%;
-  text-align: center;
+    &>img:first-child
+      margin-right: 10px;
 
-.Intro-quote
-  text-align: center;
-  font-style: italic;
+  .Intro-photocatraios
+    &>img
+      height: auto;
+      max-width: 100%;
+
+  .Intro-quote
+    text-align: center;
+    font-style: italic;

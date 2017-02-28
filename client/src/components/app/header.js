@@ -28,7 +28,7 @@ class Header extends React.Component {
           {map(MENU_ITEMS, (item) => {
             return (
               <li className="Header-menu-item" key={`header-link-${item}`}>
-                <Link to={item} activeClassName="active">{t(`menu:${item}`)}</Link>
+                <Link to={`#${item}`}>{t(`menu:${item}`)}</Link>
               </li>
             );
           })}
