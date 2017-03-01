@@ -1,8 +1,8 @@
 import React from "react";
 
 import Intro from "app-components/intro";
-// import Catraio from "app-components/catraio";
-// import ShopAndBar from "app-components/shopandbar";
+import Catraio from "app-components/catraio";
+import ShopAndBar from "app-components/shopandbar";
 // import Events from "app-components/events";
 // import Photos from "app-components/photos";
 
@@ -17,9 +17,9 @@ class Home extends React.Component {
     return (
       <div className="Home">
         <Intro />
-{/*        <Catraio />
+        <Catraio />
         <ShopAndBar />
-        <Events />
+{/*        <Events />
         <Photos />*/}
       </div>
     );

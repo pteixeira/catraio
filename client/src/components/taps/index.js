@@ -101,8 +101,8 @@ class Taps extends React.Component {
               <th>{t("taps:abv")}</th>
               <th>{t("taps:country")}</th>
               <th>{t("taps:city")}</th>
-              <th>{t("taps:half_price")}</th>
-              <th>{t("taps:full_price")}</th>
+              {/* <th>{t("taps:half_price")}</th>
+                            <th>{t("taps:full_price")}</th> */}
             </tr>
           </thead>
 
@@ -112,12 +112,12 @@ class Taps extends React.Component {
                 <tr key={`tap-${tap.get("id")}`}>
                   <td>{this.tapField(tap, "brand")}</td>
                   <td>{this.tapField(tap, "name")}</td>
-                  <td>{this.tapField(tap, "abv")}%</td>
                   <td>{this.tapField(tap, "style")}</td>
+                  <td>{this.tapField(tap, "abv")}%</td>
                   <td>{this.tapField(tap, "country")}</td>
                   <td>{this.tapField(tap, "city")}</td>
-                  <td>{this.tapField(tap, "half_price")}</td>
-                  <td>{this.tapField(tap, "full_price")}</td>
+                  {/* <td>{this.tapField(tap, "half_price")}</td>
+                                    <td>{this.tapField(tap, "full_price")}</td> */}
                   <td className={tapActionsCx}>
                     <button onClick={this.removeTap.bind(this, tap)}>X</button>
                     <button onClick={this.moveTap.bind(this, tap, "move_up")}>^</button>

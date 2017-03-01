@@ -1,20 +1,20 @@
-import React, { Component } from "react";
+import "./shop.styl";
 
-class Shop extends Component {
-  render() {
-    return (
-      <div>
-        <h1>Oferece (-TE) Catraio</h1>
-        <div>O nosso merchandising</div>
-        <div className="Shop-photos">
-          <img src="http://lorempicsum.com/futurama/200/200/1" alt=""/>
-          <img src="http://lorempicsum.com/futurama/200/200/2" alt=""/>
-          <img src="http://lorempicsum.com/futurama/200/200/3" alt=""/>
-          <img src="http://lorempicsum.com/futurama/200/200/4" alt=""/>
-        </div>
+import React from "react";
+
+const Shop = () => {
+  return (
+    <div className="Shop">
+      <div className="Shop-title"><span>Oferece (-TE) Catraio</span></div>
+      <div>O nosso merchandising</div>
+      <div className="Shop-photos">
+        <div className="Shop-photo"><img src="http://lorempicsum.com/futurama/500/500/1" alt=""/></div>
+        <div className="Shop-photo"><img src="http://lorempicsum.com/futurama/500/500/2" alt=""/></div>
+        <div className="Shop-photo"><img src="http://lorempicsum.com/futurama/500/500/3" alt=""/></div>
+        <div className="Shop-photo"><img src="http://lorempicsum.com/futurama/500/500/4" alt=""/></div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default Shop;
