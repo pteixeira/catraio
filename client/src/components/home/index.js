@@ -4,7 +4,7 @@ import Intro from "app-components/intro";
 import Catraio from "app-components/catraio";
 import ShopAndBar from "app-components/shopandbar";
 import Events from "app-components/events";
-// import Photos from "app-components/photos";
+import Photos from "app-components/photos";
 
 class Home extends React.Component {
   static displayName = "Home";
@@ -20,7 +20,7 @@ class Home extends React.Component {
         <Catraio />
         <ShopAndBar />
         <Events />
-{/*        <Photos />*/}
+        <Photos />
       </div>
     );
   }
