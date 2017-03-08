@@ -50,7 +50,7 @@ class Intro extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    firstEvent: state.events[0]
+    firstEvent: state.events.get(0)
   }
 }
 

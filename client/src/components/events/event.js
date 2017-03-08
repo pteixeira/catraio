@@ -36,7 +36,7 @@ class Event extends React.Component {
         </a>
         <div className="Event-info">
           <div><strong>{t("events:where")}</strong>: {event.get("place").get("name")}</div>
-          <EventDescription description={event.get("description")} />
+          <EventDescription description={event.get("description") || ""} />
           <a href={eventLink} target="_blank" className="black">
             <strong>{t("events:viewInFacebook")}</strong>
           </a>
