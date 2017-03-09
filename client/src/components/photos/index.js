@@ -52,7 +52,7 @@ class Photos extends React.Component {
 
   render() {
     return (
-      <div className="Photos">
+      <div className="Photos" id="photos">
         {map(URLs, (source, i) => {
           return (
             <Photo source={source} key={i} imageNumber={i} selected={this.state.selected}
