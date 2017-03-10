@@ -14,6 +14,11 @@ const MENU_ITEMS = [
 class Header extends React.Component {
   static displayName = "Header";
 
+  linkClicked(item) {
+    const element = document.getElementById(item);
+    element.scrollIntoView({ behavior: "smooth"}); // smooth is not supported and polyfill is being a little bitch
+  }
+
   render() {
     const { t } = this.props;
 
@@ -27,7 +32,7 @@ class Header extends React.Component {
         <ul className="Header-menu">
           {map(MENU_ITEMS, (item) => {
             return (
-              <li className="Header-menu-item" key={`header-link-${item}`}>
+              <li className="Header-menu-item" key={`header-link-${item}`} onClick={this.linkClicked.bind(this, item)}>
                 <Link to={`#${item}`}>{t(`menu:${item}`)}</Link>
               </li>
             );

@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { I18nextProvider } from "react-i18next";
+import SmoothScroll from "smoothscroll-polyfill";
 import i18n from "./i18n";
 
 import router from "app-root/router";
@@ -9,6 +10,7 @@ import store from "app-root/store";
 import { initStoreFromServer } from "app-root/util/store";
 
 initStoreFromServer(store);
+SmoothScroll.polyfill();
 
 ReactDOM.render(
   <Provider store={store}>
