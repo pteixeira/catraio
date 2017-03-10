@@ -20,7 +20,7 @@ class Home extends React.Component {
         <Catraio />
         <ShopAndBar />
         <Events />
-        <Photos />
+        <Photos outside="outside" />
       </div>
     );
   }

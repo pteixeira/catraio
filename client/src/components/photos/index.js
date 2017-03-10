@@ -33,7 +33,8 @@ class Photos extends React.Component {
   static displayName = "Photos";
 
   static propTypes = {
-    children: React.PropTypes.node
+    children: React.PropTypes.node,
+    outside: React.PropTypes.string
   };
 
 
@@ -51,8 +52,10 @@ class Photos extends React.Component {
   }
 
   render() {
+    const { outside } = this.props;
+
     return (
-      <div className="Photos" id="photos">
+      <div className="Photos" id={outside ? "photos" : ""}>
         {map(URLs, (source, i) => {
           return (
             <Photo source={source} key={i} imageNumber={i} selected={this.state.selected}
