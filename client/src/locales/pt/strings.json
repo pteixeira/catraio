@@ -62,9 +62,16 @@
     "pastevents": "Eventos anteriores"
   },
   "shopandbar": {
+    "bar": {
+      "title": "Cervejas para levares contigo"
+    },
     "taps": {
       "title": "Cervejas para beberes connosco!",
       "description": "Cerveja à pressão (actualizado semanalmente)"
+    },
+    "shop": {
+      "title": "Oferece (-TE) Catraio",
+      "description": "O nosso merchandising"
     }
   },
   "login": {

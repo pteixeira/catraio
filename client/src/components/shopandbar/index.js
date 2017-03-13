@@ -12,12 +12,12 @@ class ShopAndBar extends React.Component {
 
     return (
       <div className="ShopAndBar" id="shopandbar">
-        <BarMenu />
-        <BarTaps title={t("shopandbar:taps:title")} description={t("shopandbar:taps:description")}/>
-        <Shop />
+        <BarMenu title={t("shopandbar:bar:title")} />
+        <BarTaps title={t("shopandbar:taps:title")} description={t("shopandbar:taps:description")} />
+        <Shop title={t("shopandbar:shop:title")} description={t("shopandbar:shop:description")} />
       </div>
     )
   }
 }
 
-export default translate(["shopandbar:taps"])(ShopAndBar);
+export default translate(["shopandbar"])(ShopAndBar);

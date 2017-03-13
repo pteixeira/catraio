@@ -62,9 +62,16 @@
     "pastevents": "Past events"
   },
   "shopandbar": {
+    "bar": {
+      "title": "Beers to take with you"
+    },
     "taps": {
-      "title": "Beer to drink with us!",
-      "description": "Beer on tap (updated weekly)"
+      "title": "Beers to drink with us!",
+      "description": "Beers on tap (updated weekly)"
+    },
+    "shop": {
+      "title": "Offer Catraio",
+      "description": "Our merchandising"
     }
   },
   "login": {
