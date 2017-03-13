@@ -5,7 +5,7 @@ import React from "react";
 class Catraio extends React.Component {
   render() {
     return (
-      <div className="Catraio">
+      <div className="Catraio" id="catraio">
         <div className="Catraio-photocatraios">
           <img src="https://www.placecage.com/g/800/600" alt=""/>
         </div>

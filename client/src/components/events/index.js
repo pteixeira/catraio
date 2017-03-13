@@ -41,7 +41,7 @@ class Events extends React.Component {
     });
 
     return (
-      <div className="Events">
+      <div className="Events" id="events">
         <div className="Events-nextevents">
           <h2>{t("menu:events")}</h2>
           <div className={noEventsCx}>
