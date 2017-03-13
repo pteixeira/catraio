@@ -61,6 +61,12 @@
     "noevents": "Catraio - Craft Beer Shop não tem eventos neste momento.",
     "pastevents": "Eventos anteriores"
   },
+  "shopandbar": {
+    "taps": {
+      "title": "Cervejas para beberes connosco!",
+      "description": "Cerveja à pressão (actualizado semanalmente)"
+    }
+  },
   "login": {
     "error": "Email ou password incorrecto"
   },

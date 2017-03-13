@@ -3,13 +3,13 @@ import "./bartaps.styl";
 import React from "react";
 import Taps from "app-components/taps";
 
-const BarTaps = () => {
+const BarTaps = ({ title, description }) => {
   return (
     <div className="BarTaps">
       <div className="BarTaps-left">
         <div>
-          <h2><i className="icon icon-untappd" />Cervejas para beberes connosco!</h2>
-          <p>Cerveja à pressão (actualizado semanalmente)</p>
+          <h2><i className="icon icon-untappd" />{title}</h2>
+          <p>{description}</p>
           <Taps />
         </div>
       </div>
@@ -18,6 +18,11 @@ const BarTaps = () => {
       </div>
     </div>
   );
+}
+
+BarTaps.propTypes = {
+  title: React.PropTypes.string.isRequired,
+  description: React.PropTypes.string.isRequired
 }
 
 export default BarTaps;

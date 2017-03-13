@@ -61,6 +61,12 @@
     "noevents": "Catraio - Craft Beer Shop does not have any upcoming events.",
     "pastevents": "Past events"
   },
+  "shopandbar": {
+    "taps": {
+      "title": "Beer to drink with us!",
+      "description": "Beer on tap (updated weekly)"
+    }
+  },
   "login": {
     "error": "Invalid email or password"
   },
