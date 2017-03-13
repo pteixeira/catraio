@@ -8,7 +8,7 @@ import Shop from "./shop";
 class ShopAndBar extends React.Component {
   render() {
     return (
-      <div className="ShopAndBar">
+      <div className="ShopAndBar" id="shopandbar">
         <BarMenu />
         <BarTaps />
         <Shop />

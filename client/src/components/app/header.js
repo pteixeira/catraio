@@ -8,7 +8,7 @@ import { map } from "lodash";
 import LanguageSelector from "app-components/language_selector";
 
 const MENU_ITEMS = [
-  "catraio", "store", "events", "photos"
+  "catraio", "shopandbar", "events", "photos"
 ];
 
 class Header extends React.Component {
@@ -16,7 +16,7 @@ class Header extends React.Component {
 
   linkClicked(item) {
     const element = document.getElementById(item);
-    element.scrollIntoView({ behavior: "smooth"}); // smooth is not supported and polyfill is being a little bitch
+    element.scrollIntoView({ behavior: "smooth" }); // smooth is not supported and polyfill is being a little bitch
   }
 
   render() {
