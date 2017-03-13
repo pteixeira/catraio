@@ -40,6 +40,7 @@
     "redux": "^3.2.1",
     "redux-actions": "^1.2.1",
     "redux-thunk": "^2.2.0",
+    "smoothscroll-polyfill": "^0.3.4",
     "webpack": "^2.2.1",
     "whatwg-fetch": "^2.0.2"
   },
