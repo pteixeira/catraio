@@ -5,16 +5,8 @@ import { connect } from "react-redux";
 import { translate } from "react-i18next";
 
 import Photos from "../photos";
-// import Slideshow from "../slideshow";
-import LoginForm from "../login";
 import Event from "../events/event";
 import Headliner from "./headliner";
-
-// const URLS = [
-//   "http://placingbad.com/800/200",
-//   "http://placingbad.com/800/200/marie",
-//   "http://placingbad.com/800/200/hank"
-// ]
 
 class Intro extends React.Component {
   render() {
@@ -38,11 +30,6 @@ class Intro extends React.Component {
           ― Philip K. Dick, VALIS
         </div>
         <Photos />
-        <LoginForm />
-        {/* remove from here
-        <div className="Intro-slideshowcontainer">
-          <Slideshow sources={URLS} hideIndicators={false} hideSlidingImages={1} initialSlide={0} />
-        </div>*/}
       </div>
     )
   }
