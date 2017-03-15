@@ -5,6 +5,7 @@ import { Link } from "react-router";
 import { translate } from "react-i18next";
 import { map } from "lodash";
 
+import LoginForm from "app-components/login";
 import LanguageSelector from "app-components/language_selector";
 
 const MENU_ITEMS = [
@@ -38,6 +39,8 @@ class Header extends React.Component {
             );
           })}
         </ul>
+
+        <LoginForm />
 
         <LanguageSelector />
 

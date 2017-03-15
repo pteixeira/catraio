@@ -2,7 +2,6 @@ import React from "react";
 import { translate } from "react-i18next";
 
 import BeerList from "./beerlist";
-import LoginForm from "../login";
 
 class Beers extends React.Component {
   static displayName = "Beers";
@@ -17,7 +16,6 @@ class Beers extends React.Component {
     return (
       <div className="Beers">
         <h3>{t("beers:mainheader")}</h3>
-        <LoginForm />
         <BeerList />
       </div>
     );
