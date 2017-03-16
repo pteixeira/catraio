@@ -3,20 +3,34 @@
 .Footer
   position: fixed;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center
   width: $page-width
   height: $footer-height;
   background: $white
   border: 4px solid $yellow;
   bottom: 10px;
+  padding: 0 15px;
 
   .Footer-section
-    position: relative
-    width: 25%
-    padding: 0 0 0 100px
     background: transparent no-repeat 50px center
     background-size: 35px 35px
+    display: flex;
+    align-items: center;
+
+    & > div
+      &:not(:last-child)
+        margin-right: 15px;
+
+      font-size: 1.5vw;
+      padding-left: 3.5vw;
+      background-size: 2.25vw;
+      background-repeat: no-repeat;
+      background-position: 5px;
+
+    .Footer-contacts
+      background-size: 2.95vw;
+      background-image: url("~app-assets/images/contacts.svg")
 
   .Footer-schedule
     background-image: url("~app-assets/images/schedule.svg")
@@ -24,14 +38,12 @@
   .Footer-location
     background-image: url("~app-assets/images/location.svg")
 
-  .Footer-contacts
-    background-image: url("~app-assets/images/contacts.svg")
-
   .Footer-social
-    padding-left: 0
+    flex-grow: 2;
+    justify-content: space-around;
 
     .icon
-      font-size: 24px
+      font-size: 2vw
       margin-right: 10px
 
     .icon-tripadvisor
