@@ -8,7 +8,6 @@ import { I18N_LANGUAGE } from "app-root/constants/globals";
 i18n
   .use(LanguageDetector)
   .init({
-    lng: localStorage.getItem(I18N_LANGUAGE) || "pt",
     fallbackLng: "pt",
     resources: {
       en: stringsEn,
