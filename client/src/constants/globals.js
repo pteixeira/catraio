@@ -1,1 +1,1 @@
-export const I18N_LANGUAGE = "i18nextLng";
+export const I18N_LANGUAGE = "i18nextLng"; // TODO: REMOVE THIS FILE IF WE HAVE NO MORE GLOBALS!
