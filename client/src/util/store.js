@@ -2,7 +2,7 @@ import { API_HOST } from "../config/env";
 import { setTaps } from "../actions/taps";
 import { setBeers } from "../actions/beers";
 import { setEvents } from "../actions/events";
-import { setCurrentUser, removeCurrentUser } from "../actions/user";
+import { setCurrentUser, removeCurrentUser, setAuth } from "../actions/user";
 import { defaultHeaders } from "../util/request";
 
 export function initStoreFromServer(store) {
@@ -21,6 +21,7 @@ export function initStoreFromServer(store) {
   .then(events => store.dispatch(setEvents(events)));
 
   const token = localStorage.getItem("token");
+
   if (token) {
     fetch(`${API_HOST}/me`, {
       method: "get",
@@ -31,7 +32,10 @@ export function initStoreFromServer(store) {
 
       throw new Error(res.status);
     })
-    .then(user => store.dispatch(setCurrentUser(user.email)))
+    .then(user => {
+      store.dispatch(setCurrentUser(user.email));
+      store.dispatch(setAuth(true)); // TODO: remake maybe
+    })
     .catch(err => store.dispatch(removeCurrentUser(err)))
   }
 }

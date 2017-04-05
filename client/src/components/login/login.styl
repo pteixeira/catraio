@@ -1,31 +1,21 @@
 @import "../variables.styl"
 
 .Login
-  &.hide,
-  .hide
-    display: none;
+  width: 500px;
+  margin: 0 auto;
 
-  .Login-form
-    position: absolute;
-    top: 0;
-    right: 0;
+  .Login-error
+    text-align: center;
+    margin-top: 20px;
 
-    form
-      display: flex;
-      flex-direction: column;
-      width: 225px;
+  form
+    margin: 0 auto;
+    text-align: center;
 
-      div
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-      input
-        width: 125px;
-
-  .LoginForm-showbutton
-    color: $black;
-    position: absolute;
-    bottom: 120px;
-    right: 0;
-
+  input:not([type="submit"])
+    display: block;
+    margin: 0 auto 15px;
+    width: 50%;
+    padding: 10px;
+    border: 1px solid $grey;
+    border-radius: 2px;
