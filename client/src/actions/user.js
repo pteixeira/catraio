@@ -6,7 +6,9 @@ import {
 
  USER_LOGIN_REQUEST,
  USER_LOGIN_SUCCESS,
- USER_LOGIN_FAILURE
+ USER_LOGIN_FAILURE,
+
+ SET_AUTH
 } from "../action_types";
 import { defaultHeaders } from "../util/request";
 import { API_HOST } from "../config/env";
@@ -15,6 +17,13 @@ export function setCurrentUser(payload) {
   return {
     type: USER_SET_CURRENT_USER,
     payload
+  };
+}
+
+export function setAuth(isAuthed) {
+  return {
+    type: SET_AUTH,
+    payload: isAuthed
   };
 }
 
