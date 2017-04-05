@@ -1,3 +1,5 @@
+import "./admin.styl";
+
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
@@ -8,7 +10,8 @@ class Admin extends Component {
   render() {
     const { authenticated } = this.props;
     return (
-      <div>
+      <div className="Admin">
+        <h1>Catraio</h1>
         { authenticated ? <Management /> : <Login />}
       </div>
     );
