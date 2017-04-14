@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   get 'events/past', to: 'events#pastevents'
   get "/me", to: "users#me"
   post "/sendmail", to: "sendmail#index"
+  get "/newbeers", to: "newbeers#index"
 end
