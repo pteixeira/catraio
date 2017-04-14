@@ -17,9 +17,13 @@ class Home extends React.Component {
     return (
       <div className="Home">
         <Intro />
+
         <Catraio />
+
         <ShopAndBar />
+
         <Events />
+
         <Photos outside="outside" />
       </div>
     );

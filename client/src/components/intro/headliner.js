@@ -13,18 +13,16 @@ class Headliner extends Component {
           {t("header:tagline")}
         </div>
         <div className="Headliner-section Headliner-schedule">
-          <div className="">
-            <div>{t("footer:schedule-line1")}</div>
-            <div>{t("footer:schedule-line2")}</div>
-          </div>
+          <div>{t("footer:schedule-line1")}</div>
+          <div>{t("footer:schedule-line2")}</div>
         </div>
         <div className="Headliner-section Headliner-location">
-          Rua de Cedofeita 256<br />
-          4050-174 Porto
+          <div>Rua de Cedofeita 256</div>
+          <div>4050-174 Porto</div>
         </div>
         <div className="Headliner-section Headliner-contacts">
-          +351 934 360 070 <br />
-          <a href="mailto:catraiobeershop@gmail.com">catraiobeershop@gmail.com</a>
+          <div>+351 934 360 070</div>
+          <div><a href="mailto:catraiobeershop@gmail.com">catraiobeershop@gmail.com</a></div>
         </div>
       </div>
     );

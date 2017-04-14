@@ -19,16 +19,23 @@ class Intro extends React.Component {
         </div>
         <Headliner />
         <div className="Intro-highlights">
-          <img src="http://lorempicsum.com/futurama/800/800/1" alt=""/>
-          <img src="https://www.stevensegallery.com/g/800/800" alt=""/>
+          <img src="https://placehold.it/800x800" alt=""/>
+          <img src="https://placehold.it/800x800" alt=""/>
         </div>
-        <div className="Intro-photocatraios">
-          <img src="https://www.stevensegallery.com/1500/800" alt=""/>
+
+        <div className="Intro-photocatraios" />
+
+        <div className="Blockquote">
+          <div className="quote">
+            <Interpolate i18nKey="intro:quote" useDangerouslySetInnerHTML />
+          </div>
+          <div className="author">
+            {t("intro:author")}
+          </div>
         </div>
-        <div className="Intro-quote">
-          <Interpolate i18nKey="intro:quote" useDangerouslySetInnerHTML />
-        </div>
+
         <Photos />
+
       </div>
     )
   }
