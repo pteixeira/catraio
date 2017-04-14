@@ -1,8 +1,8 @@
 @import "~app-components/variables.styl"
 
 .Intro
-  max-width: 80%;
-  margin 0 auto;
+  width: 100%
+  margin: 0 auto;
 
   & > div
     margin: 50px auto;
@@ -18,19 +18,17 @@
   .Intro-highlights
     background-color: $yellow;
 
-    &>img
+    & > img
       height: auto;
       vertical-align: top;
-      max-width: calc(50% - 5px);
+      max-width: calc(50% - 25px);
 
-    &>img:first-child
-      margin-right: 10px;
+    & > img:first-child
+      margin-right: 50px;
 
   .Intro-photocatraios
-    &>img
-      height: auto;
-      max-width: 100%;
+    width: 100%
+    height: 440px
+    background: url("http://placehold.it/1024x440") no-repeat center center
+    background-size: cover
 
-  .Intro-quote
-    text-align: center;
-    font-style: italic;

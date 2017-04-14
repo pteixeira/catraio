@@ -12,13 +12,13 @@
     "tagline": "We love beer"
   },
   "menu": {
-    "photos": "Photos",
-    "events": "Events",
+    "photos": "PHOTOS",
+    "events": "EVENTS",
     "about": "About",
     "contact": "Contacts",
     "beers": "Beers",
-    "catraio": "Catraio",
-    "shopandbar": "Shop and Bar"
+    "catraio": "CATRAIO",
+    "shopandbar": "SHOP and BAR"
   },
   "intro": {
     "quote": "«We can't buy happiness, but we can buy beer and at Catraio these two things are pratically the same!!! <br /> I like my water with barley and hops !!!» <br /> Manuel Oliveira, via Facebook"

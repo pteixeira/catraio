@@ -9,24 +9,15 @@ import Slideshow from "../slideshow"; // TODO: change slideshow to its own compo
 
 
 const URLs = [
-  "http://placingbad.com/500/500/junior",
-  "http://placingbad.com/800/500/hank",
-  "http://placingbad.com/500/800/walter",
-  "http://placingbad.com/300/200/jesse",
-  "http://placingbad.com/300/300/skyler",
-  "http://placingbad.com/1000/400/tuco",
-  "http://lorempicsum.com/futurama/500/500/1",
-  "http://lorempicsum.com/futurama/500/500/2",
-  "http://lorempicsum.com/futurama/500/500/3",
-  "http://lorempicsum.com/futurama/500/500/4",
-  "http://www.placecage.com/g/900/900",
-  "http://www.placecage.com/c/500/500",
-  "http://www.stevensegallery.com/700/900",
-  "http://www.stevensegallery.com/100/100",
-  "http://www.stevensegallery.com/100/100",
-  "http://www.stevensegallery.com/100/100",
-  "http://www.stevensegallery.com/100/100",
-  "http://www.stevensegallery.com/100/100",
+  "https://placehold.it/185x170",
+  "https://placehold.it/185x170",
+  "https://placehold.it/185x170",
+  "https://placehold.it/185x170",
+  "https://placehold.it/185x170",
+  "https://placehold.it/185x170",
+  "https://placehold.it/185x170",
+  "https://placehold.it/185x170",
+  "https://placehold.it/185x170",
 ];
 
 class Photos extends React.Component {

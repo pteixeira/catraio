@@ -44,7 +44,14 @@ class Footer extends React.Component {
         <div className="Footer-section Footer-social">
           {
             Object.keys(ICON_LINKS).map((key, index) => {
-              return <a href={ICON_LINKS[key]} key={`icon-${index}`} className={`icon icon-${key}`} />;
+              return (
+                <a
+                  href={ICON_LINKS[key]}
+                  key={`icon-${index}`}
+                  className={`icon icon-${key}`}
+                  target="_blank"
+                />
+              );
             })
           }
         </div>
