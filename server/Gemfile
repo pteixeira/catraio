@@ -12,6 +12,8 @@ gem 'rack-cors'
 gem 'sqlite3'
 gem 'koala', '~> 2.2'
 gem 'mailgun-ruby', '~>1.0.3'
+gem 'faraday'
+gem 'hashie'
 
 group :development do
   gem 'annotate'
