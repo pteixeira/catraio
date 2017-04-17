@@ -27,22 +27,33 @@ class NewbeersController < ApplicationController
     return newMenu[0]["items"].map do |beer|
       beer.extend(Hashie::Extensions::DeepLocate)
 
-      pintInfo = beer.deep_locate -> (k, v, o) {
-        k == "container_size" && v["name"] == "Pint"
+      containerInfo = beer.deep_locate -> (k, v, o) {
+        k == "container_size"
       }
 
-      halfPintInfo = beer.deep_locate -> (k, v, o) {
-        k == "container_size" && v["name"].include?("1/2")
-      }
+      # i think we are screwed either way with the container sizes :|
+      containers = {}
+      containerInfo.map do |container|
+        key = container["container_size"]["name"] == "1/2 Pint" ? "half_pint" : container["container_size"]["name"].downcase
+        value = container["price"]
+
+        containers[key] = value
+      end
+
+      # pintInfo = beer.deep_locate -> (k, v, o) {
+      #   k == "container_size" && v["name"] == "Pint"
+      # }
+
+      # halfPintInfo = beer.deep_locate -> (k, v, o) {
+      #   k == "container_size" && v["name"].include?("1/2")
+      # }
 
       {
         brand: beer["brewery"],
         name: beer["name"],
         style: beer["style"],
-        abv: beer["abv"],
-        half_pint: halfPintInfo[0]["price"],
-        pint: pintInfo[0]["price"]
-      }
+        abv: beer["abv"]
+      }.merge(containers)
     end
 
     # return newMenu
