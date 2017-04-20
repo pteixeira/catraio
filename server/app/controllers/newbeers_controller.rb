@@ -6,10 +6,10 @@ require 'json'
 class NewbeersController < ApplicationController
   def index
     # create base64 token to use in Authorization header -> <email>:<token> | base64
-    authToken = Base64.encode64("#{ENV["UNTAPPD_EMAIL"]}:#{ENV["UNTAPPD_READ_TOKEN"]}")
+    authToken = Base64.encode64("#{ENV["UNTAPPD_BUSINESS_EMAIL"]}:#{ENV["UNTAPPD_BUSINESS_READ_TOKEN"]}")
 
     # full = true -> get all info from a menu
-    menuUrl = "https://business.untappd.com/api/v1/menus/#{ENV["UNTAPPD_MENU_ID"]}?full=true"
+    menuUrl = "https://business.untappd.com/api/v1/menus/#{ENV["UNTAPPD_BUSINESS_MENU_ID"]}?full=true"
     menu = makeRequest(menuUrl, authToken)
     formattedMenu = formatMenu(menu)
 
@@ -31,22 +31,12 @@ class NewbeersController < ApplicationController
         k == "container_size"
       }
 
-      # i think we are screwed either way with the container sizes :|
       containers = {}
       containerInfo.map do |container|
-        key = container["container_size"]["name"] == "1/2 Pint" ? "half_pint" : container["container_size"]["name"].downcase
+        key = container["container_size"]["name"]
         value = container["price"]
-
-        containers[key] = value
+        containers["#{key}"] = value
       end
-
-      # pintInfo = beer.deep_locate -> (k, v, o) {
-      #   k == "container_size" && v["name"] == "Pint"
-      # }
-
-      # halfPintInfo = beer.deep_locate -> (k, v, o) {
-      #   k == "container_size" && v["name"].include?("1/2")
-      # }
 
       {
         brand: beer["brewery"],
@@ -56,17 +46,6 @@ class NewbeersController < ApplicationController
       }.merge(containers)
     end
 
-    # return newMenu
-    # menu["menu"]["sections"][0]["items"].map do |beer|
-    #   {
-    #     brand: beer["brewery"],
-    #     name: beer["name"],
-    #     style: beer["style"],
-    #     abv: beer["abv"],
-    #     half_pint: beer["containers"][0]["price"],
-    #     pint: beer["containers"][1]["price"]
-    #   }
-    # end
   end
 
   def makeRequest(url, authToken)
