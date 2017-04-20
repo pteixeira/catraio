@@ -7,7 +7,7 @@ import { defaultHeaders } from "../util/request";
 
 export function initStoreFromServer(store) {
   // Populate taps
-  fetch(`${API_HOST}/taps`)
+  fetch(`${API_HOST}/newbeers`)
   .then(res => res.json())
   .then(taps => store.dispatch(setTaps(taps)));
 

@@ -25,20 +25,6 @@ ActiveRecord::Schema.define(version: 20160121161656) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "taps", force: :cascade do |t|
-    t.string   "brand"
-    t.string   "name"
-    t.string   "style"
-    t.float    "abv"
-    t.string   "country"
-    t.string   "city"
-    t.float    "half_price"
-    t.float    "full_price"
-    t.integer  "position"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "password_digest"
