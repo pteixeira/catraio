@@ -3,7 +3,7 @@ require 'faraday'
 require 'hashie'
 require 'json'
 
-class NewbeersController < ApplicationController
+class TapsController < ApplicationController
   def index
     # create base64 token to use in Authorization header -> <email>:<token> | base64
     authToken = Base64.encode64("#{ENV["UNTAPPD_BUSINESS_EMAIL"]}:#{ENV["UNTAPPD_BUSINESS_READ_TOKEN"]}")
