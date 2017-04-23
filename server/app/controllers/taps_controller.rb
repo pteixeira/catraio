@@ -1,65 +1,61 @@
+require 'base64'
+require 'faraday'
+require 'hashie'
+require 'json'
+
 class TapsController < ApplicationController
-  before_action :authenticate, except: %w(index)
-
   def index
-    taps = Tap.all
+    # create base64 token to use in Authorization header -> <email>:<token> | base64
+    authToken = Base64.encode64("#{ENV["UNTAPPD_BUSINESS_EMAIL"]}:#{ENV["UNTAPPD_BUSINESS_READ_TOKEN"]}")
 
-    render json: Hash[taps.map(&:id).zip(taps)]
+    # full = true -> get all info from a menu
+    menuUrl = "https://business.untappd.com/api/v1/menus/#{ENV["UNTAPPD_BUSINESS_MENU_ID"]}?full=true"
+    menu = makeRequest(menuUrl, authToken)
+    formattedMenu = formatMenu(menu)
+
+    render json: formattedMenu
   end
 
-  def create
-    tap = Tap.create(tap_params)
+  def formatMenu(menu)
+    # usar https://github.com/intridea/hashie#deeplocate
+    menu.extend(Hashie::Extensions::DeepLocate)
 
-    render json: tap
-  end
+    newMenu = menu.deep_locate -> (key, value, object) {
+      key == "description" && value.include?("Draft")
+    }
 
-  def update
-    tap = Tap.find(params[:id])
+    return newMenu[0]["items"].map do |beer|
+      beer.extend(Hashie::Extensions::DeepLocate)
 
-    tap.update!(tap_params)
+      containerInfo = beer.deep_locate -> (k, v, o) {
+        k == "container_size"
+      }
 
-    render json: tap
-  end
-
-  def move
-    tap = Tap.find(move_params[:id])
-
-    if order = move_params[:action]
-      case order
-      when "move_up"
-        tap.move_higher
-      when "move_down"
-        tap.move_lower
+      containers = {}
+      containerInfo.map do |container|
+        key = container["container_size"]["name"]
+        value = container["price"]
+        containers["#{key}"] = value
       end
+
+      {
+        brand: beer["brewery"],
+        name: beer["name"],
+        style: beer["style"],
+        abv: beer["abv"]
+      }.merge(containers)
     end
 
-    taps = Tap.all
-
-    render json: Hash[taps.map(&:id).zip(taps)]
   end
 
-  def destroy
-    Tap.destroy(params[:id])
+  def makeRequest(url, authToken)
+    con = Faraday.new
 
-    render json: {}
-  end
+    res = con.get do |req|
+      req.url url
+      req.headers["Authorization"] = "Basic #{authToken}"
+    end
 
-  private
-
-  def tap_params
-    params.require(:tap).permit(
-      :brand,
-      :name,
-      :style,
-      :abv,
-      :country,
-      :city,
-      :half_price,
-      :full_price
-    )
-  end
-
-  def move_params
-    params.require(:tap).permit(:id, :action)
+    return JSON.parse(res.body)
   end
 end

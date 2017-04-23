@@ -15,7 +15,7 @@ class Header extends React.Component {
   static displayName = "Header";
   constructor(props) {
     super(props);
-    this.handleScroll = throttle(this.handleScroll, 100);
+    this.handleScroll = throttle(this.handleScroll.bind(this), 100);
   }
 
   state = {
