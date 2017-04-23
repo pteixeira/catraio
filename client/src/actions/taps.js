@@ -1,8 +1,4 @@
 import { TAPS_SET_COLLECTION } from "../action_types";
+import { createAction } from "redux-actions";
 
-export function setTaps(payload) {
-  return {
-    type: TAPS_SET_COLLECTION,
-    payload
-  };
-}
+export const setTaps = createAction(TAPS_SET_COLLECTION)
