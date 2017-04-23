@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import { View, Alert, Text } from "react-native";
+import { View, ScrollView, Alert, Text } from "react-native";
+import Swiper from "react-native-page-swiper";
 
 //
 // Components
 import Navbar from "app/components/UIKit/Navbar";
+import BeerList from "app/components/BeerList";
 
 //
 // Styles
@@ -12,12 +14,12 @@ import styles from "./styles";
 //
 // Constants
 const ON_TAP = 0;
-const BOTTLES = 1;
+const BOTTLED = 1;
 
 class App extends Component {
 
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
 
     this.state = {
       active: ON_TAP,
@@ -29,16 +31,22 @@ class App extends Component {
 
     return (
       <View style={styles.container}>
+
         <Navbar
-          items={[ "On Tap", "Bottles" ]}
+          items={[ "On Tap", "Bottled" ]}
           onChange={(active) => this.setState({ active })}
         />
+        
+        <ScrollView
+          style={styles.listContainer}
+          pagingEnabled
+          horizontal
+          swipeEnabled
+        >
+          <BeerList title="On Tap" />
+          <BeerList title="Bottled" />
+        </ScrollView>
 
-        <View style={styles.list}>
-          <Text style={{ fontSize: 32 }}>
-            { active === ON_TAP ? "On Tap List" : "Bottles List" }
-          </Text>
-        </View>
       </View>
     );
   }

@@ -11,6 +11,7 @@
 		"react": "16.0.0-alpha.6",
 		"react-native": "0.43.3",
 		"react-native-button": "^1.8.2",
+		"react-native-page-swiper": "^0.3.0",
 		"recompose": "^0.23.1"
 	},
 	"devDependencies": {

@@ -2931,6 +2931,10 @@ react-native-button@^1.8.2:
   version "1.8.2"
   resolved "https://registry.yarnpkg.com/react-native-button/-/react-native-button-1.8.2.tgz#49e5cadd22ee443adea52a85539d288aa2117ade"
 
+react-native-page-swiper@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/react-native-page-swiper/-/react-native-page-swiper-0.3.0.tgz#657eb0e14316052e80055d9a56d28039114ffcc6"
+
 react-native@0.43.3:
   version "0.43.3"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.43.3.tgz#4f8e0d8d88827553789c02ef21cbc1afb68474d0"

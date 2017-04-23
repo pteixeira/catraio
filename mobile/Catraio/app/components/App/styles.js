@@ -7,10 +7,8 @@ export default StyleSheet.create({
     flex: 1,
   },
   
-  list: {
+  listContainer: {
     flex: 1,
     backgroundColor: "#999",
-    alignItems: "center",
-    justifyContent: "center",
-  },
+   },
 });
