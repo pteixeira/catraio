@@ -22,7 +22,7 @@ const BarTaps = ({ title, description }) => {
 
 BarTaps.propTypes = {
   title: React.PropTypes.string.isRequired,
-  description: React.PropTypes.string.isRequired
+  description: React.PropTypes.object.isRequired
 }
 
 export default BarTaps;

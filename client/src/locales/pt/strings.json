@@ -20,6 +20,12 @@
     "catraio": "Catraio",
     "shopandbar": "Loja e Bar"
   },
+  "intro": {
+    "quote": "«Não podemos comprar a felicidade, mas podemos comprar cerveja, e no Catraio estas duas coisas são praticamente a mesma!!! <br /> I like my water with barley and hops !!!» <br /> Manuel Oliveira, via Facebook"
+  },
+  "catraio": {
+    "main_text": "Bem-vindo/a ao mundo da cerveja artesanal. O Catraio Craft Beer Shop é um bar, que é uma loja, que é um ponto de encontro para quem gosta de boa cerveja (artesanal).<br/>No Catraio, estás entre amigos para descobrires e desfrutares novos sabores, aromas e experiências. Oferecemos-te um espaço descontraído para relaxares na baixa do Porto, seja na esplanada da rua de Cedofeita ou no “beer garden”, durante o verão.<br />Somos uma plataforma de promoção da cerveja artesanal, onde podes encontrar mais de 100 marcas nacionais e estrangeiras e uma equipa apaixonada e disponível para te ajudar a escolher a tua cerveja. Também podes participar no lançamento de novas cervejas, em encontros com mestres cervejeiros, em “tap takeovers”, em provas e workshops. E ainda podes levar o Catraio para casa, através da nossa loja.<br />Em 2015, abrimos o primeiro bar/loja de cerveja artesanal do Porto e fomos pioneiros na afirmação de uma nova tendência. Hoje, mantemos o compromisso de celebrar esta cultura e descobrir novas cervejas para te dar a conhecer."
+  },
   "footer": {
     "address": "Morada",
     "contact": "Contacto",
@@ -63,15 +69,16 @@
   },
   "shopandbar": {
     "bar": {
-      "title": "Cervejas para levares contigo"
+      "title": "Cervejas para levares contigo",
+      "description": "Podes encontrar aqui a lista de cervejas que vendemos em garrafa para levares para casa ou ofereceres a alguém.<br /> Temos “growlers”, promoções “four pack” e “six pack”. Informa-te na loja."
     },
     "taps": {
       "title": "Cervejas para beberes connosco!",
-      "description": "Cerveja à pressão (actualizado semanalmente)"
+      "description": "Explora aqui a app {{link}} para saberes quais são as cervejas de pressão e entra no jogo. Ah, e se quiseres beber cerveja de garrafa no bar, dá uma vista de olhos à lista “$t(bar.title)”."
     },
     "shop": {
       "title": "Oferece (-TE) Catraio",
-      "description": "O nosso merchandising"
+      "description": "Este é o nosso “statement”: Adoramos Cerveja! Adoramos o Catraio!"
     }
   },
   "login": {
