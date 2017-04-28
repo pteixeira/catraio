@@ -1,4 +1,5 @@
 import "./catraio.styl";
+import { translate, Interpolate } from "react-i18next";
 
 import React from "react";
 
@@ -10,12 +11,7 @@ class Catraio extends React.Component {
           <img src="https://www.placecage.com/g/800/600" alt=""/>
         </div>
         <div className="Catraio-textcatraio">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ut lorem eu ipsum tincidunt consequat.
-          Quisque convallis mollis velit, ac vehicula ex maximus sit amet. Donec dapibus justo sed libero mollis,
-          non mattis mi consequat. In volutpat mi odio, id pulvinar magna gravida eu. Ut venenatis enim massa,
-          eu egestas diam tempus at. Praesent dolor eros, cursus nec congue gravida, maximus nec tortor. Ut ac turpis leo.
-          Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc sed mauris a nibh lobortis
-          facilisis ac vitae magna. Suspendisse potenti.
+          <Interpolate i18nKey={"catraio:main_text"} useDangerouslySetInnerHTML />
         </div>
         <div className="Catraio-newsclips">
           <div>
@@ -37,4 +33,4 @@ class Catraio extends React.Component {
   }
 }
 
-export default Catraio;
+export default translate(["catraio"])(Catraio);

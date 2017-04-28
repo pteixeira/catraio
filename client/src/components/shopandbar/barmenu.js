@@ -1,7 +1,7 @@
 import "./barmenu.styl";
 import React from "react";
 
-const BarMenu = ({ title }) => {
+const BarMenu = ({ title, description }) => {
   return (
     <div className="BarMenu">
       <div className="BarMenu-left">
@@ -9,14 +9,15 @@ const BarMenu = ({ title }) => {
       </div>
       <div className="BarMenu-right">
         <h2><i className="icon icon-untappd" />{title}</h2>
-        <p>Lorem ipsum dolor sit amet, inani accusam definiebas vix ea.
-          Wisi reque congue ea cum, in sed ignota conceptam concludaturque,
-          et lobortis mediocritatem per. Ad altera inermis sensibus per,
-          ex pri semper putant virtute. Vel voluptua vivendum ne.</p>
+        <p>{description}</p>
         <button>Menu</button>
       </div>
     </div>
   );
 }
 
+BarMenu.propTypes = {
+  title: React.PropTypes.string.isRequired,
+  description: React.PropTypes.object.isRequired
+}
 export default BarMenu;
