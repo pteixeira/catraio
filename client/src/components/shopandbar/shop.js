@@ -17,4 +17,9 @@ const Shop = ({ title, description }) => {
   );
 }
 
+Shop.propTypes = {
+  title: React.PropTypes.string.isRequired,
+  description: React.PropTypes.object.isRequired
+}
+
 export default Shop;

@@ -2,7 +2,7 @@ import "./intro.styl";
 
 import React from "react";
 import { connect } from "react-redux";
-import { translate } from "react-i18next";
+import { translate, Interpolate } from "react-i18next";
 
 import Photos from "../photos";
 import Event from "../events/event";
@@ -26,8 +26,7 @@ class Intro extends React.Component {
           <img src="https://www.stevensegallery.com/1500/800" alt=""/>
         </div>
         <div className="Intro-quote">
-          “It is sometimes an appropriate response to reality to go insane.” <br />
-          ― Philip K. Dick, VALIS
+          <Interpolate i18nKey="intro:quote" useDangerouslySetInnerHTML />
         </div>
         <Photos />
       </div>
@@ -41,4 +40,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default translate(["events"])(connect(mapStateToProps)(Intro));
+export default translate(["events", "intro"])(connect(mapStateToProps)(Intro));
