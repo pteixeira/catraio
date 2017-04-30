@@ -1,40 +1,44 @@
-import "./header.styl";
+import "./index.styl";
 
-import React from "react";
+import React, { Component } from "react";
+import classnames from "classnames";
 import { Link } from "react-router";
 import { translate } from "react-i18next";
 import { map, throttle } from "lodash";
+import { compose, setDisplayName } from "recompose";
 
+//
+// Components
 import LanguageSelector from "app-components/language_selector";
 
 const MENU_ITEMS = [
   "catraio", "shopandbar", "events", "photos"
 ];
 
-class Header extends React.Component {
-  static displayName = "Header";
+export class Header extends Component {
+
+  state = {
+    active: null
+  };
+
   constructor(props) {
     super(props);
     this.handleScroll = throttle(this.handleScroll.bind(this), 100);
   }
 
-  state = {
-    sectionSelected: null
-  };
-
   linkClicked(item) {
     const element = document.getElementById(item);
     element.scrollIntoView({ behavior: "smooth" });
-    this.setState({ sectionSelected: item });
+    this.setState({ active: item });
   }
 
-  componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll.bind(this));
-  }
+  // componentDidMount() {
+  //   window.addEventListener("scroll", this.handleScroll.bind(this));
+  // }
 
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll.bind(this));
-  }
+  // componentWillUnmount() {
+  //   window.removeEventListener("scroll", this.handleScroll.bind(this));
+  // }
 
   getTopOfElement(elem) {
     // where element is in viewport
@@ -68,20 +72,21 @@ class Header extends React.Component {
     let scrollTop = window.pageYOffset || docElem.scrollTop || body.scrollTop
 
     if (scrollTop > positions.photos) {
-      this.setState({ sectionSelected: "photos" });
+      this.setState({ active: "photos" });
     } else if (scrollTop > positions.events) {
-      this.setState({ sectionSelected: "events" });
+      this.setState({ active: "events" });
     } else if (scrollTop > positions.shopandbar) {
-      this.setState({ sectionSelected: "shopandbar" });
+      this.setState({ active: "shopandbar" });
     } else if (scrollTop > positions.catraio) {
-      this.setState({ sectionSelected: "catraio" });
+      this.setState({ active: "catraio" });
     } else {
-      this.setState({ sectionSelected: null });
+      this.setState({ active: null });
     }
   }
 
   render() {
     const { t } = this.props;
+    const { active } = this.state;
 
     return (
       <header className="Header">
@@ -92,9 +97,14 @@ class Header extends React.Component {
 
         <ul className="Header-menu">
           {map(MENU_ITEMS, (item) => {
-            let itemCx = this.state.sectionSelected === item ? "Header-menu-item active" : "Header-menu-item";
+            const cx = classnames("Header-menu-item", { active: active === item });
+
             return (
-              <li className={itemCx} key={`header-link-${item}`} onClick={this.linkClicked.bind(this, item)}>
+              <li
+                key={`header-link-${item}`}
+                className={itemCx}
+                onClick={this.linkClicked.bind(this, item)}
+              >
                 {t(`menu:${item}`)}
               </li>
             );
@@ -108,4 +118,8 @@ class Header extends React.Component {
   }
 }
 
-export default translate(["menu"])(Header);
+export default compose(
+  setDisplayName("Header"),
+
+  translate([ "menu" ]),
+)(Header);
