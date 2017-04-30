@@ -1,24 +1,22 @@
 import "./events.styl";
 
 import React from "react";
-import { connect } from "react-redux";
 import classnames from "classnames";
+import { connect } from "react-redux";
 import { translate } from "react-i18next";
+import { compose, setDisplayName } from "recompose";
 
 import Event from "./event";
 import { addPastEvents } from "../../actions/pastevents";
 
 class Events extends React.Component {
-  static displayName = "Events";
-
-  static propTypes = {
-    children: React.PropTypes.node
-  };
-
   state = {
     isShowingPastEvents: false
-  };
+  }
 
+  //----------------------------------------------------------------------------
+  // Event Handlers
+  //----------------------------------------------------------------------------
   showPastEvents() {
     this.setState({ isShowingPastEvents: !this.state.isShowingPastEvents });
     if (this.props.pastevents.size > 0) {
@@ -28,13 +26,17 @@ class Events extends React.Component {
     this.props.dispatch(addPastEvents());
   }
 
+  //----------------------------------------------------------------------------
+  // Render
+  //----------------------------------------------------------------------------
   render() {
     const { t, events, pastevents } = this.props;
+    const { isShowingPastEvents } = this.state;
 
     const sortedEvents = events.sortBy(ev => ev.start_time);
     const sortedPastEvents = pastevents.sortBy(ev => ev.start_time);
     const pastEventsCx = classnames("Events-pastevents", {
-      "hide": !this.state.isShowingPastEvents
+      "hide": !isShowingPastEvents
     });
     const noEventsCx = classnames("Events-noevents", {
       "hide": sortedEvents.size > 0
@@ -42,11 +44,13 @@ class Events extends React.Component {
 
     return (
       <div className="Events" id="events">
+
         <div className="Events-nextevents">
           <h2>{t("menu:events")}</h2>
           <div className={noEventsCx}>
             {t("events:noevents")}
           </div>
+
           {sortedEvents.map((event, i) => {
             return (
               <div className="Events-event" key={i}>
@@ -55,30 +59,33 @@ class Events extends React.Component {
             )
           })}
         </div>
+
         <div className="Events-showpast">
           <span className="Showpast-toggle" onClick={this.showPastEvents.bind(this)}>
             <i className="icon-calendar"/>
             {this.state.isShowingPastEvents ? t("events:hidepast") : t("events:showpast")}
           </span>
         </div>
+
         <div className={pastEventsCx}>
           <h2>{t("events:pastevents")}</h2>
-          {sortedPastEvents.map((event, i) => {
-            return (
-              <Event event={event} key={i} />
-            )
-          })}
+          {sortedPastEvents.map((event, i) => <Event event={event} key={i} /> )}
         </div>
+
       </div>
     );
   }
 }
 
-function select(state) {
-  return {
-    events: state.events,
-    pastevents: state.pastevents
-  };
-}
+export default compose(
+  setDisplayName("Events"),
 
-export default translate(["events", "menu"])(connect(select)(Events));
+  translate([ "events", "menu" ]),
+
+  connect(({ events, pastevents }) => {
+    return {
+      events,
+      pastevents,
+    };
+  }),
+)(Events);

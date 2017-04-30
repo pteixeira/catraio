@@ -1,0 +1,23 @@
+@import "~app-components/variables.styl"
+
+.Billboard
+  margin: 20px 0
+
+  // default
+  &.wide
+    width: 100%
+
+  &.single
+    width: 50%
+
+  &.double
+    background: $yellow
+    overflow: hidden
+
+    img
+      height: auto;
+      vertical-align: top;
+      max-width: calc(50% - 25px);
+
+      &:first-of-type
+        margin-right: 50px;
