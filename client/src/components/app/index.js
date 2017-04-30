@@ -6,12 +6,17 @@ import "app-assets/raleway.css";
 
 import "./app.styl";
 
-import React, { Component } from "react";
+import React, { Component, PropTypes } from "react";
 import { compose, getContext, setDisplayName } from "recompose";
 
 //
 // Components
+import FloatingMenu from "app-components/floating_menu";
 import Header from "app-components/header";
+import Events from "app-components/events";
+import Tagline from "app-components/tagline";
+import Billboard from "app-components/billboard";
+import Blockquote from "app-components/blockquote";
 import Footer from "app-components/footer";
 
 export class App extends Component {
@@ -32,10 +37,9 @@ export class App extends Component {
     return (
       <div className="App">
 
-        <Header />
+        <FloatingMenu threshold={370} />
 
-        {/*
-        <Menu />
+        <Header />
 
         <Events />
 
@@ -44,15 +48,20 @@ export class App extends Component {
         <Billboard
           double
           src={[
-            "https://placehold.it/800x800",
-            "https://placehold.it/800x800",
+            "https://placehold.it/800x440",
+            "https://placehold.it/800x440",
           ]}
         />
 
-        <Billboard wide src="https://placehold.it/1024x440" />
+        <Billboard src="https://placehold.it/1240x440" />
 
-        <Blockquote />
+        <Blockquote
+          quote="intro:quote"
+          author="intro:author"
+          date={new Date()}
+        />
 
+        {/*
         <Gallery />
 
         <Billboard src="https://placehold.it/1024x440" />

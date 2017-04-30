@@ -24,7 +24,7 @@ html, body
     margin: 0 auto
     position: relative
     min-height: 100%
-    padding-bottom: 20px
+    padding: 70px 0 20px
 
 a, a:link, a:active, a:visited
   color: $black
@@ -35,31 +35,3 @@ a.no-hover:hover
 
 .hide
   display: none;
-
-.Blockquote
-  width: 75%
-  margin: 0 auto
-
-  .quote
-    font-family: "Droid Serif", serif;
-    font-size: 22px;
-    font-style: italic;
-    margin-bottom: 20px
-    color: #444
-
-    $margin = 2px
-    &:before, &:after
-      font-size: 30px
-      font-weight: bold
-      color: #555
-    &:before
-      content: "“"
-      margin-right: $margin
-      margin-left: -14px
-    &:after
-      content: "”"
-      margin-left: $margin
-
-  .author
-    font-size: 18px
-    color: #666

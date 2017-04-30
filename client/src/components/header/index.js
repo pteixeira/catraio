@@ -102,7 +102,7 @@ export class Header extends Component {
             return (
               <li
                 key={`header-link-${item}`}
-                className={itemCx}
+                className={cx}
                 onClick={this.linkClicked.bind(this, item)}
               >
                 {t(`menu:${item}`)}
