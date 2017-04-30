@@ -1,8 +1,5 @@
 import React from "react";
-import { Router, Route } from "react-router";
-import createBrowserHistory from "history/lib/createBrowserHistory";
-
-const history = createBrowserHistory();
+import { Router, Route, browserHistory } from "react-router";
 
 // Top-level components
 import App from "app-components/app";
@@ -17,7 +14,7 @@ import Admin from "app-components/admin";
 // import About from "app-components/about";
 
 const router = (
-  <Router history={history}>
+  <Router history={browserHistory}>
     <Route path="/disclaimer" component={Disclaimer} />
     <Route path="/admin" component={Admin} />
     <Route component={App}>
