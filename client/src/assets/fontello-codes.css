@@ -1,7 +1,14 @@
+
 .icon-tripadvisor:before { content: '\e800'; } /* '' */
+.icon-left-open:before { content: '\e801'; } /* '' */
+.icon-right-open:before { content: '\e802'; } /* '' */
 .icon-facebook-1:before { content: '\e803'; } /* '' */
 .icon-gplus-1:before { content: '\e804'; } /* '' */
 .icon-instagram:before { content: '\e805'; } /* '' */
 .icon-pinterest-1:before { content: '\e806'; } /* '' */
 .icon-untappd:before { content: '\e807'; } /* '' */
 .icon-zomato:before { content: '\e808'; } /* '' */
+.icon-angle-left:before { content: '\e809'; } /* '' */
+.icon-angle-right:before { content: '\e80a'; } /* '' */
+.icon-cancel:before { content: '\e80b'; } /* '' */
+.icon-menu:before { content: '\f0c9'; } /* '' */

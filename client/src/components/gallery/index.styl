@@ -1,0 +1,88 @@
+@import "~app-components/variables.styl"
+
+$height = 170px
+
+.Gallery
+  position: relative
+  height: $height
+  margin: 30px auto
+  overflow: hidden
+  zIndex("base")
+
+  .scroller
+    width: 100%
+    height: 100%
+    position: relative
+    display: flex
+    justify-content: space-between
+    align-items: center
+    align-content: center
+    overflow: hidden
+
+  &.arrow-left &-arrow-left
+    display: block
+
+  &.arrow-right &-arrow-right
+    display: block
+
+  &-arrow-left, &-arrow-right
+    display: none
+    position: absolute
+    top: 50%
+    transform: translateY(-50%)
+    width: 40px
+    height: @width
+    color: $white
+    line-height: 41px
+    font-size: 18px
+    text-align: center
+    border-radius: 50%
+    cursor: pointer
+    zIndex("increment")
+
+    &:before
+      content: ""
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+      border-radius: 50%
+      border: 4px solid $white
+      box-shadow: 0 0 3px 1px rgba($black, 0.2)
+      transition: border-width 100ms ease-in-out
+    
+    &:hover:before
+      border-width: 0
+      box-shadow: 0 0 3px 1px rgba($black, 0)
+
+  &-arrow-left
+    left: 10px
+    text-indent: -1px
+  &-arrow-right
+    right: 10px
+    text-indent: 1px
+
+  .Thumbnail
+    position: relative
+    width: 185px
+    height: 100%
+    margin-right: 10px
+    cursor: pointer
+
+    &:last-child
+      margin-right: 0
+
+    &:after
+      position: absolute
+      content: ""
+      width: 100%
+      height: 100%
+      border: 0 solid $yellow
+      top: 0
+      left: 0
+      transition: border-width 200ms ease-in-out
+
+    &:hover:after
+      border-width: 5px
+      
