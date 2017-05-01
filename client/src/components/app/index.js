@@ -7,19 +7,31 @@ import "app-assets/raleway.css";
 import "./app.styl";
 
 import React, { Component, PropTypes } from "react";
+import { times, map } from "lodash";
 import { compose, getContext, setDisplayName } from "recompose";
 
 //
 // Components
 import FloatingMenu from "app-components/floating_menu";
+import Lightbox from "app-components/lightbox";
 import Header from "app-components/header";
 import Events from "app-components/events";
 import Tagline from "app-components/tagline";
 import Billboard from "app-components/billboard";
 import Blockquote from "app-components/blockquote";
+import Gallery from "app-components/gallery";
+import Clipping from "app-components/clipping";
 import Footer from "app-components/footer";
 
+const lightboxSources = map(times(20), () => "https://placehold.it/1280x800");
+const gallerySources  = map(times(20), () => "https://placehold.it/185x170");
+
 export class App extends Component {
+
+  state = {
+    lightboxOpen: true,
+    lightboxPosition: 5,
+  }
 
   //----------------------------------------------------------------------------
   // Lifecycle
@@ -31,13 +43,36 @@ export class App extends Component {
   }
 
   //----------------------------------------------------------------------------
+  // Callbacks
+  //----------------------------------------------------------------------------
+  openLightboxAt = (position) => {
+    this.setState({
+      lightboxOpen: true,
+      lightboxPosition: position,
+    });
+  }
+
+  closeLightbox = () => {
+    this.setState({ lightboxOpen: false });
+  }
+
+  //----------------------------------------------------------------------------
   // Render
   //----------------------------------------------------------------------------
   render() {
+    const { lightboxOpen, lightboxPosition } = this.state;
+
     return (
       <div className="App">
 
         <FloatingMenu threshold={370} />
+
+        <Lightbox
+          isOpen={lightboxOpen}
+          sources={lightboxSources}
+          position={lightboxPosition}
+          onRequestClose={this.closeLightbox}
+        />
 
         <Header />
 
@@ -48,12 +83,39 @@ export class App extends Component {
         <Billboard
           double
           src={[
-            "https://placehold.it/800x440",
-            "https://placehold.it/800x440",
+            "https://placehold.it/800x540",
+            "https://placehold.it/800x540",
           ]}
         />
 
-        <Billboard src="https://placehold.it/1240x440" />
+        <Billboard src="https://placehold.it/1280x440" />
+
+        <Blockquote
+          quote="intro:quote"
+          author="intro:author"
+          date={new Date()}
+        />
+
+        <Gallery
+          sources={gallerySources}
+          onPictureClick={this.openLightboxAt}
+        />
+
+        <Billboard src="https://placehold.it/1280x440" />
+
+        <Clipping
+          image="https://placehold.it/630x600"
+          author="Nome jornal/revista"
+          date={new Date()}
+        />
+
+        <Clipping
+          image="https://placehold.it/630x600"
+          author="Nome jornal/revista"
+          date={new Date()}
+          right
+        />
+
 
         <Blockquote
           quote="intro:quote"
@@ -62,24 +124,6 @@ export class App extends Component {
         />
 
         {/*
-        <Gallery />
-
-        <Billboard src="https://placehold.it/1024x440" />
-
-        <Clipping
-          src="https://800x600"
-          author="Nome jornal/revista"
-          date={new Date()}
-        />
-
-        <Clipping
-          src="https://800x600"
-          author="Nome jornal/revista"
-          date={new Date()}
-        />
-
-        <Blockquote />
-
         <Billboard
           single
           src="https://placehold.it/800x600"

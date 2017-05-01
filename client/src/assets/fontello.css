@@ -1,10 +1,11 @@
 @font-face {
   font-family: 'fontello';
-  src: url('./fonts/fontello.eot');
-  src: url('./fonts/fontello.eot') format('embedded-opentype'),
-       url('./fonts/fontello.woff') format('woff'),
-       url('./fonts/fontello.ttf') format('truetype'),
-       url('./fonts/fontello.svg') format('svg');
+  src: url('~app-assets/fonts/fontello.eot');
+  src: url('~app-assets/fonts/fontello.eot') format('embedded-opentype'),
+       url('~app-assets/fonts/fontello.woff2') format('woff2'),
+       url('~app-assets/fonts/fontello.woff') format('woff'),
+       url('~app-assets/fonts/fontello.ttf') format('truetype'),
+       url('~app-assets/fonts/fontello.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -14,7 +15,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'fontello';
-    src: url('../font/fontello.svg?43487825#fontello') format('svg');
+    src: url('../font/fontello.svg?84050339#fontello') format('svg');
   }
 }
 */
@@ -53,3 +54,17 @@
   /* Uncomment for 3D effect */
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
+ 
+.icon-tripadvisor:before { content: '\e800'; } /* '' */
+.icon-left-open:before { content: '\e801'; } /* '' */
+.icon-right-open:before { content: '\e802'; } /* '' */
+.icon-facebook-1:before { content: '\e803'; } /* '' */
+.icon-gplus-1:before { content: '\e804'; } /* '' */
+.icon-instagram:before { content: '\e805'; } /* '' */
+.icon-pinterest-1:before { content: '\e806'; } /* '' */
+.icon-untappd:before { content: '\e807'; } /* '' */
+.icon-zomato:before { content: '\e808'; } /* '' */
+.icon-angle-left:before { content: '\e809'; } /* '' */
+.icon-angle-right:before { content: '\e80a'; } /* '' */
+.icon-cancel:before { content: '\e80b'; } /* '' */
+.icon-menu:before { content: '\f0c9'; } /* '' */
