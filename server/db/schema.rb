@@ -13,18 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20160121161656) do
 
-  create_table "beers", force: :cascade do |t|
-    t.string   "brand"
-    t.string   "name"
-    t.string   "style"
-    t.float    "abv"
-    t.string   "country"
-    t.string   "city"
-    t.string   "string"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "password_digest"
