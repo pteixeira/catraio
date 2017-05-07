@@ -39,8 +39,6 @@ class TapsController < ApplicationController
         containers["#{key}"] = value
       end
 
-      puts containers
-
       {
         brand: beer["brewery"],
         name: beer["name"],
@@ -60,8 +58,6 @@ class TapsController < ApplicationController
       req.url url
       req.headers["Authorization"] = "Basic #{authToken}"
     end
-
-    puts res.body
 
     return JSON.parse(res.body)
   end

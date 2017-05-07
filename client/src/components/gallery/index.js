@@ -89,11 +89,11 @@ export class Gallery extends Component {
             return (
               <div
                 key={i}
-                className="Thumbnail"
+                className="Thumbnail ClickablePicture"
                 onClick={() => onPictureClick(i)}
               >
                 <img src={url} />
-              </div>
+              </div> 
             );
           })}
         </div>

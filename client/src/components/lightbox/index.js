@@ -16,12 +16,15 @@ export class Lightbox extends Component {
   //----------------------------------------------------------------------------
   componentDidMount() {
     this.scrollToPosition();
+    document.addEventListener("keydown", this.handleKeydown, false);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.position !== nextProps.position) {
-      this.setState({ position: nextProps.position }, this.scrollToPosition);
-    }
+  componentWillReceiveProps({ position }) {
+    this.setState({ position }, this.scrollToPosition);
+  }
+
+  componentWillUnmount() {
+    document.addEventListener("keydown", this.handleKeydown);
   }
 
   //----------------------------------------------------------------------------
@@ -56,6 +59,21 @@ export class Lightbox extends Component {
 
   setPosition = (position) => () => {
     this.setState({ position }, this.scrollToPosition);
+  }
+
+  handleKeydown = (ev) => {
+    switch (ev.key) {
+    case "ArrowLeft":
+      ev.preventDefault();
+      this.scrollLeft();
+      break;
+    case "ArrowRight":
+      ev.preventDefault();
+      this.scrollRight();
+      break;
+    default:
+      return;
+    }
   }
 
   //----------------------------------------------------------------------------

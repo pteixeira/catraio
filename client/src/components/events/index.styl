@@ -1,0 +1,78 @@
+@import "~app-components/variables.styl"
+
+.Events
+  margin: $vertical-spacing auto
+  color: $black
+  text-align: center
+
+  .UpcomingEvents
+    display: block
+
+  .PastEvents
+    display: none
+
+    &.visible
+      display: block
+
+  .ShowMoreEvents
+    display: none
+    border: 1px solid $black
+    background: $white
+    padding: 10px 15px
+
+    &.visible
+      display: inline-block
+
+.Event
+  position: relative
+  margin: 0 0 40px
+  text-align: left
+
+  > a
+    position: relative
+    display: block
+    height: 450px
+
+  .cover
+    height: 450px
+    background: transparent center center no-repeat
+    background-size: cover
+
+  .details
+    position: absolute
+    left: 30px
+    bottom: @left
+    height: 60px
+    color: $white
+    text-align: center
+
+    .date, .title
+      display: inline-block
+      vertical-align: middle
+
+    .date
+      width: @height
+      height: @width
+      border: 2px solid $white
+      border-radius: 3px
+      background: rgba($black, 0.5)
+
+      .d, .m
+        display: block
+      .d
+        font-size: 26px
+        line-height: 38px
+        font-weight: 300
+      .m
+        font-size: 14px
+        line-height: 3px
+        text-transform: uppercase
+
+    .title
+      margin: 0
+      padding: 0
+      height: @height
+      line-height: @height
+      color: $white
+      margin-left: 20px
+      text-shadow: 2px 2px 5px $black

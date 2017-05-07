@@ -2,12 +2,15 @@ import "./index.styl";
 
 import React, { PropTypes, Component } from "react"
 import classnames from "classnames";
-import { map, throttle } from "lodash";
+import { map, throttle, findLast } from "lodash";
 import { translate } from "react-i18next";
 import { compose, setDisplayName, setPropTypes } from "recompose";
 
 const MENU_ITEMS = [
-  "catraio", "shopandbar", "events", "photos"
+  "catraio",
+  "shopandbar",
+  "events",
+  "photos",
 ];
 
 export class FloatingMenu extends Component {
@@ -33,14 +36,27 @@ export class FloatingMenu extends Component {
   handleScroll = throttle((ev) => {
     const { scrollTop } = ev.target.scrollingElement;
     const { threshold } = this.props;
-    const { visible } = this.state;
+    const { visible, active } = this.state;
 
     if (scrollTop > threshold && !visible) {
       this.setState({ visible: true });
     } else if (scrollTop < threshold && visible) {
       this.setState({ visible: false })
     }
+
+    const sections = document.getElementsByClassName("SectionMarker");
+    const current = findLast(sections, s => scrollTop > s.offsetTop);
+
+    const id = current && current.id || "catraio";
+    
+    if (active !== id) {
+      this.setState({ active: id });
+    }
   }, 100);
+
+  scrollToSection = (id) => {
+    document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+  }
 
   //----------------------------------------------------------------------------
   // Render
@@ -60,7 +76,7 @@ export class FloatingMenu extends Component {
             <li
               key={`floating-menu-${item}`}
               className={cx}
-              onClick={() => {}}
+              onClick={() => this.scrollToSection(item)}
             >
               {t(`menu:${item}`)}
             </li>

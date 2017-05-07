@@ -36,7 +36,7 @@ export default compose(
   setPropTypes({
     double: PropTypes.bool.isRequired,
     single: PropTypes.bool.isRequired,
-    src: PropTypes.oneOf([
+    src: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.arrayOf(PropTypes.string),
     ]).isRequired,

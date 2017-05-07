@@ -1,15 +1,17 @@
-import "./events.styl";
+import "./index.styl";
 
-import React from "react";
+import React, { PropTypes, Component } from "react";
+import Immutable from "immutable";
 import classnames from "classnames";
 import { connect } from "react-redux";
 import { translate } from "react-i18next";
-import { compose, setDisplayName } from "recompose";
+import { compose, setDisplayName, setPropTypes, defaultProps } from "recompose";
 
 import Event from "./event";
-import { addPastEvents } from "../../actions/pastevents";
+import { addPastEvents } from "app-root/actions/pastevents";
 
-class Events extends React.Component {
+class Events extends Component {
+
   state = {
     isShowingPastEvents: false
   }
@@ -18,60 +20,62 @@ class Events extends React.Component {
   // Event Handlers
   //----------------------------------------------------------------------------
   showPastEvents() {
-    this.setState({ isShowingPastEvents: !this.state.isShowingPastEvents });
-    if (this.props.pastevents.size > 0) {
+    const { pastevents, dispatch } = this.props
+    const { isShowingPastEvents } = this.state;
+
+    this.setState({ isShowingPastEvents: !isShowingPastEvents });
+
+    if (pastevents.size > 0) {
       return;
     }
 
-    this.props.dispatch(addPastEvents());
+    dispatch(addPastEvents());
+  }
+
+  handleShowMore = () => {
+    const { onlyShowNext } = this.props;
+    const { isShowingPastEvents } = this.state;
+
+    if (onlyShowNext) return;
+
+    isShowingPastEvents ? this.loadMore() : this.showPastEvents();
   }
 
   //----------------------------------------------------------------------------
   // Render
   //----------------------------------------------------------------------------
   render() {
-    const { t, events, pastevents } = this.props;
+    const { t, events, pastevents, onlyShowNext } = this.props;
     const { isShowingPastEvents } = this.state;
 
     const sortedEvents = events.sortBy(ev => ev.start_time);
     const sortedPastEvents = pastevents.sortBy(ev => ev.start_time);
-    const pastEventsCx = classnames("Events-pastevents", {
-      "hide": !isShowingPastEvents
+
+    const pastEventsCx = classnames("PastEvents", {
+      visible: !isShowingPastEvents && !onlyShowNext,
     });
-    const noEventsCx = classnames("Events-noevents", {
-      "hide": sortedEvents.size > 0
-    });
+
+    const showMoreCx = classnames("ShowMoreEvents", {
+      visible: !isShowingPastEvents && !onlyShowNext,
+    })
 
     return (
-      <div className="Events" id="events">
+      <div className="Events">
 
-        <div className="Events-nextevents">
-          <h2>{t("menu:events")}</h2>
-          <div className={noEventsCx}>
-            {t("events:noevents")}
-          </div>
-
-          {sortedEvents.map((event, i) => {
-            return (
-              <div className="Events-event" key={i}>
-                <Event event={event} />
-              </div>
-            )
-          })}
-        </div>
-
-        <div className="Events-showpast">
-          <span className="Showpast-toggle" onClick={this.showPastEvents.bind(this)}>
-            <i className="icon-calendar"/>
-            {this.state.isShowingPastEvents ? t("events:hidepast") : t("events:showpast")}
-          </span>
+        <div className="UpcomingEvents">
+          {sortedEvents.size > 0 && onlyShowNext
+            ? <Event event={sortedEvents.last()} />
+            : sortedEvents.map((event, i) => <Event key={i} event={event} />)
+          }
         </div>
 
         <div className={pastEventsCx}>
-          <h2>{t("events:pastevents")}</h2>
-          {sortedPastEvents.map((event, i) => <Event event={event} key={i} /> )}
+          {sortedPastEvents.map((event, i) => <Event key={i} event={event} />)}
         </div>
 
+        <button className={showMoreCx} onClick={this.showPastEvents}>
+          {t("events:show-past")}
+        </button>
       </div>
     );
   }
@@ -82,10 +86,15 @@ export default compose(
 
   translate([ "events", "menu" ]),
 
-  connect(({ events, pastevents }) => {
-    return {
-      events,
-      pastevents,
-    };
+  connect(({ events, pastevents }) => ({ events, pastevents })),
+
+  setPropTypes({
+    events: PropTypes.instanceOf(Immutable.List).isRequired,
+    pastevents: PropTypes.instanceOf(Immutable.List).isRequired,
+    onlyShowNext: PropTypes.bool.isRequired,
+  }),
+
+  defaultProps({
+    onlyShowNext: false,
   }),
 )(Events);
