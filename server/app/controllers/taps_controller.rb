@@ -39,12 +39,16 @@ class TapsController < ApplicationController
         containers["#{key}"] = value
       end
 
+      puts containers
+
       {
         brand: beer["brewery"],
         name: beer["name"],
         style: beer["style"],
-        abv: beer["abv"]
-      }.merge(containers)
+        abv: beer["abv"],
+        pint: containers["Pint"],
+        halfPint: containers["1/2 Pint"],
+      }
     end
 
   end
@@ -56,6 +60,8 @@ class TapsController < ApplicationController
       req.url url
       req.headers["Authorization"] = "Basic #{authToken}"
     end
+
+    puts res.body
 
     return JSON.parse(res.body)
   end
