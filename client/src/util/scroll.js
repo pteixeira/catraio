@@ -49,7 +49,6 @@ export const horizontalSmoothScroll = (
     const elapsed = timestamp - start;
     const progress = elapsed / duration;
     el.scrollLeft = scrollStart + amount * EasingFunctions[easing](progress);
-    console.log(amount, progress);
 
     if (elapsed < duration) {
       window.requestAnimationFrame(step);

@@ -12,6 +12,7 @@ import { compose, getContext, setDisplayName } from "recompose";
 
 //
 // Components
+import SectionMarker from "app-components/section_marker";
 import FloatingMenu from "app-components/floating_menu";
 import Lightbox from "app-components/lightbox";
 import Header from "app-components/header";
@@ -20,18 +21,24 @@ import Tagline from "app-components/tagline";
 import Billboard from "app-components/billboard";
 import Blockquote from "app-components/blockquote";
 import Gallery from "app-components/gallery";
-import Clipping from "app-components/clipping";
 import Paragraph from "app-components/paragraph";
+import Clippings from "app-components/clippings";
+// import Beerlist from "app-components/beerlist";
+import Taplist from "app-components/taplist";
+import Merchandising from "app-components/merchandising";
 import Footer from "app-components/footer";
 
 const lightboxSources = map(times(20), () => "https://placehold.it/1280x800");
 const gallerySources  = map(times(20), () => "https://placehold.it/185x170");
+const merchSources = map(times(4), () => "https://placehold.it/1280x800");
 
 export class App extends Component {
 
   state = {
-    lightboxOpen: true,
-    lightboxPosition: 5,
+    galleryLightboxOpen: false,
+    galleryLightboxPosition: 0,
+    merchLightboxOpen: false,
+    merchLightboxPosition: 0,
   }
 
   //----------------------------------------------------------------------------
@@ -41,43 +48,71 @@ export class App extends Component {
     if (sessionStorage.getItem("over18") !== "1") {
       this.props.router.push("disclaimer");
     }
+    document.addEventListener("keydown", this.handleKeyDown, false);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.handleKeyDown)
   }
 
   //----------------------------------------------------------------------------
   // Callbacks
   //----------------------------------------------------------------------------
-  openLightboxAt = (position) => {
-    this.setState({
-      lightboxOpen: true,
-      lightboxPosition: position,
+  openLightboxAt = (lightbox) => {
+    return (position) => this.setState({
+      [`${lightbox}LightboxOpen`]: true,
+      [`${lightbox}LightboxPosition`]: position,
     });
   }
 
   closeLightbox = () => {
-    this.setState({ lightboxOpen: false });
+    this.setState({
+      galleryLightboxOpen: false,
+      merchLightboxOpen: false,
+    });
+  }
+
+  handleKeyDown = (ev) => {
+    if (ev.key === "Escape") {
+      this.closeLightbox();
+    }
   }
 
   //----------------------------------------------------------------------------
   // Render
   //----------------------------------------------------------------------------
   render() {
-    const { lightboxOpen, lightboxPosition } = this.state;
+    const {
+      galleryLightboxOpen,
+      galleryLightboxPosition,
+      merchLightboxOpen,
+      merchLightboxPosition,
+    } = this.state;
 
     return (
       <div className="App">
 
-        <FloatingMenu threshold={370} />
+        <FloatingMenu threshold={280} />
 
         <Lightbox
-          isOpen={lightboxOpen}
+          isOpen={galleryLightboxOpen}
           sources={lightboxSources}
-          position={lightboxPosition}
+          position={galleryLightboxPosition}
+          onRequestClose={this.closeLightbox}
+        />
+
+        <Lightbox
+          isOpen={merchLightboxOpen}
+          sources={merchSources}
+          position={merchLightboxPosition}
           onRequestClose={this.closeLightbox}
         />
 
         <Header />
 
-        <Events />
+        <SectionMarker id="catraio" />
+
+        <Events onlyShowNext />
 
         <Tagline />
 
@@ -99,7 +134,7 @@ export class App extends Component {
 
         <Gallery
           sources={gallerySources}
-          onPictureClick={this.openLightboxAt}
+          onPictureClick={this.openLightboxAt("gallery")}
         />
 
         <Billboard src="https://placehold.it/1280x440" />
@@ -109,17 +144,13 @@ export class App extends Component {
           Etiam eleifend massa non semper pellentesque. Quisque a purus sit amet mi auctor vehicula in at lacus. Sed interdum, magna vel pellentesque viverra, orci quam fermentum est, non convallis ex ex in turpis. Maecenas placerat tristique dolor non egestas. In eu augue et lectus pretium mollis. Aliquam consequat nisi vel velit lobortis accumsan. Vestibulum ultricies odio in tellus malesuada lobortis. Integer in iaculis justo. Aliquam porta consequat nisl id placerat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
         </Paragraph>
 
-        <Clipping
-          image="https://placehold.it/630x600"
-          author="Nome jornal/revista"
-          date={new Date()}
-        />
-
-        <Clipping
-          image="https://placehold.it/630x600"
-          author="Nome jornal/revista"
-          date={new Date()}
-          right
+        <Clippings
+          imageLeft="https://placehold.it/630x600"
+          authorLeft="Nome jornal/revista"
+          dateLeft={new Date()}
+          imageRight="https://placehold.it/630x600"
+          authorRight="Nome jornal/revista"
+          dateRight={new Date()}
         />
 
         <Blockquote
@@ -128,21 +159,40 @@ export class App extends Component {
           date={new Date()}
         />
 
-        {/*
-        <Billboard
-          single
-          src="https://placehold.it/800x600"
-        />
-        <Beerlist />
+        <SectionMarker id="shopandbar" />
 
-        <Taplist />
-        <Billboard
-          single
-          src="https://placehold.it/800x600"
+        <div className="Clearfix">
+          <Billboard
+            single
+            left
+            src="https://placehold.it/800x600"
+          />
+          { /* <Beerlist /> */ }
+        </div>
+
+        <div className="Clearfix">
+          <Taplist />
+          <Billboard
+            single
+            right
+            src="https://placehold.it/800x600"
+          />
+        </div>
+
+        <Merchandising
+          onItemClick={this.openLightboxAt("merch")}
         />
 
-        <Merchandising />
-        */}
+        <SectionMarker id="events" />
+
+        <Events showPastEvents />
+
+        <SectionMarker id="photos" />
+
+        <Gallery
+          sources={gallerySources}
+          onPictureClick={this.openLightboxAt("gallery")}
+        />
 
         <Footer />
 

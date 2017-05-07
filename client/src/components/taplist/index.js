@@ -15,7 +15,7 @@ export const Taplist = ({ taps }) => {
       </thead>
       <tbody>
         {taps.map(t => t.toJS()).map(({ brand, name, style, abv, halfPint, pint }) => (
-          <tr>
+          <tr key={`${brand}-${name}`}>
             <th className="left">{brand} {name}</th>
             <td>{style.replace(/\w+ · /, "")}</td>
             <td className="right">{abv} %</td>
