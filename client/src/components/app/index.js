@@ -21,6 +21,7 @@ import Billboard from "app-components/billboard";
 import Blockquote from "app-components/blockquote";
 import Gallery from "app-components/gallery";
 import Clipping from "app-components/clipping";
+import Paragraph from "app-components/paragraph";
 import Footer from "app-components/footer";
 
 const lightboxSources = map(times(20), () => "https://placehold.it/1280x800");
@@ -103,6 +104,11 @@ export class App extends Component {
 
         <Billboard src="https://placehold.it/1280x440" />
 
+        <Paragraph columnCount={2}>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse quis leo tellus. Etiam tempor, dui nec auctor rutrum, est erat feugiat magna, eget dapibus erat ante nec felis. Aenean interdum nibh eget porta fermentum. Proin et iaculis nisl. Nam sollicitudin, est a tincidunt auctor, mi justo varius nibh, non ultricies est lorem nec diam. Suspendisse pretium a tortor ut commodo. Nunc gravida neque dolor, ut cursus ipsum eleifend non. Mauris laoreet nec ante a condimentum. Vestibulum quis felis eu neque ullamcorper facilisis. Praesent a tempor ligula, vel semper sapien. Nam placerat a odio nec blandit. Suspendisse feugiat vel libero sed lacinia. Vestibulum sollicitudin posuere tortor a convallis. Maecenas ut nibh gravida, tincidunt orci nec, imperdiet sem. Nulla ultrices lectus ac interdum efficitur. Fusce lobortis erat augue, at placerat ante dictum a.
+          Etiam eleifend massa non semper pellentesque. Quisque a purus sit amet mi auctor vehicula in at lacus. Sed interdum, magna vel pellentesque viverra, orci quam fermentum est, non convallis ex ex in turpis. Maecenas placerat tristique dolor non egestas. In eu augue et lectus pretium mollis. Aliquam consequat nisi vel velit lobortis accumsan. Vestibulum ultricies odio in tellus malesuada lobortis. Integer in iaculis justo. Aliquam porta consequat nisl id placerat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+        </Paragraph>
+
         <Clipping
           image="https://placehold.it/630x600"
           author="Nome jornal/revista"
@@ -115,7 +121,6 @@ export class App extends Component {
           date={new Date()}
           right
         />
-
 
         <Blockquote
           quote="intro:quote"
