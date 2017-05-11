@@ -23,7 +23,7 @@ class Events extends Component {
     const { pastevents, dispatch } = this.props
     const { isShowingPastEvents } = this.state;
 
-    this.setState({ isShowingPastEvents: !isShowingPastEvents });
+    this.setState({ isShowingPastEvents: true });
 
     if (pastevents.size > 0) {
       return;
@@ -32,14 +32,14 @@ class Events extends Component {
     dispatch(addPastEvents());
   }
 
-  handleShowMore = () => {
-    const { onlyShowNext } = this.props;
-    const { isShowingPastEvents } = this.state;
+  // handleShowMore = () => {
+  //   const { onlyShowNext } = this.props;
+  //   const { isShowingPastEvents } = this.state;
 
-    if (onlyShowNext) return;
+  //   if (onlyShowNext) return;
 
-    isShowingPastEvents ? this.loadMore() : this.showPastEvents();
-  }
+  //   isShowingPastEvents ? this.loadMore() : this.showPastEvents();
+  // }
 
   //----------------------------------------------------------------------------
   // Render
@@ -52,7 +52,7 @@ class Events extends Component {
     const sortedPastEvents = pastevents.sortBy(ev => ev.start_time);
 
     const pastEventsCx = classnames("PastEvents", {
-      visible: !isShowingPastEvents && !onlyShowNext,
+      visible: isShowingPastEvents && !onlyShowNext,
     });
 
     const showMoreCx = classnames("ShowMoreEvents", {
@@ -73,7 +73,7 @@ class Events extends Component {
           {sortedPastEvents.map((event, i) => <Event key={i} event={event} />)}
         </div>
 
-        <button className={showMoreCx} onClick={this.showPastEvents}>
+        <button className={showMoreCx} onClick={() => this.showPastEvents()}>
           {t("events:show-past")}
         </button>
       </div>

@@ -13,7 +13,7 @@ class EventsController < ApplicationController
     delta = 3
 
     events = graph.get_connection(ENV['FB_APP_ID'], "events", {
-      limit: 5,
+      limit: 10,
       since: timeframe == :future ? now.to_i                  : (now - delta.months).to_i,
       until: timeframe == :future ? (now + delta.months).to_i : now.to_i,
       fields: %w(cover attending_count start_time place name description cursor)
