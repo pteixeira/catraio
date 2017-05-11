@@ -111,7 +111,7 @@
 
     "key-spacing": [2, { "beforeColon": false, "afterColon": true }],
 
-    "new-cap": [2, { "capIsNewExceptions": ["Immutable.Map"] }],
+    "new-cap": [2, { "capIsNewExceptionPattern" : "^Immutable\\.." }],
 
     "no-lonely-if": 2,
 
