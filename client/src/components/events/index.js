@@ -21,7 +21,7 @@ class Events extends Component {
   //----------------------------------------------------------------------------
   showPastEvents() {
     const { pastevents, dispatch } = this.props
-    const { isShowingPastEvents } = this.state;
+    // const { isShowingPastEvents } = this.state;
 
     this.setState({ isShowingPastEvents: true });
 
