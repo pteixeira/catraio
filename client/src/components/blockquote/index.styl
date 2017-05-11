@@ -1,0 +1,33 @@
+@import "~app-components/variables.styl"
+
+.Blockquote
+  width: 75%
+  margin: $vertical-spacing auto
+
+  &-quote
+    font-family: "Droid Serif", serif;
+    font-size: 22px;
+    font-style: italic;
+    margin-bottom: 20px
+    color: #444
+
+    $margin = 2px
+    &:before, &:after
+      font-size: 30px
+      font-weight: bold
+      color: #555
+    &:before
+      content: "“"
+      margin-right: $margin
+      margin-left: -14px
+    &:after
+      content: "”"
+      margin-left: $margin
+
+  &-author
+    font-size: 18px
+    color: #666
+
+  &-date
+    font-size: 14px
+    color: #999

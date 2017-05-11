@@ -1,49 +1,57 @@
-import React from "react";
-import { translate } from "react-i18next";
+/* eslint-disable react/no-multi-comp */
+import React, { PropTypes } from "react";
 import moment from "moment";
 import Immutable from "immutable";
+import { map } from "lodash";
+import { compose, setDisplayName, setPropTypes } from "recompose";
 
-import EventDescription from "./event_description";
+const Description = ({ description }) => {
+  if (!description) return null;
 
-class Event extends React.Component {
-  static displayName = "Event";
-
-  static propTypes = {
-    event: React.PropTypes.instanceOf(Immutable.Map).isRequired
-  };
-
-
-  render() {
-    const { t, event } = this.props;
-    const backgroundStyle = {
-      background: `url(${event.get("cover").get("source")}) no-repeat center center`
-    };
-
-    const eventLink = `http://www.facebook.com/events/${event.get("id")}`;
-
-    return (
-      <div className="Event">
-        <a href={eventLink} target="_blank" className="no-hover">
-          <div className="Event-eventheader" style={backgroundStyle}>
-            <div className="Eventheader-text">
-              <div className="Eventheader-info">
-                <div className="Eventheader-date">{moment(event.get("start_time")).format("D MMM")}</div>
-                <div className="Eventheader-hour">{moment(event.get("start_time")).format("HH:mm")}</div>
-              </div>
-              <div className="Eventtext-name">{event.get("name")}</div>
-            </div>
-          </div>
-        </a>
-        <div className="Event-info">
-          <div><strong>{t("events:where")}</strong>: {event.get("place").get("name")}</div>
-          <EventDescription description={event.get("description") || ""} />
-          <a href={eventLink} target="_blank" className="black">
-            <strong>{t("events:viewInFacebook")}</strong>
-          </a>
-        </div>
-      </div>
-    );
-  }
+  return (
+    <div className="description">
+      {map(description.split("\n \n"), (par, i) => (
+        <p key={i}>
+          {map(par.split("\n"), (line, j) => (
+            <span key={j}>{line}<br /></span>
+          ))}
+        </p>
+      ))}
+    </div>
+  );
 }
 
-export default translate(["events"])(Event);
+export const Event = ({ event }) => {
+  const cover = {
+    backgroundImage: `url(${event.get("cover").get("source")})`,
+  };
+
+  const link = `https://www.facebook.com/events/${event.get("id")}`;
+
+  return (
+    <div className="Event">
+      <a href={link} target="_blank">
+        <div className="cover" style={cover} />
+
+        <div className="details">
+          <div className="date">
+            <span className="d">{moment(event.get("start_time")).format("D")}</span>
+            <span className="m">{moment(event.get("start_time")).format("MMM")}</span>
+          </div>
+          <h1 className="title">{event.get("name")}</h1>
+        </div>
+      </a>
+
+      <Description description={event.get("description")} />
+    </div> 
+  );
+}
+
+export default compose(
+  setDisplayName("Event"),
+
+  setPropTypes({
+    event: PropTypes.instanceOf(Immutable.Map).isRequired,
+  }),
+)(Event);
+/* eslint-enable react/no-multi-comp */

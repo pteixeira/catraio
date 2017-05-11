@@ -3,12 +3,25 @@ $black = #000
 $white = #fff
 $yellow = #ffdd15
 $grey = #666
+$light-grey = #e6e6e6
 
 // dimensions
-$page-width = 100%;
+$page-width = 100%
 
-@media (min-width: 1440px)
-  $page-width: 1440px
+$footer-height = 150px
+$header-height = 50px
 
-$footer-height = 150px;
-$header-height = 50px;
+$vertical-spacing = 60px
+
+// z-indices
+zIndices = {
+  "negative": -1,
+  "base": 0,
+  "increment": 1,
+  "jump": 10,
+  "floating-menu": 1000,
+  "lightbox": 10000,
+}
+
+zIndex(id)
+  z-index: zIndices[id]

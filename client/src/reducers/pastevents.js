@@ -2,7 +2,7 @@ import Immutable from "immutable";
 
 import { PASTEVENTS_ADD_SUCCESS, PASTEVENTS_ADD_FAILURE } from "../action_types";
 
-export default function pastevents(state = Immutable.List.of(), action) {
+export default function pastevents(state = Immutable.List(), action) {
   const { type, payload } = action;
 
   switch (type) {
@@ -10,7 +10,7 @@ export default function pastevents(state = Immutable.List.of(), action) {
     return Immutable.fromJS(payload);
 
   case PASTEVENTS_ADD_FAILURE:
-    return Immutable.List.of();
+    return Immutable.List();
 
   default:
     return state;

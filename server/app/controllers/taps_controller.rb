@@ -43,8 +43,10 @@ class TapsController < ApplicationController
         brand: beer["brewery"],
         name: beer["name"],
         style: beer["style"],
-        abv: beer["abv"]
-      }.merge(containers)
+        abv: beer["abv"],
+        pint: containers["Pint"],
+        halfPint: containers["1/2 Pint"],
+      }
     end
 
   end

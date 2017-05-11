@@ -1,0 +1,34 @@
+@import "~app-components/variables.styl"
+
+$height = 40px
+
+.FloatingMenu
+  position: fixed
+  top: -($height)
+  left: 50%
+  transform: translateX(-50%)
+  width: 960px
+  height: $height
+  background: $yellow
+  transition: top 300ms ease-in-out
+  padding: 0
+  margin: 0
+  list-style: none
+  zIndex("floating-menu")
+
+  &.visible
+    top: 0
+    transition-duration: 0
+
+  .FloatingMenuItem
+    display: inline-block
+    width: 25%
+    text-align: center
+    line-height: $height
+    color: $black
+    font-size: 18px
+    font-weight: 400
+    cursor: pointer
+
+    &:hover, &.active
+      color: $white
