@@ -6,6 +6,8 @@ import { map } from "lodash";
 import { compose, setDisplayName, setPropTypes } from "recompose";
 
 const Description = ({ description }) => {
+  if (!description) return null;
+
   return (
     <div className="description">
       {map(description.split("\n \n"), (par, i) => (
