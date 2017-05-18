@@ -1,0 +1,2 @@
+// taps
+export const TAPS_SET_COLLECTION = "TAPS_SET_COLLECTION";
