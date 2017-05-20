@@ -7,6 +7,7 @@ export default (opts = {}) => StyleSheet.create({
 
   container: {
     flex: 1,
+    flexDirection: "row",
     alignItems: "center",
     paddingTop: 20,
     paddingBottom: 20,
@@ -18,5 +19,16 @@ export default (opts = {}) => StyleSheet.create({
     color: "#666",
     fontSize: 48,
   },
+
+  image: {
+    height: 50,
+    width: 50,
+    borderRadius: 40,
+    marginHorizontal: 20
+  },
+
+  info: {
+
+  }
 
 });
