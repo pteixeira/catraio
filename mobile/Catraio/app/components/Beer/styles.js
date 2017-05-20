@@ -7,23 +7,16 @@ export default (opts = {}) => StyleSheet.create({
 
   container: {
     flex: 1,
-    width: windowSize.width,
     alignItems: "center",
-    justifyContent: "center",
+    paddingTop: 20,
+    paddingBottom: 20,
+    width: windowSize.width,
     backgroundColor: opts.backgroundColor || "#aaa",
   },
 
   title: {
     color: "#666",
     fontSize: 48,
-  },
-
-  separator: {
-    flex: 1,
-    height: StyleSheet.hairlineWidth,
-    backgroundColor: "#fff",
-    width: "90%",
-    alignSelf: "center"
   },
 
 });
