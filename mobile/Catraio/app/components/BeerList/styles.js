@@ -18,6 +18,11 @@ export default (opts = {}) => StyleSheet.create({
     fontSize: 48,
   },
 
+  date: {
+    color: "#fff",
+    fontSize: 12
+  },
+
   separator: {
     flex: 1,
     height: StyleSheet.hairlineWidth,

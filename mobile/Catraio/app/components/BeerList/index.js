@@ -46,16 +46,15 @@ class BeerList extends Component {
 
   render() {
     const { backgroundColor, title } = this.props;
-
-    console.log("render", this.props.taps.toJS())
-
     const s = styles({ backgroundColor });
-
 
     return (
       <View style={s.container}>
         <Text style={s.title}>
           {title}
+        </Text>
+        <Text style={s.date}>
+          Last updated: {new Date().toUTCString()}
         </Text>
         <ListView
           dataSource={this.state.dataSource}
