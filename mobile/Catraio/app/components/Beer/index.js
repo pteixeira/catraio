@@ -8,7 +8,7 @@ const Beer = (props) => {
 
   return (
     <View style={s.container}>
-      <Image source={{uri: "http://placehold.it/50x50"}} style={s.image} />
+      <Image source={{uri: `${props.image}`}} style={s.image} />
       <View style={s.info}>
         <Text>{`${props.brand} - ${props.name}`}</Text>
         <Text>{`${props.style}`}</Text>

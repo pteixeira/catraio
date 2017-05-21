@@ -21,9 +21,9 @@ export default (opts = {}) => StyleSheet.create({
   },
 
   image: {
-    height: 50,
-    width: 50,
-    borderRadius: 40,
+    height: 70,
+    width: 70,
+    borderRadius: 50,
     marginHorizontal: 20
   },
 

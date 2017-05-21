@@ -5,11 +5,11 @@ const dummyDS = [{"brand":"Budvar","name":"","style":"CZ · Czech Pilsner","abv"
 
 export function initStoreFromServer(store) {
   // Populate Taps
-  store.dispatch(setTaps(dummyDS));
-  // fetch(`http://localhost:3000/taps`, {
-  //   method: "GET"
-  // })
-  // .then(res => res.json())
-  // .then(taps => store.dispatch(setTaps(taps)))
-  // .catch(err => console.error(err));
+  // store.dispatch(setTaps(dummyDS));
+  fetch(`http://localhost:3000/taps`, {
+    method: "GET"
+  })
+  .then(res => res.json())
+  .then(taps => store.dispatch(setTaps(taps)))
+  .catch(err => console.error(err));
 }

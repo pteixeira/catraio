@@ -44,6 +44,7 @@ class TapsController < ApplicationController
         name: beer["name"],
         style: beer["style"],
         abv: beer["abv"],
+        image: beer["label_image"],
         pint: containers["Pint"],
         halfPint: containers["1/2 Pint"],
       }
