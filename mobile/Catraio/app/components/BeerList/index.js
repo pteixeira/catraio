@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 import Immutable from "immutable";
 
-import { View, Text, ListView, TouchableOpacity } from "react-native";
+import { View, Text, FlatList, TouchableOpacity } from "react-native";
 
 import Beer from "app/components/Beer";
 
@@ -12,12 +12,8 @@ class BeerList extends Component {
   constructor(props) {
     super(props);
 
-    this.ds = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2
-    });
-
     this.state = {
-      dataSource: this.ds.cloneWithRows(this.props.taps.toJS() || [])
+      data: this.props.taps.toJS() || []
     }
   }
 
@@ -29,7 +25,7 @@ class BeerList extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      dataSource: this.ds.cloneWithRows(nextProps.taps.toJS())
+      data: nextProps.taps.toJS()
     })
   }
 
@@ -56,10 +52,11 @@ class BeerList extends Component {
         <Text style={s.date}>
           Last updated: {new Date().toUTCString()}
         </Text>
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={(rowData) => <TouchableOpacity><Beer {...rowData} /></TouchableOpacity>}
-          renderSeparator={this._renderSeparator.bind(this)} />
+        <FlatList
+          data={this.state.data}
+          renderItem={({ item, index }) => <TouchableOpacity><Beer {...item} /></TouchableOpacity>}
+          keyExtractor={( item ) => `${item.brand}-${item.name}` }
+          ItemSeparatorComponent={this._renderSeparator.bind(this)} />
       </View>
     );
   }
