@@ -24,11 +24,11 @@ export default (opts = {}) => StyleSheet.create({
     height: 70,
     width: 70,
     borderRadius: 50,
-    marginHorizontal: 20
+    marginHorizontal: 20,
   },
 
   info: {
-
+    width: "65%"
   }
 
 });

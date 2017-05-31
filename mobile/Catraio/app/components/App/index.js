@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from "react";
-import { View, ScrollView, Alert, Text } from "react-native";
+import { View, ScrollView, Alert, Text, TouchableOpacity } from "react-native";
 import Swiper from "react-native-page-swiper";
 import { compose, setDisplayName, setPropTypes } from "recompose";
 import { connect } from "react-redux";
@@ -42,6 +42,12 @@ class App extends Component {
 
     return (
       <View style={styles.container}>
+        <View style={styles.header}>
+          <Text style={{fontSize: 20, marginLeft: 20}}>Catraio</Text>
+          <TouchableOpacity>
+            <Text style={{ marginRight: 20 }}>Log to Untappd</Text>
+          </TouchableOpacity>
+        </View>
 
         <Navbar
           items={[ "On Tap", "Bottled" ]}

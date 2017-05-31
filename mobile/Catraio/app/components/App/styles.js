@@ -14,4 +14,12 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: "#999",
    },
+
+  header: {
+    height: 40,
+    flexDirection: "row",
+    backgroundColor: "#fff",
+    justifyContent: "space-between",
+    alignItems: "center"
+  }
 });
