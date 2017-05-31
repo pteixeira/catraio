@@ -1,6 +1,9 @@
-import React, { Component } from "react";
+import React, { Component, PropTypes } from "react";
 import { View, ScrollView, Alert, Text } from "react-native";
 import Swiper from "react-native-page-swiper";
+import { compose, setDisplayName, setPropTypes } from "recompose";
+import { connect } from "react-redux";
+import Immutable from "immutable";
 
 //
 // Initialization
@@ -35,6 +38,7 @@ class App extends Component {
 
   render() {
     const { active } = this.state;
+    const { taps } = this.props;
 
     return (
       <View style={styles.container}>
@@ -50,7 +54,7 @@ class App extends Component {
           horizontal
           swipeEnabled
         >
-          {this.state.active === ON_TAP ? <BeerList title="On Tap" /> : <BeerList title="Bottled" /> }
+          {this.state.active === ON_TAP ? <BeerList title="On Tap" beers={taps} /> : <BeerList title="Bottled" beers={taps} /> }
         </ScrollView>
 
       </View>
@@ -59,4 +63,13 @@ class App extends Component {
 
 };
 
-export default App;
+export default compose(
+  setDisplayName("App"),
+
+  connect(({ taps }) => ({ taps })),
+
+  setPropTypes({
+    taps: PropTypes.instanceOf(Immutable.List),
+  }),
+
+)(App);

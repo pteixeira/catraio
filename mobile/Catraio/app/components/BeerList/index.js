@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 import Immutable from "immutable";
+import { compose, setDisplayName, setPropTypes } from "recompose";
 
 import { View, Text, FlatList, TouchableOpacity } from "react-native";
 
@@ -13,25 +14,25 @@ class BeerList extends Component {
     super(props);
 
     this.state = {
-      data: this.props.taps.toJS() || []
+      data: this.props.beers.toJS() || []
     }
   }
 
-  static propTypes = {
-    title: PropTypes.string.isRequired,
-    backgroundColor: PropTypes.string,
-    taps: PropTypes.instanceOf(Immutable.List)
-  };
-
+  //----------------------------------------------------------------------------
+  // Lifecycle
+  //----------------------------------------------------------------------------
   componentWillReceiveProps(nextProps) {
     this.setState({
-      data: nextProps.taps.toJS()
+      data: nextProps.beers.toJS()
     })
   }
 
+  //----------------------------------------------------------------------------
+  // Helpers
+  //----------------------------------------------------------------------------
   _renderSeparator(sectionID, rowID) {
-    // rowID is a string Oo
-    let lastRow = rowID == this.props.taps.size - 1;
+    // rowID is a string
+    let lastRow = rowID == this.props.beers.size - 1;
 
     if (lastRow) return null;
 
@@ -40,6 +41,9 @@ class BeerList extends Component {
     return <View key={`${sectionID}-${rowID}`} style={s.separator} />;
   }
 
+  //----------------------------------------------------------------------------
+  // Render
+  //----------------------------------------------------------------------------
   render() {
     const { backgroundColor, title } = this.props;
     const s = styles({ backgroundColor });
@@ -63,8 +67,12 @@ class BeerList extends Component {
 
 }
 
-function mapStateToProps(state) {
-  return { taps: state.taps };
-}
+export default compose(
+  setDisplayName("BeerList"),
 
-export default connect(mapStateToProps)(BeerList);
+  setPropTypes({
+    title: PropTypes.string.isRequired,
+    backgroundColor: PropTypes.string,
+    beers: PropTypes.instanceOf(Immutable.List)
+  }),
+)(BeerList);
