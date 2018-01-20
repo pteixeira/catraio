@@ -10,6 +10,7 @@ export const Billboard = ({
   single,
   src,
   height,
+  width,
   left,
   right,
 }) => {
@@ -17,13 +18,13 @@ export const Billboard = ({
   return (
     <div className={cx}>
       {isString(src) &&
-        <img src={src} height={height} />
+        <img src={src} height={height} width={width}/>
       }
 
       {isArray(src) &&
         <div>
-          <img src={src[0]} />
-          <img src={src[1]} />
+          <img src={src[0]} height={height} />
+          <img src={src[1]} height={height} />
         </div>
       }
     </div>

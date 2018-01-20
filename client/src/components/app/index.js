@@ -9,6 +9,7 @@ import "./app.styl";
 import React, { Component, PropTypes } from "react";
 import { times, map } from "lodash";
 import { compose, getContext, setDisplayName } from "recompose";
+import { translate, Interpolate } from "react-i18next";
 
 //
 // Components
@@ -23,7 +24,6 @@ import Blockquote from "app-components/blockquote";
 import Gallery from "app-components/gallery";
 import Paragraph from "app-components/paragraph";
 import Clippings from "app-components/clippings";
-// import Beerlist from "app-components/beerlist";
 import Taplist from "app-components/taplist";
 import Merchandising from "app-components/merchandising";
 import Footer from "app-components/footer";
@@ -89,6 +89,8 @@ export class App extends Component {
       merchLightboxPosition,
     } = this.state;
 
+    const { t } = this.props;
+
     return (
       <div className="App">
 
@@ -119,12 +121,17 @@ export class App extends Component {
         <Billboard
           double
           src={[
-            "https://placehold.it/800x540",
-            "https://placehold.it/800x540",
+            "https://catraio.s3.amazonaws.com/gallery/large/18.jpg",
+            "https://catraio.s3.amazonaws.com/gallery/large/20.jpg",
           ]}
+          height="480"
         />
 
-        <Billboard src="https://placehold.it/1280x440" />
+        <Billboard
+          src="https://catraio.s3.amazonaws.com/gallery/large/01.jpg"
+          height="550"
+          width="1280"
+        />
 
         <Blockquote
           quote="intro:quote"
@@ -137,18 +144,21 @@ export class App extends Component {
           onPictureClick={this.openLightboxAt("gallery")}
         />
 
-        <Billboard src="https://placehold.it/1280x440" />
+        <Billboard
+          src="https://catraio.s3.amazonaws.com/gallery/large/02.jpg" 
+          height="550"
+          width="1280"
+        />
 
         <Paragraph columnCount={2}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse quis leo tellus. Etiam tempor, dui nec auctor rutrum, est erat feugiat magna, eget dapibus erat ante nec felis. Aenean interdum nibh eget porta fermentum. Proin et iaculis nisl. Nam sollicitudin, est a tincidunt auctor, mi justo varius nibh, non ultricies est lorem nec diam. Suspendisse pretium a tortor ut commodo. Nunc gravida neque dolor, ut cursus ipsum eleifend non. Mauris laoreet nec ante a condimentum. Vestibulum quis felis eu neque ullamcorper facilisis. Praesent a tempor ligula, vel semper sapien. Nam placerat a odio nec blandit. Suspendisse feugiat vel libero sed lacinia. Vestibulum sollicitudin posuere tortor a convallis. Maecenas ut nibh gravida, tincidunt orci nec, imperdiet sem. Nulla ultrices lectus ac interdum efficitur. Fusce lobortis erat augue, at placerat ante dictum a.
-          Etiam eleifend massa non semper pellentesque. Quisque a purus sit amet mi auctor vehicula in at lacus. Sed interdum, magna vel pellentesque viverra, orci quam fermentum est, non convallis ex ex in turpis. Maecenas placerat tristique dolor non egestas. In eu augue et lectus pretium mollis. Aliquam consequat nisi vel velit lobortis accumsan. Vestibulum ultricies odio in tellus malesuada lobortis. Integer in iaculis justo. Aliquam porta consequat nisl id placerat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+          <Interpolate i18nKey={"catraio:main_text"} useDangerouslySetInnerHTML />
         </Paragraph>
 
         <Clippings
-          imageLeft="https://placehold.it/630x600"
+          imageLeft="https://catraio.s3.amazonaws.com/press/large/2017_06%20Timeout%20Porto.jpg"
           authorLeft="Nome jornal/revista"
           dateLeft={new Date()}
-          imageRight="https://placehold.it/630x600"
+          imageRight="https://catraio.s3.amazonaws.com/press/large/2015_04%20-%20Time%20Out%20%282%29.jpg"
           authorRight="Nome jornal/revista"
           dateRight={new Date()}
         />
@@ -161,22 +171,53 @@ export class App extends Component {
 
         <SectionMarker id="shopandbar" />
 
-        <div className="Clearfix">
+        <div className="Clearfix section">
           <Billboard
             single
             left
-            src="https://placehold.it/800x600"
+            src="https://catraio.s3.amazonaws.com/gallery/large/22.jpg"
           />
-          { /* <Beerlist /> */ }
+
+          <div className="section-bottles">
+            <h1 className="section-header">{t("shopandbar:bar:title")}</h1>
+
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              className="menu-link yellow"
+              href="https://untappd.com/v/catraio-craft-beer-shop/2524942?ng_menu_id=bedae486-eb19-4312-a18e-e1c8ccff56f4"
+            >
+              MENU
+            </a>
+
+            <Paragraph columnCount={1} extraClasses="left-pad">
+              <Interpolate i18nKey={"shopandbar:bar:description"} useDangerouslySetInnerHTML />
+            </Paragraph>
+          </div>
+
         </div>
 
-        <div className="Clearfix">
-          <Taplist />
+        <div className="Clearfix section">
+
+          <div>
+
+            <h1 className="section-header">{t("shopandbar:taps:title")}</h1>
+
+            <Paragraph columnCount={1} extraClasses="right-pad">
+              { t("shopandbar:taps:description") }
+            </Paragraph>
+
+            <Taplist />
+
+          </div>
+
+
           <Billboard
             single
             right
-            src="https://placehold.it/800x600"
+            src="https://catraio.s3.amazonaws.com/gallery/large/06.jpg"
           />
+
         </div>
 
         <Merchandising
@@ -207,4 +248,6 @@ export default compose(
   getContext({
     router: PropTypes.object.isRequired,
   }),
+
+  translate(["catraio", "shopandbar"])
 )(App);

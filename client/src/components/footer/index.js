@@ -39,7 +39,7 @@ export const Footer = ({ t }) => {
       </div>
 
       <div className="Footer-section Footer-social">
-        {map(ICONS, (key, url) => {
+        {map(ICONS, (url, key) => {
           return (
             <a
               href={url}

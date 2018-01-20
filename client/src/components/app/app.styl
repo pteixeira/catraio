@@ -36,7 +36,40 @@ a.no-hover:hover
 .hide
   display: none;
 
+.left-pad
+  padding-left: 20px
+
+.right-pad
+  padding-right: 20px
+
 //
+// Menu link
+.menu-link
+  border: 1px solid $yellow
+  padding: 10px
+  margin-left: 20px
+  margin-top: 20px
+  font-size: 150%
+
+  &.yellow
+    color: $yellow
+
+//
+// Sections
+.section
+  display: flex
+  align-items: center
+
+  & > *
+    flex-basis: 50%
+
+  .section-bottles
+    align-self: flex-start
+
+    .section-header
+      padding-left: 20px
+      margin-bottom: 50px
+
 // Floated elements container
 .Clearfix
   margin: $vertical-spacing 0
