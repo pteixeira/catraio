@@ -20,11 +20,6 @@ class TapsController < ApplicationController
     # usar https://github.com/intridea/hashie#deeplocate
     menu.extend(Hashie::Extensions::DeepLocate)
 
-    # maintain this until we figure out how information is getting on untappd
-    #newMenu = menu.deep_locate -> (key, value, object) {
-    #  key == "description" && value.include?("Draft")
-    #}
-
     return menu["menu"]["sections"][0]["items"].map do |beer|
       beer.extend(Hashie::Extensions::DeepLocate)
 

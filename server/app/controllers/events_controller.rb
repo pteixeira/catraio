@@ -8,16 +8,18 @@ class EventsController < ApplicationController
   end
 
   def get_events(timeframe)
-    graph = Koala::Facebook::API.new(ENV['FB_ACCESS_TOKEN'])
+    access_token = "#{ENV['FB_APP_ID']}|#{ENV['FB_APP_SECRET']}"
+
+    graph = Koala::Facebook::API.new(access_token)
     now = Time.now
     delta = 3
 
-    events = graph.get_connection(ENV['FB_APP_ID'], "events", {
-      limit: 10,
-      since: timeframe == :future ? now.to_i                  : (now - delta.months).to_i,
-      until: timeframe == :future ? (now + delta.months).to_i : now.to_i,
-      fields: %w(cover attending_count start_time place name description cursor)
-    })
+    events = graph.get_connection(ENV['FB_APP_ID'], "events")#, {
+    #  limit: 10,
+    #  since: timeframe == :future ? now.to_i                  : (now - delta.months).to_i,
+    #  until: timeframe == :future ? (now + delta.months).to_i : now.to_i,
+    #  fields: %w(cover attending_count start_time place name description cursor)
+    #})
 
     events
   end

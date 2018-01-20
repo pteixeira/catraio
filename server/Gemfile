@@ -1,21 +1,33 @@
 source 'https://rubygems.org'
 
-gem 'dotenv-rails', :groups => [:development, :test]
-gem 'rails', '4.2.5'
-gem 'rails-api'
+git_source(:github) do |repo_name|
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  "https://github.com/#{repo_name}.git"
+end
+
+gem 'rails', '~> 5.1.0'
 
 gem 'acts_as_list'
 gem 'bcrypt', '~> 3.1.7'
+gem 'faraday'
+gem 'hashie'
+gem 'json', "~> 2"
 gem 'knock'
+gem 'koala', '~> 2.2'
+gem 'mailgun-ruby', '~>1.1.6'
+gem 'puma', '~> 3.7'
 gem 'rabl'
 gem 'rack-cors'
 gem 'sqlite3'
-gem 'koala', '~> 2.2'
-gem 'mailgun-ruby', '~>1.0.3'
-gem 'faraday'
-gem 'hashie'
 
 group :development do
   gem 'annotate'
   gem 'spring'
+  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'spring-watcher-listen', '~> 2.0.0'
 end
+
+gem 'dotenv-rails', :groups => [:development, :test]
+
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
