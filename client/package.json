@@ -8,7 +8,11 @@
     "João Gradim <joao.gradim@gmail.com>"
   ],
   "scripts": {
-    "webpack": "./node_modules/.bin/webpack-dev-server --devtool eval --progress --colors --content-base build --host 0.0.0.0 --history-api-fallback --hot",
+    "start": "NODE_ENV=development webpack-dev-server --devtool eval --progress --colors --content-base build --host 0.0.0.0 --history-api-fallback --hot",
+    "build": "NODE_ENV=production webpack -p --colors --progress",
+    "clean": "ls -rtd build/* | grep -v index.html | xargs rm",
+    "copy:production": "rsync -az --force --delete --progress -e \"ssh -p22\" ./build/ deploy@catraio.pt:/home/deploy/web/",
+    "deploy:production": "yarn run clean && yarn run build && yarn run copy:production",
     "lint": "./node_modules/.bin/eslint src/**/*.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
