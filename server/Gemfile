@@ -9,6 +9,7 @@ gem 'rails', '~> 5.1.0'
 
 gem 'acts_as_list'
 gem 'bcrypt', '~> 3.1.7'
+gem 'dotenv-rails'#, :groups => [:development, :test]
 gem 'faraday'
 gem 'hashie'
 gem 'json', "~> 2"
@@ -22,12 +23,14 @@ gem 'sqlite3'
 
 group :development do
   gem 'annotate'
-  gem 'spring'
-  gem 'listen', '>= 3.0.5', '< 3.2'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'listen'
+  gem 'capistrano', '~> 3.10'
+  gem 'capistrano-rvm',     require: false
+  gem 'capistrano-rails',   require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano3-puma',   require: false
 end
 
-gem 'dotenv-rails', :groups => [:development, :test]
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 

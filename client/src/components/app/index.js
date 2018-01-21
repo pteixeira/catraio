@@ -174,7 +174,7 @@ export class App extends Component {
         <div className="Clearfix section">
           <Billboard
             single
-            left
+            right
             src="https://catraio.s3.amazonaws.com/gallery/large/22.jpg"
           />
 

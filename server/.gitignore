@@ -19,4 +19,6 @@
 
 .env
 
+config/secrets.production.yml
+
 .byebug_history

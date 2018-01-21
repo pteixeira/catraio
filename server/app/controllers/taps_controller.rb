@@ -6,7 +6,7 @@ require 'json'
 class TapsController < ApplicationController
   def index
     # create base64 token to use in Authorization header -> <email>:<token> | base64
-    authToken = Base64.encode64("#{ENV["UNTAPPD_BUSINESS_EMAIL"]}:#{ENV["UNTAPPD_BUSINESS_READ_TOKEN"]}")
+    authToken = Base64.strict_encode64("#{ENV["UNTAPPD_BUSINESS_EMAIL"]}:#{ENV["UNTAPPD_BUSINESS_READ_TOKEN"]}")
 
     # full = true -> get all info from a menu
     menuUrl = "https://business.untappd.com/api/v1/menus/#{ENV["UNTAPPD_BUSINESS_MENU_ID"]}?full=true"

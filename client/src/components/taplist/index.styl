@@ -3,6 +3,7 @@
 .Taplist
   float: left
   border-collapse: collapse;
+  width: calc(100% - 20px);
 
   tbody
     tr:nth-child(2n)
@@ -11,15 +12,23 @@
 
   th, td
     $padding = 10px
-    padding: $padding 0
+    padding: $padding
     border-bottom: 1px solid $black
 
     &.right
       text-align: right
-    &.left
+    &.brand, &.style
       text-align: left
+      overflow: hidden
+      white-space: nowrap
+      text-overflow: ellipsis
+    &.brand
+      max-width: 270px
+    &.style
+      max-width: 165px
     &.price
-      padding: $padding 0 $padding 5px
+      padding-right: 0
+      padding-left: 25px
 
     &:first-child
       padding-left: 5px
@@ -30,6 +39,7 @@
   thead th
     border: none
     font-size: 16px
+    vertical-align: baseline
 
     &.price
       padding: 0
