@@ -7,8 +7,6 @@ import { compose, setDisplayName } from "recompose";
 
 const ICONS = {
   "facebook-1": "https://www.facebook.com/catraiobeershop/",
-  "gplus-1": "https://plus.google.com/106780221526985857570",
-  "pinterest-1": "https://www.pinterest.com/CatraioBeerShop/",
   "instagram": "https://www.instagram.com/catraio_craftbeer/",
   "tripadvisor": "https://www.tripadvisor.com/Attraction_Review-g189180-d9730575-Reviews-Catraio_Craft_Beer_Shop-Porto_Porto_District_Northern_Portugal.html",
   "untappd": "https://untappd.com/v/catraio-craft-beer-shop/2524942",

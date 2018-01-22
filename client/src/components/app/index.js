@@ -9,6 +9,7 @@ import "./app.styl";
 import React, { Component, PropTypes } from "react";
 import { times, map } from "lodash";
 import { compose, getContext, setDisplayName } from "recompose";
+import { connect } from "react-redux";
 import { translate, Interpolate } from "react-i18next";
 
 //
@@ -28,8 +29,6 @@ import Taplist from "app-components/taplist";
 import Merchandising from "app-components/merchandising";
 import Footer from "app-components/footer";
 
-const lightboxSources = map(times(20), () => "https://placehold.it/1280x800");
-const gallerySources  = map(times(20), () => "https://placehold.it/185x170");
 const merchSources = map(times(4), () => "https://placehold.it/1280x800");
 
 export class App extends Component {
@@ -89,7 +88,7 @@ export class App extends Component {
       merchLightboxPosition,
     } = this.state;
 
-    const { t } = this.props;
+    const { t, gallery } = this.props;
 
     return (
       <div className="App">
@@ -98,7 +97,7 @@ export class App extends Component {
 
         <Lightbox
           isOpen={galleryLightboxOpen}
-          sources={lightboxSources}
+          sources={gallery}
           position={galleryLightboxPosition}
           onRequestClose={this.closeLightbox}
         />
@@ -128,7 +127,7 @@ export class App extends Component {
         />
 
         <Billboard
-          src="https://catraio.s3.amazonaws.com/gallery/large/01.jpg"
+          src="https://catraio.s3.amazonaws.com/gallery/large/36.jpg"
           height="550"
           width="1280"
         />
@@ -140,7 +139,7 @@ export class App extends Component {
         />
 
         <Gallery
-          sources={gallerySources}
+          sources={gallery}
           onPictureClick={this.openLightboxAt("gallery")}
         />
 
@@ -231,7 +230,7 @@ export class App extends Component {
         <SectionMarker id="photos" />
 
         <Gallery
-          sources={gallerySources}
+          sources={gallery}
           onPictureClick={this.openLightboxAt("gallery")}
         />
 
@@ -249,5 +248,7 @@ export default compose(
     router: PropTypes.object.isRequired,
   }),
 
-  translate(["catraio", "shopandbar"])
+  translate(["catraio", "shopandbar"]),
+
+  connect(({ gallery }) => ({ gallery: gallery.toJS() })),
 )(App);

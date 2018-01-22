@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   post "/sendmail", to: "sendmail#index"
   get "/taps", to: "taps#index"
   get "/beers", to: "beers#index"
+  get "/gallery", to: "images#gallery"
 end
