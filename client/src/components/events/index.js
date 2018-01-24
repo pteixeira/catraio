@@ -6,6 +6,7 @@ import classnames from "classnames";
 import { connect } from "react-redux";
 import { translate } from "react-i18next";
 import { compose, setDisplayName, setPropTypes, defaultProps } from "recompose";
+import moment from "moment";
 
 import Event from "./event";
 import { addPastEvents } from "app-root/actions/pastevents";
@@ -45,15 +46,12 @@ class Events extends Component {
   // Render
   //----------------------------------------------------------------------------
   render() {
-    const { t, events, pastevents, onlyShowNext } = this.props;
+    const { t, events, onlyShowNext } = this.props;
     const { isShowingPastEvents } = this.state;
 
-    const sortedEvents = events.sortBy(ev => ev.start_time);
-    const sortedPastEvents = pastevents.sortBy(ev => ev.start_time);
-
-    const pastEventsCx = classnames("PastEvents", {
-      visible: isShowingPastEvents && !onlyShowNext,
-    });
+    const sortedEvents = events
+      .sortBy(ev => ev.start_time)
+      .filter(ev =>  moment(ev.get("end_time")) > moment());
 
     const showMoreCx = classnames("ShowMoreEvents", {
       visible: !isShowingPastEvents && !onlyShowNext,
@@ -69,13 +67,9 @@ class Events extends Component {
           }
         </div>
 
-        <div className={pastEventsCx}>
-          {sortedPastEvents.map((event, i) => <Event key={i} event={event} />)}
-        </div>
-
-        <button className={showMoreCx} onClick={() => this.showPastEvents()}>
+        <a className={showMoreCx} href="https://www.facebook.com/pg/catraiobeershop/events/" rel="noopener noreferrer">
           {t("events:show-past")}
-        </button>
+        </a>
       </div>
     );
   }
@@ -84,13 +78,12 @@ class Events extends Component {
 export default compose(
   setDisplayName("Events"),
 
-  translate([ "events", "menu" ]),
+  translate([ "events" ]),
 
-  connect(({ events, pastevents }) => ({ events, pastevents })),
+  connect(({ events }) => ({ events })),
 
   setPropTypes({
     events: PropTypes.instanceOf(Immutable.List).isRequired,
-    pastevents: PropTypes.instanceOf(Immutable.List).isRequired,
     onlyShowNext: PropTypes.bool.isRequired,
   }),
 
