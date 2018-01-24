@@ -9,8 +9,7 @@ const initialState = {
   taps: Immutable.List.of(),
   events: Immutable.List.of(),
   pastevents: Immutable.List.of(),
-  user: "",
-  authenticated: null
+  gallery: Immutable.List.of(),
 };
 
 const store = createStore(appReducer, initialState, compose(

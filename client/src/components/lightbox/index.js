@@ -113,7 +113,9 @@ export class Lightbox extends Component {
                   className="picture"
                   style={{ width: `${100 / sources.length}%` }}
                 >
-                  <img src={source} alt="" />
+                  <a href={source.full} target="_blank" rel="noopener noreferrer">
+                    <img src={source.large} alt="" />
+                  </a>
                 </div>
               )
             })}
@@ -140,7 +142,7 @@ export default compose(
   setPropTypes({
     isOpen: PropTypes.bool.isRequired,
     position: PropTypes.number.isRequired,
-    sources: PropTypes.arrayOf(PropTypes.string).isRequired,
+    sources: PropTypes.arrayOf(PropTypes.object).isRequired,
     onRequestClose: PropTypes.func.isRequired,
   }),
 

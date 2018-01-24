@@ -35,6 +35,14 @@ export class Gallery extends Component {
     }, 1000);
   }
 
+  componentWillReceiveProps() {
+    window.setTimeout(() => {
+      const { scrollWidth, clientWidth } = this.refs.scroller;
+
+      this.setState({ scrollWidth, clientWidth });
+    }, 1000);
+  }
+
   //----------------------------------------------------------------------------
   // Event handlers
   //----------------------------------------------------------------------------
@@ -92,8 +100,8 @@ export class Gallery extends Component {
                 className="Thumbnail ClickablePicture"
                 onClick={() => onPictureClick(i)}
               >
-                <img src={url} />
-              </div> 
+                <img src={url.thumb} width="185" height="170" />
+              </div>
             );
           })}
         </div>
@@ -106,7 +114,7 @@ export default compose(
   setDisplayName("Gallery"),
 
   setPropTypes({
-    sources: PropTypes.arrayOf(PropTypes.string).isRequired,
+    sources: PropTypes.arrayOf(PropTypes.object).isRequired,
     onPictureClick: PropTypes.func,
   }),
 
