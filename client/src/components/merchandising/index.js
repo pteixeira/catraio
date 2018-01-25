@@ -5,12 +5,13 @@ import { compose, setDisplayName, setPropTypes, defaultProps } from "recompose";
 import { translate } from "react-i18next";
 import { map, noop } from "lodash";
 
-const ITEMS = [
-  "tshirt",
-  "sweatshirt",
-  "bag",
-  "capOpener",
-];
+const ITEMS = {
+  "tshirt": require("../../assets/images/merch/thumbs/tshirt.jpg"),
+  "hat": require("../../assets/images/merch/thumbs/hat.jpg"),
+  "bag": require("../../assets/images/merch/thumbs/totebag.jpg"),
+  "capOpener": require("../../assets/images/merch/thumbs/cap-opener.jpg"),
+  "growlers": require("../../assets/images/merch/thumbs/growlers.jpg"),
+};
 
 export const Merchandising = ({
   t,
@@ -25,11 +26,12 @@ export const Merchandising = ({
       <h2>{t("merchandising:subtitle")}</h2>
 
       <ul className="items">
-        {map(ITEMS, (item, i) => (
+        {map(ITEMS, (src, item) => (
           <li
-            key={i}
+            key={item}
             className="item ClickablePicture"
-            onClick={() => onItemClick(i)}
+            onClick={() => onItemClick(item)}
+            style={{ backgroundImage: `url(${src})` }}
           >
             {t(`merchandising:${item}`)}
           </li>
