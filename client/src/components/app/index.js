@@ -117,11 +117,16 @@ export class App extends Component {
 
         <Tagline />
 
+        {/* Catraio, Bar */}
         <Billboard
           double
           src={[
             "https://catraio.s3.amazonaws.com/gallery/large/18.jpg",
             "https://catraio.s3.amazonaws.com/gallery/large/20.jpg",
+          ]}
+          altText={[
+            "Catraio Craft Beer Shop store front",
+            "Catraio's bar"
           ]}
           height="480"
         />
@@ -130,6 +135,7 @@ export class App extends Component {
           src="https://catraio.s3.amazonaws.com/gallery/large/36.jpg"
           height="550"
           width="1280"
+          altText="Catraio's Owners Ricardo and Bia"
         />
 
         <Blockquote
@@ -144,9 +150,10 @@ export class App extends Component {
         />
 
         <Billboard
-          src="https://catraio.s3.amazonaws.com/gallery/large/02.jpg" 
+          src="https://catraio.s3.amazonaws.com/gallery/large/02.jpg"
           height="550"
           width="1280"
+          altText="Inside Catraio, at it's second aniversary"
         />
 
         <Paragraph columnCount={2}>
@@ -160,6 +167,8 @@ export class App extends Component {
           imageRight="https://catraio.s3.amazonaws.com/press/large/2015_04%20-%20Time%20Out%20%282%29.jpg"
           authorRight="Nome jornal/revista"
           dateRight={new Date()}
+          altTextLeft="Clipping from Timeout Magazine from June 2017"
+          altTextRight="Clipping from Timeout Magazine from April 2015"
         />
 
         <Blockquote
@@ -175,6 +184,7 @@ export class App extends Component {
             single
             right
             src="https://catraio.s3.amazonaws.com/gallery/large/22.jpg"
+            altText="Inside Catraio, with an outside view."
           />
 
           <div className="section-bottles">
@@ -215,6 +225,7 @@ export class App extends Component {
             single
             right
             src="https://catraio.s3.amazonaws.com/gallery/large/06.jpg"
+            altText="Catraio's Taps"
           />
 
         </div>

@@ -9,7 +9,7 @@ export const Clippings = (props) => {
       {[ "Left", "Right" ].map(side => (
         <div className="Clipping" key={side}>
           <div className="ClippingImage">
-            <img src={props[`image${side}`]} />
+            <img src={props[`image${side}`]} alt={props[`altText${side}`]} />
           </div>
           <div className="ClippingSource">
             {props[`author${side}`]}, {props[`date${side}`].toString()}

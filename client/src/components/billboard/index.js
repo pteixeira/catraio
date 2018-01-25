@@ -13,18 +13,19 @@ export const Billboard = ({
   width,
   left,
   right,
+  altText,
 }) => {
   const cx = classnames("Billboard", { double, single, left, right });
   return (
     <div className={cx}>
       {isString(src) &&
-        <img src={src} height={height} width={width}/>
+        <img src={src} height={height} width={width} alt={altText} />
       }
 
       {isArray(src) &&
         <div>
-          <img src={src[0]} height={height} />
-          <img src={src[1]} height={height} />
+          <img src={src[0]} height={height} alt={altText[0]} />
+          <img src={src[1]} height={height} alt={altText[1]} />
         </div>
       }
     </div>
@@ -43,6 +44,10 @@ export default compose(
     ]).isRequired,
     left: PropTypes.bool.isRequired,
     right: PropTypes.bool.isRequired,
+    altText: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.arrayOf(PropTypes.string)
+    ]).isRequired,
   }),
 
   defaultProps({

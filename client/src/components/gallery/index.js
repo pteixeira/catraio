@@ -100,7 +100,7 @@ export class Gallery extends Component {
                 className="Thumbnail ClickablePicture"
                 onClick={() => onPictureClick(i)}
               >
-                <img src={url.thumb} width="185" height="170" />
+                <img src={url.thumb} width="185" height="170" alt={`Gallery Image number ${i + 1}`} />
               </div>
             );
           })}
