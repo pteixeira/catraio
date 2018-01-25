@@ -14,9 +14,6 @@ gem 'dotenv-rails'#, :groups => [:development, :test]
 gem 'faraday'
 gem 'hashie'
 gem 'json', "~> 2"
-gem 'knock'
-gem 'koala', '~> 2.2'
-gem 'mailgun-ruby', '~>1.1.6'
 gem 'puma', '~> 3.7'
 gem 'rabl'
 gem 'rack-cors'

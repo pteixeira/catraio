@@ -23,7 +23,7 @@ const Description = ({ description }) => {
 
 export const Event = ({ event }) => {
   const cover = {
-    backgroundImage: `url(${event.get("cover").get("source")})`,
+    backgroundImage: `url(${event.get("link")})`,
   };
 
   const link = `https://www.facebook.com/events/${event.get("id")}`;
@@ -43,7 +43,7 @@ export const Event = ({ event }) => {
       </a>
 
       <Description description={event.get("description")} />
-    </div> 
+    </div>
   );
 }
 
