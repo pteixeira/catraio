@@ -141,7 +141,6 @@ export class App extends Component {
         <Blockquote
           quote="intro:quote"
           author="intro:author"
-          date={new Date()}
         />
 
         <Gallery
@@ -163,10 +162,10 @@ export class App extends Component {
         <Clippings
           imageLeft="https://catraio.s3.amazonaws.com/press/large/2017_06%20Timeout%20Porto.jpg"
           authorLeft="Nome jornal/revista"
-          dateLeft={new Date()}
+          textLeft="Timeout Magazine - June 2017"
           imageRight="https://catraio.s3.amazonaws.com/press/large/2015_04%20-%20Time%20Out%20%282%29.jpg"
           authorRight="Nome jornal/revista"
-          dateRight={new Date()}
+          textRight="Timeout Magazine - April 2015"
           altTextLeft="Clipping from Timeout Magazine from June 2017"
           altTextRight="Clipping from Timeout Magazine from April 2015"
         />
@@ -174,7 +173,6 @@ export class App extends Component {
         <Blockquote
           quote="intro:quote"
           author="intro:author"
-          date={new Date()}
         />
 
         <SectionMarker id="shopandbar" />
