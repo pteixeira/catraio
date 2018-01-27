@@ -121,8 +121,8 @@ export class App extends Component {
         <Billboard
           double
           src={[
-            "https://catraio.s3.amazonaws.com/gallery/large/18.jpg",
-            "https://catraio.s3.amazonaws.com/gallery/large/20.jpg",
+            "https://catraio.s3.amazonaws.com/gallery/large/Catraio_1.jpg",
+            "https://catraio.s3.amazonaws.com/gallery/large/DSC01306.jpg",
           ]}
           altText={[
             "Catraio Craft Beer Shop store front",
@@ -132,7 +132,7 @@ export class App extends Component {
         />
 
         <Billboard
-          src="https://catraio.s3.amazonaws.com/gallery/large/36.jpg"
+          src="https://catraio.s3.amazonaws.com/gallery/large/DSC03782.jpg"
           height="550"
           width="1280"
           altText="Catraio's Owners Ricardo and Bia"
@@ -150,10 +150,10 @@ export class App extends Component {
         />
 
         <Billboard
-          src="https://catraio.s3.amazonaws.com/gallery/large/02.jpg"
+          src="https://catraio.s3.amazonaws.com/gallery/large/DSC02340.jpg"
           height="550"
           width="1280"
-          altText="Inside Catraio, at it's second aniversary"
+          altText="Beer Garden"
         />
 
         <Paragraph columnCount={2}>
@@ -183,7 +183,7 @@ export class App extends Component {
           <Billboard
             single
             right
-            src="https://catraio.s3.amazonaws.com/gallery/large/22.jpg"
+            src="https://catraio.s3.amazonaws.com/gallery/large/DSC01513.jpg"
             altText="Inside Catraio, with an outside view."
           />
 
@@ -224,7 +224,7 @@ export class App extends Component {
           <Billboard
             single
             right
-            src="https://catraio.s3.amazonaws.com/gallery/large/06.jpg"
+            src="https://catraio.s3.amazonaws.com/gallery/large/DSC02299.jpg"
             altText="Catraio's Taps"
           />
 

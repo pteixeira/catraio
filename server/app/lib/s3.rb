@@ -13,14 +13,13 @@ class S3
     )
   end
 
-  def url(prefix, number)
+  def url(prefix, filename)
     [
       "https://",
       ENV.fetch("S3_BUCKET_NAME"),
       ".s3.amazonaws.com/",
       prefix,
-      number.to_s.rjust(2, "0"),
-      ".jpg",
+      filename,
     ].compact.join
   end
 end

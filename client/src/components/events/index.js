@@ -67,7 +67,7 @@ class Events extends Component {
           }
         </div>
 
-        <a className={showMoreCx} href="https://www.facebook.com/pg/catraiobeershop/events/" rel="noopener noreferrer">
+        <a className={showMoreCx} href="https://www.facebook.com/pg/catraiobeershop/events/" target="_blank" rel="noopener noreferrer">
           {t("events:show-past")}
         </a>
       </div>
