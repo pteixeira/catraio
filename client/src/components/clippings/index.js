@@ -12,7 +12,7 @@ export const Clippings = (props) => {
             <img src={props[`image${side}`]} alt={props[`altText${side}`]} />
           </div>
           <div className="ClippingSource">
-            {props[`author${side}`]}, {props[`date${side}`].toString()}
+            {props[`text${side}`]}
           </div>
         </div>
       ))}
@@ -26,10 +26,10 @@ export default compose(
   setPropTypes({
     imageLeft: PropTypes.string.isRequired,
     authorLeft: PropTypes.string.isRequired,
-    dateLeft: PropTypes.instanceOf(Date).isRequired,
+    textLeft: PropTypes.string.isRequired,
     imageRight: PropTypes.string.isRequired,
     authorRight: PropTypes.string.isRequired,
-    dateRight: PropTypes.instanceOf(Date).isRequired,
+    textRight: PropTypes.string.isRequired
   }),
 
   defaultProps({

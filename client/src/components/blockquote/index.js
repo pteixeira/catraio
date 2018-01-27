@@ -7,7 +7,6 @@ import { compose, setDisplayName, setPropTypes } from "recompose";
 export const Blockquote = ({
   quote,
   author,
-  date,
 }) => {
   return (
     <div className="Blockquote">
@@ -16,9 +15,6 @@ export const Blockquote = ({
       </div>
       <div className="Blockquote-author">
         <Interpolate i18nKey={author} useDangerouslySetInnerHTML />
-      </div>
-      <div className="Blockquote-date">
-        {date.toString()}
       </div>
     </div>
   );
@@ -30,7 +26,6 @@ export default compose(
   setPropTypes({
     quote: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
-    date: PropTypes.instanceOf(Date).isRequired,
   }),
 
   translate([ "intro" ]),
