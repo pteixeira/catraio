@@ -232,11 +232,11 @@ export class App extends Component {
 
         <div className="Clearfix section">
 
-          <div className="section-taps">
+          <div className="section-taps right-pad">
 
             <h1 className="section-header">{t("shopandbar:taps:title")}</h1>
 
-            <Paragraph columnCount={1} extraClasses="right-pad">
+            <Paragraph columnCount={1}>
               { t("shopandbar:taps:description") }
             </Paragraph>
 
