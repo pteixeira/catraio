@@ -4,6 +4,7 @@ import React, { PropTypes, Component } from "react";
 import classnames from "classnames";
 import { map, noop } from "lodash";
 import { compose, setDisplayName, setPropTypes, defaultProps } from "recompose";
+import ReactTouchEvents from "react-touch-events";
 
 //
 // Utils
@@ -55,6 +56,7 @@ export class Gallery extends Component {
       (scrollLeft) => this.setState({ scrollLeft }),
     );
   }
+
   scrollRight = () => {
     horizontalSmoothScroll(
       this.refs.scroller,
@@ -63,6 +65,19 @@ export class Gallery extends Component {
       "easeInOutQuad",
       (scrollLeft) => this.setState({ scrollLeft }),
     );
+  }
+
+  handleSwipe = (direction) => {
+    switch (direction) {
+    case "left":
+      this.scrollRight();
+      break;
+    case "right":
+      this.scrollLeft();
+      break;
+    default:
+      break;
+    }
   }
 
   //----------------------------------------------------------------------------
@@ -92,19 +107,21 @@ export class Gallery extends Component {
           <i className="icon icon-right-open" />
         </div>
 
-        <div className="scroller" ref="scroller">
-          {map(sources, (url, i) => {
-            return (
-              <div
-                key={i}
-                className="Thumbnail ClickablePicture"
-                onClick={() => onPictureClick(i)}
-              >
-                <img src={url.thumb} width="185" height="170" alt={`Gallery Image number ${i + 1}`} />
-              </div>
-            );
-          })}
-        </div>
+        <ReactTouchEvents onSwipe={this.handleSwipe} swipeTolerance={10}>
+          <div className="scroller" ref="scroller">
+            {map(sources, (url, i) => {
+              return (
+                <div
+                  key={i}
+                  className="Thumbnail ClickablePicture"
+                  onClick={() => onPictureClick(i)}
+                >
+                  <img src={url.thumb} width="185" height="170" alt={`Gallery Image number ${i + 1}`} />
+                </div>
+              );
+            })}
+          </div>
+        </ReactTouchEvents>
       </div>
     );
   }

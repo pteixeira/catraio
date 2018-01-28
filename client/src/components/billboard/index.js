@@ -14,8 +14,9 @@ export const Billboard = ({
   left,
   right,
   altText,
+  className,
 }) => {
-  const cx = classnames("Billboard", { double, single, left, right });
+  const cx = classnames("Billboard", className, { double, single, left, right });
   return (
     <div className={cx}>
       {isString(src) &&
@@ -48,6 +49,7 @@ export default compose(
       PropTypes.string,
       PropTypes.arrayOf(PropTypes.string)
     ]).isRequired,
+    className: PropTypes.string,
   }),
 
   defaultProps({

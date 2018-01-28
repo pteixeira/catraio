@@ -25,8 +25,10 @@ export const Footer = ({ t }) => {
 
         <div className="Footer-location">
           <div className="Location-address">
-            Rua de Cedofeita 256<br />
-            4050-174 Porto
+            <a href="https://goo.gl/maps/kT4CUQxf62G2" target="_blank" rel="noopener noreferrer">
+              Rua de Cedofeita 256<br />
+              4050-174 Porto
+            </a>
           </div>
         </div>
 
@@ -37,16 +39,14 @@ export const Footer = ({ t }) => {
       </div>
 
       <div className="Footer-section Footer-social">
-        {map(ICONS, (url, key) => {
-          return (
-            <a
-              href={url}
-              key={key}
-              className={`icon icon-${key}`}
-              target="_blank"
-            />
-          )
-        })}
+        {map(ICONS, (url, key) => (
+          <a
+            href={url}
+            key={key}
+            className={`icon icon-${key}`}
+            target="_blank"
+          />
+        ))}
       </div>
 
     </footer>

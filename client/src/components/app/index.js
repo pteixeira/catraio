@@ -5,9 +5,9 @@ import "app-assets/hagin.css";
 import "app-assets/raleway.css";
 
 import "./app.styl";
+import "./responsive.styl";
 
 import React, { Component, PropTypes } from "react";
-import { times, map } from "lodash";
 import { compose, getContext, setDisplayName } from "recompose";
 import { connect } from "react-redux";
 import { translate, Interpolate } from "react-i18next";
@@ -29,7 +29,11 @@ import Taplist from "app-components/taplist";
 import Merchandising from "app-components/merchandising";
 import Footer from "app-components/footer";
 
-const merchSources = map(times(4), () => "https://placehold.it/1280x800");
+const merchSources = [ "tshirt", "hat", "bag", "cap-opener", "growlers" ].map(item => ({
+  thumb: require(`../../assets/images/merch/thumbs/${item}.jpg`),
+  large: require(`../../assets/images/merch/${item}.jpg`),
+  full: require(`../../assets/images/merch/${item}.jpg`),
+}));
 
 export class App extends Component {
 
@@ -129,13 +133,22 @@ export class App extends Component {
             "Catraio's bar"
           ]}
           height="480"
+          className="desktop"
         />
 
         <Billboard
           src="https://catraio.s3.amazonaws.com/gallery/large/DSC03782.jpg"
+          width="100%"
           height="550"
-          width="1280"
           altText="Catraio's Owners Ricardo and Bia"
+          className="desktop"
+        />
+
+        <Billboard
+          src="https://catraio.s3.amazonaws.com/gallery/large/DSC01306.jpg"
+          className="mobile"
+          height="320"
+          altText="Catraio's bar"
         />
 
         <Blockquote
@@ -148,16 +161,24 @@ export class App extends Component {
           onPictureClick={this.openLightboxAt("gallery")}
         />
 
-        <Billboard
-          src="https://catraio.s3.amazonaws.com/gallery/large/DSC02340.jpg"
-          height="550"
-          width="1280"
-          altText="Beer Garden"
-        />
-
         <Paragraph columnCount={2}>
           <Interpolate i18nKey={"catraio:main_text"} useDangerouslySetInnerHTML />
         </Paragraph>
+
+        <Billboard
+          src="https://catraio.s3.amazonaws.com/gallery/large/DSC02340.jpg"
+          height="550"
+          width="100%"
+          altText="Beer Garden"
+          className="desktop"
+        />
+
+        <Billboard
+          src="https://catraio.s3.amazonaws.com/gallery/large/DSC02340.jpg"
+          height="200"
+          altText="Beer Garden"
+          className="mobile"
+        />
 
         <Clippings
           imageLeft="https://catraio.s3.amazonaws.com/press/large/2017_06%20Timeout%20Porto.jpg"
@@ -170,11 +191,6 @@ export class App extends Component {
           altTextRight="Clipping from Timeout Magazine from April 2015"
         />
 
-        <Blockquote
-          quote="intro:quote"
-          author="intro:author"
-        />
-
         <SectionMarker id="shopandbar" />
 
         <div className="Clearfix section">
@@ -183,6 +199,7 @@ export class App extends Component {
             right
             src="https://catraio.s3.amazonaws.com/gallery/large/DSC01513.jpg"
             altText="Inside Catraio, with an outside view."
+            className="desktop"
           />
 
           <div className="section-bottles">
@@ -202,11 +219,20 @@ export class App extends Component {
             </Paragraph>
           </div>
 
+          <Billboard
+            single
+            right
+            src="https://catraio.s3.amazonaws.com/gallery/large/DSC01513.jpg"
+            altText="Inside Catraio, with an outside view."
+            className="mobile"
+            height="200"
+          />
+
         </div>
 
         <div className="Clearfix section">
 
-          <div>
+          <div className="section-taps">
 
             <h1 className="section-header">{t("shopandbar:taps:title")}</h1>
 
@@ -214,16 +240,25 @@ export class App extends Component {
               { t("shopandbar:taps:description") }
             </Paragraph>
 
+            <Billboard
+              single
+              right
+              src="https://catraio.s3.amazonaws.com/gallery/large/DSC02299.jpg"
+              height="160"
+              altText="Catraio's Taps"
+              className="mobile"
+            />
+
             <Taplist />
 
           </div>
-
 
           <Billboard
             single
             right
             src="https://catraio.s3.amazonaws.com/gallery/large/DSC02299.jpg"
             altText="Catraio's Taps"
+            className="desktop"
           />
 
         </div>

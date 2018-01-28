@@ -43,10 +43,11 @@ export class Header extends Component {
             return (
               <li
                 key={`header-link-${item}`}
-                className="Header-menu-item"
+                className={`Header-menu-item ${item}`}
                 onClick={() => this.scrollToSection(item)}
               >
-                {t(`menu:${item}`)}
+                <span className="desktop">{t(`menu:${item}`)}</span>
+                <span className="mobile">{t(`mobile_menu:${item}`)}</span>
               </li>
             );
           })}

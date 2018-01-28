@@ -48,7 +48,7 @@ export class FloatingMenu extends Component {
     const current = findLast(sections, s => scrollTop > s.offsetTop);
 
     const id = current && current.id || "catraio";
-    
+
     if (active !== id) {
       this.setState({ active: id });
     }
@@ -70,7 +70,7 @@ export class FloatingMenu extends Component {
     return (
       <ul className={cx}>
         {map(MENU_ITEMS, item => {
-          const cx = classnames("FloatingMenuItem", { active: active === item });
+          const cx = classnames("FloatingMenuItem", item, { active: active === item });
 
           return (
             <li
@@ -78,7 +78,8 @@ export class FloatingMenu extends Component {
               className={cx}
               onClick={() => this.scrollToSection(item)}
             >
-              {t(`menu:${item}`)}
+              <span className="desktop">{t(`menu:${item}`)}</span>
+              <span className="mobile">{t(`mobile_menu:${item}`)}</span>
             </li>
           )
         })}

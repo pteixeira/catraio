@@ -5,13 +5,13 @@ import { compose, setDisplayName, setPropTypes, defaultProps } from "recompose";
 import { translate } from "react-i18next";
 import { map, noop } from "lodash";
 
-const ITEMS = {
-  "tshirt": require("../../assets/images/merch/thumbs/tshirt.jpg"),
-  "hat": require("../../assets/images/merch/thumbs/hat.jpg"),
-  "bag": require("../../assets/images/merch/thumbs/totebag.jpg"),
-  "capOpener": require("../../assets/images/merch/thumbs/cap-opener.jpg"),
-  "growlers": require("../../assets/images/merch/thumbs/growlers.jpg"),
-};
+const ITEMS = [
+  { name: "tshirt", src: require("../../assets/images/merch/thumbs/tshirt.jpg") },
+  { name: "hat", src: require("../../assets/images/merch/thumbs/hat.jpg") },
+  { name: "bag", src: require("../../assets/images/merch/thumbs/bag.jpg") },
+  { name: "cap-opener", src: require("../../assets/images/merch/thumbs/cap-opener.jpg") },
+  { name: "growlers", src: require("../../assets/images/merch/thumbs/growlers.jpg") },
+];
 
 export const Merchandising = ({
   t,
@@ -26,14 +26,14 @@ export const Merchandising = ({
       <h2>{t("merchandising:subtitle")}</h2>
 
       <ul className="items">
-        {map(ITEMS, (src, item) => (
+        {map(ITEMS, (item, i) => (
           <li
-            key={item}
+            key={item.name}
             className="item ClickablePicture"
-            onClick={() => onItemClick(item)}
-            style={{ backgroundImage: `url(${src})` }}
+            onClick={() => onItemClick(i)}
+            style={{ backgroundImage: `url(${item.src})` }}
           >
-            {t(`merchandising:${item}`)}
+            {t(`merchandising:${item.name}`)}
           </li>
         ))}
       </ul>

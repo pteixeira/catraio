@@ -2,6 +2,14 @@ const path = require("path");
 const Webpack = require("webpack");
 
 module.exports = {
+  devServer: {
+    proxy: {
+      "/api": {
+        target: "http://localhost:3000",
+        pathRewrite: { "^/api": "" },
+      },
+    },
+  },
   entry: {
     app: "./src/main.js",
     vendors: [

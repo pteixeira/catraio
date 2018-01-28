@@ -23,6 +23,16 @@
     "shopandbar": "SHOP and BAR"
   },
 
+  "mobile_menu": {
+    "photos": "PHOTOS",
+    "events": "EVENTS",
+    "about": "About",
+    "contact": "Contacts",
+    "beers": "Beers",
+    "catraio": "CATRAIO",
+    "shopandbar": "SHOP/BAR"
+  },
+
   "intro": {
     "quote": "We can't buy happiness, but we can buy beer and at Catraio these two things are pratically the same!!! <br /> I like my water with barley and hops !!!",
     "author": "Manuel Oliveira, via Facebook"
@@ -38,7 +48,7 @@
     "tshirt": "T-shirt",
     "sweatshirt": "Sweatshirt",
     "bag": "Bag",
-    "capOpener": "Cap Opener"
+    "cap-opener": "Cap Opener"
   },
 
   "footer": {
@@ -88,7 +98,7 @@
     },
     "taps": {
       "title": "Beers To Enjoy With Us!",
-      "description": "Explore {{link}} to find which beers are on tap and join the game. And if you want to know what´s available on bottle at the bar, check our “$t(bar.title)”."
+      "description": "Explore below to find which beers are on tap. And if you want to know what´s available on bottle at the bar, check our “$t(bar.title)”."
     },
     "shop": {
       "title": "Merchandising Catraio",

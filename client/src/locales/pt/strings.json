@@ -23,6 +23,16 @@
     "shopandbar": "LOJA e BAR"
   },
 
+  "mobile_menu": {
+    "photos": "FOTOS",
+    "events": "EVENTOS",
+    "about": "Acerca",
+    "contact": "Contacto",
+    "beers": "Cervejas",
+    "catraio": "CATRAIO",
+    "shopandbar": "LOJA/BAR"
+  },
+
   "intro": {
     "quote": "Não podemos comprar a felicidade, mas podemos comprar cerveja, e no Catraio estas duas coisas são praticamente a mesma!!! I like my water with barley and hops!!!",
     "author": "Manuel Oliveira, via Facebook"
@@ -38,7 +48,7 @@
     "tshirt": "T-shirt",
     "sweatshirt": "Camisola",
     "bag": "Saco",
-    "capOpener": "Abre-Caricas"
+    "cap-opener": "Abre-Caricas"
   },
 
   "footer": {
@@ -88,7 +98,7 @@
     },
     "taps": {
       "title": "Cervejas para beberes connosco!",
-      "description": "Explora aqui a app {{link}} para saberes quais são as cervejas de pressão e entra no jogo. Ah, e se quiseres beber cerveja de garrafa no bar, dá uma vista de olhos à lista “$t(bar.title)”."
+      "description": "Explora a lista abaixo para saberes quais são as cervejas de pressão que temos no bar. E se quiseres beber cerveja de garrafa no bar, dá uma vista de olhos à lista “$t(bar.title)”."
     },
     "shop": {
       "title": "Oferece (-TE) Catraio",

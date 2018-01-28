@@ -4,6 +4,7 @@ import React, { PropTypes, Component } from "react";
 import classnames from "classnames";
 import { map, times, noop } from "lodash";
 import { compose, setDisplayName, setPropTypes, defaultProps } from "recompose";
+import ReactTouchEvents from "react-touch-events";
 
 export class Lightbox extends Component {
 
@@ -76,6 +77,19 @@ export class Lightbox extends Component {
     }
   }
 
+  handleSwipe = (direction) => {
+    switch (direction) {
+    case "left":
+      this.scrollRight();
+      break;
+    case "right":
+      this.scrollLeft();
+      break;
+    default:
+      break;
+    }
+  }
+
   //----------------------------------------------------------------------------
   // Render
   //----------------------------------------------------------------------------
@@ -86,51 +100,53 @@ export class Lightbox extends Component {
     const cx = classnames("Lightbox", { hidden: !isOpen });
 
     return (
-      <div className={cx}>
+      <ReactTouchEvents onSwipe={this.handleSwipe} swipeTolerance={10}>
+        <div className={cx}>
 
-        <div className="overlay" />
+          <div className="overlay" />
 
-        <div className="close" onClick={onRequestClose}>
-          <i className="icon icon-cancel" />
-        </div>
-        <div className="left" onClick={this.scrollLeft}>
-          <i className="icon icon-left-open" />
-        </div>
-        <div className="right" onClick={this.scrollRight}>
-          <i className="icon icon-right-open" />
-        </div>
+          <div className="close" onClick={onRequestClose}>
+            <i className="icon icon-cancel" />
+          </div>
+          <div className="left" onClick={this.scrollLeft}>
+            <i className="icon icon-left-open" />
+          </div>
+          <div className="right" onClick={this.scrollRight}>
+            <i className="icon icon-right-open" />
+          </div>
 
-        <div className="pictures">
-          <div
-            className="scroller"
-            ref="scroller"
-            style={{ width: `${sources.length * 100}%`}}
-          >
-            {map(sources, (source, i) => {
-              return (
-                <div
-                  key={i}
-                  className="picture"
-                  style={{ width: `${100 / sources.length}%` }}
-                >
-                  <a href={source.full} target="_blank" rel="noopener noreferrer">
-                    <img src={source.large} alt="" />
-                  </a>
-                </div>
-              )
+          <div className="pictures">
+            <div
+              className="scroller"
+              ref="scroller"
+              style={{ width: `${sources.length * 100}%`}}
+            >
+              {map(sources, (source, i) => {
+                return (
+                  <div
+                    key={i}
+                    className="picture"
+                    style={{ width: `${100 / sources.length}%` }}
+                  >
+                    <a href={source.full} target="_blank" rel="noopener noreferrer">
+                      <img src={source.large} alt="" />
+                    </a>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+
+          <div className="guide">
+            {times(sources.length, i => {
+              const cx = classnames("indicator", { selected: position === i });
+
+              return <div key={i} className={cx} onClick={this.setPosition(i)}/>;
             })}
           </div>
+
         </div>
-
-        <div className="guide">
-          {times(sources.length, i => {
-            const cx = classnames("indicator", { selected: position === i });
-
-            return <div key={i} className={cx} onClick={this.setPosition(i)}/>;
-          })}
-        </div>
-
-      </div>
+      </ReactTouchEvents>
     );
   }
 

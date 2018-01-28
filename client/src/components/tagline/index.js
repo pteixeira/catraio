@@ -18,8 +18,10 @@ export class Tagline extends Component {
           <div>{t("footer:schedule-line2")}</div>
         </div>
         <div className="Tagline-section location">
-          <div>Rua de Cedofeita 256</div>
-          <div>4050-174 Porto</div>
+          <a href="https://goo.gl/maps/kT4CUQxf62G2" target="_blank" rel="noopener noreferrer">
+            <div>Rua de Cedofeita 256</div>
+            <div>4050-174 Porto</div>
+          </a>
         </div>
         <div className="Tagline-section contacts">
           <div>+351 934 360 070</div>

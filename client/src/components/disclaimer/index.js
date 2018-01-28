@@ -19,10 +19,10 @@ class Disclaimer extends React.Component {
       <div className="Disclaimer">
         <h1 className="logo">Catraio</h1>
         <div className="Disclaimer-question">
-          <div>{t("disclaimer:question")}</div>
+          <p>{t("disclaimer:question")}</p>
           <div className="Disclaimer-options">
             <Link to="/" onClick={this.setAdult.bind(this)}>{t("disclaimer:yes")}</Link>
-            <a href="http://www.disney.com">{t("disclaimer:no")}</a>
+            <a href="https://www.google.com">{t("disclaimer:no")}</a>
           </div>
         </div>
       </div>
