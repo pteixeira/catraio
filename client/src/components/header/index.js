@@ -11,7 +11,10 @@ import { compose, setDisplayName } from "recompose";
 import LanguageSelector from "app-components/language_selector";
 
 const MENU_ITEMS = [
-  "catraio", "shopandbar", "events", "photos"
+  "catraio",
+  "photos",
+  "shopandbar",
+  "events",
 ];
 
 export class Header extends Component {
@@ -21,7 +24,7 @@ export class Header extends Component {
   //----------------------------------------------------------------------------
   scrollToSection(item) {
     const element = document.getElementById(item);
-    element.scrollIntoView({ behavior: "smooth" });
+    element.scrollIntoView();
     this.setState({ active: item });
   }
 

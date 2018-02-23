@@ -24,7 +24,6 @@ import Billboard from "app-components/billboard";
 import Blockquote from "app-components/blockquote";
 import Gallery from "app-components/gallery";
 import Paragraph from "app-components/paragraph";
-import Clippings from "app-components/clippings";
 import Taplist from "app-components/taplist";
 import Merchandising from "app-components/merchandising";
 import Footer from "app-components/footer";
@@ -40,6 +39,8 @@ export class App extends Component {
   state = {
     galleryLightboxOpen: false,
     galleryLightboxPosition: 0,
+    pressLightboxOpen: false,
+    pressLightboxPosition: 0,
     merchLightboxOpen: false,
     merchLightboxPosition: 0,
   }
@@ -48,7 +49,7 @@ export class App extends Component {
   // Lifecycle
   //----------------------------------------------------------------------------
   componentWillMount() {
-    if (sessionStorage.getItem("over18") !== "1") {
+    if (localStorage.getItem("over18") !== "1") {
       this.props.router.push("disclaimer");
     }
     document.addEventListener("keydown", this.handleKeyDown, false);
@@ -71,6 +72,7 @@ export class App extends Component {
   closeLightbox = () => {
     this.setState({
       galleryLightboxOpen: false,
+      pressLightboxOpen: false,
       merchLightboxOpen: false,
     });
   }
@@ -88,11 +90,13 @@ export class App extends Component {
     const {
       galleryLightboxOpen,
       galleryLightboxPosition,
+      pressLightboxOpen,
+      pressLightboxPosition,
       merchLightboxOpen,
       merchLightboxPosition,
     } = this.state;
 
-    const { t, gallery } = this.props;
+    const { t, gallery, press } = this.props;
 
     return (
       <div className="App">
@@ -111,6 +115,12 @@ export class App extends Component {
           sources={merchSources}
           position={merchLightboxPosition}
           onRequestClose={this.closeLightbox}
+        />
+
+        <Lightbox
+          isOpen={pressLightboxOpen}
+          sources={press}
+          position={pressLightboxPosition}
         />
 
         <Header />
@@ -156,6 +166,8 @@ export class App extends Component {
           author="intro:author"
         />
 
+        <SectionMarker id="photos" />
+
         <Gallery
           sources={gallery}
           onPictureClick={this.openLightboxAt("gallery")}
@@ -180,20 +192,11 @@ export class App extends Component {
           className="mobile"
         />
 
-        <Clippings
-          imageLeft="https://catraio.s3.amazonaws.com/press/large/2017_06%20Timeout%20Porto.jpg"
-          authorLeft="Nome jornal/revista"
-          textLeft="Timeout Magazine - June 2017"
-          imageRight="https://catraio.s3.amazonaws.com/press/large/2015_04%20-%20Time%20Out%20%282%29.jpg"
-          authorRight="Nome jornal/revista"
-          textRight="Timeout Magazine - April 2015"
-          altTextLeft="Clipping from Timeout Magazine from June 2017"
-          altTextRight="Clipping from Timeout Magazine from April 2015"
-        />
-
         <SectionMarker id="shopandbar" />
 
+        <h1>{t("menu:shopandbar")}</h1>
         <div className="Clearfix section">
+
           <Billboard
             single
             right
@@ -271,11 +274,11 @@ export class App extends Component {
 
         <Events showPastEvents />
 
-        <SectionMarker id="photos" />
+        <h1>{t("press:title")}</h1>
 
         <Gallery
-          sources={gallery}
-          onPictureClick={this.openLightboxAt("gallery")}
+          sources={press}
+          onPictureClick={this.openLightboxAt("press")}
         />
 
         <Footer />
@@ -292,7 +295,10 @@ export default compose(
     router: PropTypes.object.isRequired,
   }),
 
-  translate(["catraio", "shopandbar"]),
+  translate(["catraio", "shopandbar", "press"]),
 
-  connect(({ gallery }) => ({ gallery: gallery.toJS() })),
+  connect(({ gallery, press }) => ({
+    gallery: gallery.toJS(),
+    press: press.toJS()
+  })),
 )(App);

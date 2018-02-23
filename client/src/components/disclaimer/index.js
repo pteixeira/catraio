@@ -9,7 +9,7 @@ class Disclaimer extends React.Component {
   static displayName = "Disclaimer";
 
   setAdult() {
-    sessionStorage.setItem("over18", "1");
+    localStorage.setItem("over18", "1");
   }
 
   render() {

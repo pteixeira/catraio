@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   get "/taps", to: "taps#index"
   get "/beers", to: "beers#index"
   get "/gallery", to: "images#gallery"
+  get "/press", to: "images#press"
 end

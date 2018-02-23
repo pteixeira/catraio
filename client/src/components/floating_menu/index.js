@@ -8,9 +8,9 @@ import { compose, setDisplayName, setPropTypes } from "recompose";
 
 const MENU_ITEMS = [
   "catraio",
+  "photos",
   "shopandbar",
   "events",
-  "photos",
 ];
 
 export class FloatingMenu extends Component {
@@ -55,7 +55,7 @@ export class FloatingMenu extends Component {
   }, 100);
 
   scrollToSection = (id) => {
-    document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+    document.getElementById(id).scrollIntoView();
   }
 
   //----------------------------------------------------------------------------

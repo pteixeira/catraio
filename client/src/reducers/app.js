@@ -5,6 +5,7 @@ import taps from "./taps";
 import events from "./events";
 import pastevents from "./pastevents";
 import gallery from "./gallery";
+import press from "./press";
 
 export default combineReducers({
   beers,
@@ -12,4 +13,5 @@ export default combineReducers({
   events,
   pastevents,
   gallery,
+  press,
 });

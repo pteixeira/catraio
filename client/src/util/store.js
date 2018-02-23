@@ -3,6 +3,7 @@ import { setTaps } from "../actions/taps";
 import { setBeers } from "../actions/beers";
 import { setEvents } from "../actions/events";
 import { setGallery } from "../actions/gallery";
+import { setPress } from "../actions/press";
 import { setCurrentUser, removeCurrentUser, setAuth } from "../actions/user";
 import { defaultHeaders } from "../util/request";
 
@@ -24,6 +25,10 @@ export function initStoreFromServer(store) {
   fetch(`${API_HOST}/gallery`)
   .then(res => res.json())
   .then(gallery => store.dispatch(setGallery(gallery)));
+
+  fetch(`${API_HOST}/press`)
+  .then(res => res.json())
+  .then(press => store.dispatch(setPress(press)));
 
   const token = localStorage.getItem("token");
 
