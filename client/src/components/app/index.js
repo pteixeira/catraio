@@ -29,7 +29,7 @@ import Taplist from "app-components/taplist";
 import Merchandising from "app-components/merchandising";
 import Footer from "app-components/footer";
 
-const merchSources = [ "tshirt", "hat", "bag", "cap-opener", "growlers" ].map(item => ({
+const merchSources = [ "tshirt", "hat", "bag", "cap-opener", "growlers", "hoodie" ].map(item => ({
   thumb: require(`../../assets/images/merch/thumbs/${item}.jpg`),
   large: require(`../../assets/images/merch/${item}.jpg`),
   full: require(`../../assets/images/merch/${item}.jpg`),

@@ -11,6 +11,7 @@ const ITEMS = [
   { name: "bag", src: require("../../assets/images/merch/thumbs/bag.jpg") },
   { name: "cap-opener", src: require("../../assets/images/merch/thumbs/cap-opener.jpg") },
   { name: "growlers", src: require("../../assets/images/merch/thumbs/growlers.jpg") },
+  { name: "hoodie", src: require("../../assets/images/merch/thumbs/hoodie.jpg") }
 ];
 
 export const Merchandising = ({
